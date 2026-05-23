@@ -17,7 +17,7 @@
 
   <style>
     :root {
-      /* 🎨 PALETA SOPHISTICATED LOVE (SISTEMA POR DEFECTO) */
+      /* 🎨 PALETA SOPHISTICATED LOVE */
       --bg-dark: #0f0a0c;
       --bg-card: rgba(26, 12, 16, 0.75);
       --text-main: #ffe4e6;
@@ -28,7 +28,7 @@
       --glass: rgba(255, 255, 255, 0.02);
       --glass-border: rgba(255, 113, 206, 0.15);
       --radius-lg: 24px;
-      --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     body.comp-mode {
@@ -43,12 +43,8 @@
     }
 
     /* 📌 BARRA DE DESPLAZAMIENTO PERSONALIZADA */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
     ::-webkit-scrollbar-thumb {
       background: var(--glass-border);
       border-radius: 100px;
@@ -74,43 +70,28 @@
 
     /* 🎇 INTERACTIVE CURSOR GLOW BACKGROUND */
     .cursor-glow {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      pointer-events: none;
-      z-index: -1;
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none; z-index: -1;
       background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-radial), transparent 80%);
       transition: background 0.5s ease;
     }
 
     /* --- FONDO GLOBAL PREMIUM --- */
     .global-bg {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -3;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3;
       background-image: url('valorant_art.jpg'); 
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      filter: brightness(0.22) contrast(1.15);
-      transition: var(--transition);
+      background-size: cover; background-position: center; background-attachment: fixed;
+      filter: brightness(0.22) contrast(1.15); transition: var(--transition);
     }
     .global-overlay {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0; z-index: -2;
       background: radial-gradient(circle at center, transparent 10%, var(--bg-dark) 100%);
-      z-index: -2;
     }
 
     /* --- IMÁGENES LATERALES --- */
     .side-agent {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 220px;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.15;
-      transition: var(--transition);
+      position: fixed; top: 50%; transform: translateY(-50%); width: 220px;
+      z-index: 1; pointer-events: none; opacity: 0.15; transition: var(--transition);
     }
     .agent-left { left: -30px; filter: drop-shadow(10px 0 20px var(--accent-glow)) grayscale(20%); }
     .agent-right { right: -30px; filter: drop-shadow(-10px 0 20px var(--accent-glow)) grayscale(20%); }
@@ -119,288 +100,184 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 5vw;
-      background: rgba(15, 12, 14, 0.45);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      padding: 1.2rem 5vw; background: rgba(15, 12, 14, 0.45);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--glass-border);
     }
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
+    .nav-left { display: flex; align-items: center; gap: 2rem; }
     .logo {
-      font-family: 'Cinzel', serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: #fff; 
-      text-decoration: none; 
-      letter-spacing: 8px;
-      text-shadow: 0 0 24px rgba(255, 255, 255, 0.12);
-      transition: var(--transition);
+      font-family: 'Cinzel', serif; font-size: 2.8rem; font-weight: 700;
+      color: #fff; text-decoration: none; letter-spacing: 8px;
+      text-shadow: 0 0 24px rgba(255, 255, 255, 0.12); transition: var(--transition);
     }
     .logo:hover { color: var(--accent); text-shadow: 0 0 15px var(--accent-glow); }
     
     .social-links {
-      display: flex;
-      align-items: center;
-      border-left: 1px solid var(--glass-border);
-      padding-left: 1.8rem;
-      height: 24px;
-      transition: border 0.5s ease;
+      display: flex; align-items: center; border-left: 1px solid var(--glass-border);
+      padding-left: 1.8rem; height: 24px; transition: border 0.5s ease;
     }
     .social-icon-link {
-      color: #fff;
-      opacity: 0.45;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #fff; opacity: 0.45; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
     }
-    .social-icon-link:hover {
-      opacity: 1;
-      color: var(--accent);
-      filter: drop-shadow(0 0 12px var(--accent-glow));
-      transform: translateY(-2px);
-    }
+    .social-icon-link:hover { opacity: 1; color: var(--accent); filter: drop-shadow(0 0 12px var(--accent-glow)); transform: translateY(-2px); }
     
     .links { display: flex; gap: 2.5rem; align-items: center; }
     .links a {
-      position: relative;
-      font-family: 'Montserrat', sans-serif;
-      text-decoration: none; 
-      color: #fff;
-      font-weight: 300; 
-      font-size: 0.75rem; 
-      text-transform: uppercase; 
-      letter-spacing: 3px;
-      transition: var(--transition); 
-      opacity: 0.5;
-      padding-bottom: 4px;
+      position: relative; font-family: 'Montserrat', sans-serif;
+      text-decoration: none; color: #fff; font-weight: 300; font-size: 0.75rem; 
+      text-transform: uppercase; letter-spacing: 3px; transition: var(--transition); 
+      opacity: 0.5; padding-bottom: 4px;
     }
     .links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 0; height: 1px;
-      background-color: var(--accent);
-      transition: width 0.35s ease;
-      box-shadow: 0 0 8px var(--accent);
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+      background-color: var(--accent); transition: width 0.35s ease; box-shadow: 0 0 8px var(--accent);
     }
     .links a:hover { opacity: 1; color: var(--accent); }
     .links a:hover::after { width: 100%; }
     
     .mode-toggle {
-      background: none; border: 1px solid var(--glass-border);
-      width: 40px; height: 40px; border-radius: 50%;
-      cursor: pointer; font-size: 1.1rem; transition: var(--transition);
-      display: flex; align-items: center; justify-content: center;
-      color: white;
-      backdrop-filter: blur(5px);
+      background: none; border: 1px solid var(--glass-border); width: 40px; height: 40px; 
+      border-radius: 50%; cursor: pointer; font-size: 1.1rem; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; color: white; backdrop-filter: blur(5px);
     }
     .mode-toggle:hover { border-color: var(--accent); background: var(--accent); transform: scale(1.05); }
 
     /* --- HERO SECTION --- */
     .hero {
-      position: relative;
-      min-height: auto; 
-      padding: 160px 10vw 40px 10vw; 
-      display: flex; align-items: center; justify-content: center;
-      max-width: 1600px; margin: 0 auto;
+      position: relative; min-height: auto; padding: 160px 10vw 40px 10vw; 
+      display: flex; align-items: center; justify-content: center; max-width: 1600px; margin: 0 auto;
     }
-    .hero-container {
-      display: grid; grid-template-columns: 1.5fr 0.7fr;
-      align-items: center; gap: 5rem; width: 100%;
-    }
+    .hero-container { display: grid; grid-template-columns: 1.5fr 0.7fr; align-items: center; gap: 5rem; width: 100%; }
     .hero-text { z-index: 10; }
     .hero-text h1 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(3.2rem, 7.5vw, 5.5rem);
-      line-height: 1.05; margin-bottom: 1.5rem;
-      font-weight: 700; color: #fff;
-      letter-spacing: -1px;
+      font-family: 'Rajdhani', sans-serif; font-size: clamp(3.2rem, 7.5vw, 5.5rem);
+      line-height: 1.05; margin-bottom: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -1px;
     }
     .highlight { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
     
-    .hero-bio {
-      font-size: 1.05rem; color: var(--text-sub);
-      max-width: 620px; margin-bottom: 3rem;
-      line-height: 1.8; font-weight: 300;
-    }
+    .hero-bio { font-size: 1.05rem; color: var(--text-sub); max-width: 620px; margin-bottom: 3rem; line-height: 1.8; font-weight: 300; }
 
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3.5rem; 
-    }
+    .hero-right { display: flex; flex-direction: column; align-items: center; gap: 3.5rem; }
     .main-frame {
-      width: 300px; height: 300px;
-      border-radius: var(--radius-lg);
-      overflow: hidden; border: 1px solid var(--glass-border);
+      width: 300px; height: 300px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--glass-border);
       box-shadow: 0 15px 45px rgba(0,0,0,0.5), 0 0 30px rgba(255, 113, 206, 0.1);
-      transition: var(--transition);
-      background: var(--bg-card);
-      padding: 6px;
+      transition: var(--transition); background: var(--bg-card); padding: 6px;
     }
-    .main-frame:hover { 
-      transform: translateY(-5px) scale(1.02); 
-      border-color: var(--accent); 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px var(--accent-glow);
-    }
+    .main-frame:hover { transform: translateY(-5px) scale(1.02); border-color: var(--accent); box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px var(--accent-glow); }
     .main-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: calc(var(--radius-lg) - 6px); }
 
-    .mini-stats {
-      display: flex; gap: 1rem;
-    }
+    .mini-stats { display: flex; gap: 1rem; }
     .mini-stat {
-      background: var(--bg-card);
-      border: 1px solid var(--glass-border);
-      padding: 0.8rem 1.6rem;
-      border-radius: 100px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: var(--transition);
+      background: var(--bg-card); border: 1px solid var(--glass-border); padding: 0.8rem 1.6rem; border-radius: 100px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: var(--transition);
     }
     .mini-stat:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 0 15px var(--accent-glow); }
-    .mini-stat span {
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700; font-size: 1.05rem; color: #fff;
-    }
-    .mini-stat label {
-      color: var(--accent); font-size: 0.7rem; text-transform: uppercase;
-      margin-right: 8px; font-weight: 600; letter-spacing: 1px;
-    }
+    .mini-stat span { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.05rem; color: #fff; }
+    .mini-stat label { color: var(--accent); font-size: 0.7rem; text-transform: uppercase; margin-right: 8px; font-weight: 600; letter-spacing: 1px; }
 
     /* --- SECTIONS GENERAL SPACING --- */
-    section { 
-      padding: 4rem 5vw; 
-      max-width: 1200px; 
-      margin: 0 auto 1.5rem auto; 
-    }
+    section { padding: 4rem 5vw; max-width: 1200px; margin: 0 auto 1.5rem auto; }
     .section-title { text-align: center; margin-bottom: 3.5rem; font-family: 'Rajdhani', sans-serif; }
     .section-title h2 { font-size: 3rem; color: #fff; text-transform: uppercase; letter-spacing: 4px; position: relative; display: inline-block; }
     .section-title h2::after {
-      content: ''; display: block; width: 45px; height: 2px; background: var(--accent); margin: 0.8rem auto 0;
-      box-shadow: 0 0 10px var(--accent);
+      content: ''; display: block; width: 45px; height: 2px; background: var(--accent); margin: 0.8rem auto 0; box-shadow: 0 0 10px var(--accent);
     }
     .section-title p { color: var(--text-sub); font-size: 0.95rem; font-weight: 300; margin-top: 0.5rem; opacity: 0.8; }
 
     /* --- AGENTS SECTION --- */
-    .cards-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem; margin: 0 auto;
-    }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin: 0 auto; }
     .game-card {
-      background: var(--bg-card); border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition);
-      position: relative;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: var(--bg-card); border: 1px solid var(--glass-border); border-radius: var(--radius-lg); overflow: hidden;
+      transition: var(--transition); position: relative; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     }
-    .game-card:hover { 
-      border-color: var(--accent); 
-      transform: translateY(-8px); 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(255, 113, 206, 0.15); 
-    }
-    .game-card .img-container {
-      width: 100%; height: 400px; overflow: hidden; position: relative;
-    }
+    .game-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(255, 113, 206, 0.15); }
+    .game-card .img-container { width: 100%; height: 400px; overflow: hidden; position: relative; }
     .game-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
     .game-card:hover img { transform: scale(1.05); }
-    
     .agent-name-overlay {
-      position: absolute; bottom: 0; left: 0; width: 100%;
-      padding: 3rem 1.5rem 1.5rem;
+      position: absolute; bottom: 0; left: 0; width: 100%; padding: 3rem 1.5rem 1.5rem;
       background: linear-gradient(transparent, rgba(15, 10, 12, 0.95));
-      color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; font-weight: 700;
-      letter-spacing: 2px;
+      color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; font-weight: 700; letter-spacing: 2px;
     }
     .game-card .info { padding: 1.8rem; background: rgba(0,0,0,0.15); }
     .game-card p { font-size: 0.98rem; color: var(--text-sub); font-weight: 300; line-height: 1.7; }
 
-    /* --- SETUP GEAR SECTION --- */
-    .setup-gear {
-      max-width: 1200px;
-      margin: 0 auto 1.5rem auto;
+    /* --- SETUP GEAR SECTION (ENHANCED) --- */
+    .setup-gear { max-width: 1200px; margin: 0 auto 1.5rem auto; }
+    
+    .gear-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .filter-btn {
+      background: transparent; border: 1px solid var(--glass-border); color: var(--text-main); padding: 0.6rem 1.8rem; border-radius: 100px;
+      cursor: pointer; transition: var(--transition); font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; backdrop-filter: blur(5px);
     }
-    .gear-container { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
-      gap: 1.5rem; 
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 15px var(--accent-glow);
     }
+
+    .gear-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    
     .gear-item { 
-      background: var(--bg-card); 
-      padding: 2.2rem 1.5rem; 
-      border-radius: var(--radius-lg); 
-      border: 1px solid var(--glass-border); 
-      text-align: center;
-      transition: var(--transition);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: var(--bg-card); padding: 2.2rem 1.5rem; border-radius: var(--radius-lg); 
+      border: 1px solid var(--glass-border); text-align: center;
+      transition: var(--transition); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
     }
+    
+    .gear-item::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      opacity: 0; transition: opacity 0.4s ease; pointer-events: none; z-index: 0;
+    }
+    .gear-item:hover::before { opacity: 0.08; }
     .gear-item:hover {
-      border-color: var(--accent);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 30px var(--accent-glow);
+      border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 30px var(--accent-glow);
     }
+    
+    .gear-content { position: relative; z-index: 1; }
+    
     .gear-item h3 { 
-      font-family: 'Rajdhani', sans-serif;
-      color: var(--accent); 
-      margin-bottom: 0.6rem; 
-      text-transform: uppercase;
-      font-size: 1.15rem;
-      letter-spacing: 1.5px;
-      font-weight: 700;
+      font-family: 'Rajdhani', sans-serif; color: var(--accent); margin-bottom: 0.4rem; 
+      text-transform: uppercase; font-size: 1.25rem; letter-spacing: 1.5px; font-weight: 700;
     }
-    .gear-item p { 
-      color: var(--text-sub); 
-      font-size: 0.95rem; 
-      font-weight: 400;
+    .gear-item p { color: var(--text-main); font-size: 1rem; font-weight: 600; }
+    
+    .gear-item-spec { font-size: 0.8rem; color: var(--text-sub); margin-top: 0.6rem; font-weight: 400; letter-spacing: 0.5px; opacity: 0.8; }
+    .gear-status {
+      display: inline-block; font-size: 0.7rem; padding: 0.3rem 0.8rem; border-radius: 100px;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); color: var(--text-sub); 
+      margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
     }
+    .gear-status.in-stock { color: #4ade80; border-color: rgba(74, 222, 128, 0.3); background: rgba(74, 222, 128, 0.05); }
+    
+    .gear-price { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-top: 1.2rem; }
+    
+    .sensitivity-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 1rem; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--accent); box-shadow: 0 0 10px var(--accent); border-radius: 10px; }
+
+    .gear-item.hidden { display: none; }
 
     /* --- TIKTOK SECTION --- */
-    .shorts-section {
-      max-width: 1200px;
-      margin: 0 auto 1.5rem auto;
-    }
-    .tiktok-grid {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      padding: 1rem;
-      flex-wrap: wrap;
-    }
+    .shorts-section { max-width: 1200px; margin: 0 auto 1.5rem auto; }
+    .tiktok-grid { display: flex; justify-content: center; gap: 2.5rem; padding: 1rem; flex-wrap: wrap; }
     .tiktok-wrapper {
-      background: var(--bg-card);
-      padding: 14px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--glass-border);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.45);
-      transition: var(--transition);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: var(--bg-card); padding: 14px; border-radius: var(--radius-lg);
+      border: 1px solid var(--glass-border); box-shadow: 0 25px 50px rgba(0,0,0,0.45);
+      transition: var(--transition); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     }
     .tiktok-wrapper:hover {
-      border-color: var(--accent);
-      transform: translateY(-6px);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.55), 0 0 35px var(--accent-glow);
+      border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 30px 60px rgba(0,0,0,0.55), 0 0 35px var(--accent-glow);
     }
-    .tiktok-embed {
-      border-radius: 14px !important;
-      overflow: hidden !important;
-    }
+    .tiktok-embed { border-radius: 14px !important; overflow: hidden !important; }
 
     footer {
-      text-align: center; padding: 4.5rem 5vw;
-      background: #060405; color: var(--text-sub);
-      border-top: 1px solid var(--glass-border);
-      font-size: 0.9rem;
-      font-weight: 300;
-      letter-spacing: 1px;
-      opacity: 0.8;
+      text-align: center; padding: 4.5rem 5vw; background: #060405; color: var(--text-sub);
+      border-top: 1px solid var(--glass-border); font-size: 0.9rem; font-weight: 300; letter-spacing: 1px; opacity: 0.8;
     }
+
+    .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 992px) {
       .hero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; }
@@ -411,6 +288,12 @@
       .nav-left { gap: 1rem; }
       .logo { font-size: 2.2rem; letter-spacing: 4px; }
       .social-links { padding-left: 1rem; }
+    }
+    
+    @media (max-width: 768px) {
+      .gear-container { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+      .gear-item { padding: 1.5rem 1rem; }
+      .gear-item h3 { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -513,30 +396,71 @@
         <h2>Mi Setup <span class="highlight">& Gear</span></h2>
         <p>Herramientas de precisión para el máximo rendimiento.</p>
     </div>
+    
+    <div class="gear-filters">
+        <button class="filter-btn active" data-filter="all">Todo el Equipo</button>
+        <button class="filter-btn" data-filter="perifericos">Periféricos</button>
+        <button class="filter-btn" data-filter="pc">Hardware PC</button>
+    </div>
+
     <div class="gear-container">
-        <div class="gear-item">
-            <h3>Ratón</h3>
-            <p>Logitech G Pro X Superlight</p>
+        <div class="gear-item" data-category="perifericos">
+            <div class="gear-content">
+                <h3>🖱️ Ratón</h3>
+                <p>Logitech G Pro X Superlight</p>
+                <div class="gear-item-spec">Peso: 63g | Sensor: Hero 25K</div>
+                <span class="gear-status in-stock">✓ Main actual</span>
+                <div class="gear-price">💰 ~$120</div>
+            </div>
         </div>
-        <div class="gear-item">
-            <h3>Sensibilidad</h3>
-            <p>800 DPI | 0.35 In-game</p>
+
+        <div class="gear-item" data-category="perifericos">
+            <div class="gear-content">
+                <h3>🎯 Sensibilidad</h3>
+                <p>800 DPI | 0.35 In-game</p>
+                <div class="gear-item-spec">eDPI: 280 | Polling Rate: 1000Hz</div>
+                <div class="sensitivity-bar">
+                    <div class="bar-fill" style="width: 35%"></div>
+                </div>
+            </div>
         </div>
-        <div class="gear-item">
-            <h3>Monitor</h3>
-            <p>Zowie XL2546K 240Hz</p>
+
+        <div class="gear-item" data-category="perifericos">
+            <div class="gear-content">
+                <h3>🖥️ Monitor</h3>
+                <p>Zowie XL2546K</p>
+                <div class="gear-item-spec">Panel: TN | Tasa: 240Hz | 0.5ms</div>
+                <span class="gear-status in-stock">✓ En uso</span>
+                <div class="gear-price">💰 ~$450</div>
+            </div>
         </div>
-        <div class="gear-item">
-            <h3>Teclado</h3>
-            <p>Wooting 60HE</p>
+
+        <div class="gear-item" data-category="perifericos">
+            <div class="gear-content">
+                <h3>⌨️ Teclado</h3>
+                <p>Wooting 60HE</p>
+                <div class="gear-item-spec">Switches magnéticos | Rapid Trigger</div>
+                <span class="gear-status in-stock">✓ Main actual</span>
+                <div class="gear-price">💰 ~$175</div>
+            </div>
         </div>
-        <div class="gear-item">
-            <h3>CPU</h3>
-            <p>Intel Core i9 13900k</p>
+
+        <div class="gear-item" data-category="pc">
+            <div class="gear-content">
+                <h3>⚙️ Procesador</h3>
+                <p>Intel Core i9 13900k</p>
+                <div class="gear-item-spec">24 Núcleos | 5.8 GHz Turbo</div>
+                <span class="gear-status">Hardware Interno</span>
+            </div>
         </div>
-        <div class="gear-item">
-            <h3>GPU</h3>
-            <p>Nvidia RTX 3080</p>
+
+        <div class="gear-item" data-category="pc">
+            <div class="gear-content">
+                <h3>🎮 Tarjeta Gráfica</h3>
+                <p>Nvidia RTX 3080</p>
+                <div class="gear-item-spec">10GB GDDR6X | Ampere Arch</div>
+                <span class="gear-status">Hardware Interno</span>
+            </div>
         </div>
     </div>
   </section>
@@ -581,10 +505,36 @@
       modeBtn.textContent = document.body.classList.contains('comp-mode') ? '🛡️' : '🖤';
     });
 
-    // Sincronización del ratón con el Interactive Glow Effect
+    // Sincronización del ratón con el Interactive Glow Effect Global
     document.addEventListener('mousemove', (e) => {
       document.body.style.setProperty('--mouse-x', e.clientX + 'px');
       document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+    });
+
+    // Sistema de Filtros para la sección Gear
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const gearItems = document.querySelectorAll('.gear-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Actualizar botón activo
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Lógica de filtrado
+        const filter = btn.getAttribute('data-filter');
+        
+        gearItems.forEach(item => {
+          if(filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.classList.remove('hidden');
+            item.style.animation = 'none';
+            item.offsetHeight; 
+            item.style.animation = 'fadeIn 0.5s ease forwards';
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
     });
 
     // Animación suave mediante IntersectionObserver
