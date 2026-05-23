@@ -52,7 +52,7 @@
       background-image: url('valorant_art.jpg'); 
       background-size: cover;
       background-position: center;
-      background-attachment: fixed; /* Evita distorsión total */
+      background-attachment: fixed;
       filter: brightness(0.3) contrast(1.1);
       transition: var(--transition);
     }
@@ -125,12 +125,12 @@
     }
     .mode-toggle:hover { background: var(--accent); transform: rotate(15deg); }
 
-    /* --- HERO SECTION REDISEÑADA --- */
+    /* --- HERO SECTION --- */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: auto; /* Soluciona el espacio gigante vacío */
+      padding: 160px 10vw 20px 10vw; /* Ajusta el aire arriba y abajo */
       display: flex; align-items: center; justify-content: center;
-      padding: 0 10vw;
       max-width: 1600px; margin: 0 auto;
     }
     .hero-container {
@@ -156,7 +156,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2.5rem; /* Aumentado para dar aire */
+      gap: 3.5rem; /* Espacio aumentado para bajar los stats */
     }
     .main-frame {
       width: 300px; height: 300px;
@@ -170,7 +170,6 @@
 
     .mini-stats {
       display: flex; gap: 1rem;
-      margin-top: 10px; /* Bajado medio centímetro para evitar solapamiento */
     }
     .mini-stat {
       background: var(--bg-card);
@@ -190,13 +189,19 @@
       margin-right: 8px; font-weight: 600;
     }
 
-    /* --- AGENTS SECTION --- */
-    .section-title { text-align: center; margin-bottom: 4rem; font-family: 'Rajdhani', sans-serif; }
+    /* --- SECTIONS GENERAL spacing --- */
+    section { 
+      padding: 3rem 5vw; 
+      max-width: 1200px; 
+      margin: 0 auto 3rem auto; 
+    }
+    .section-title { text-align: center; margin-bottom: 2.5rem; font-family: 'Rajdhani', sans-serif; }
     .section-title h2 { font-size: 3rem; color: #fff; text-transform: uppercase; letter-spacing: 4px; }
 
+    /* --- AGENTS SECTION --- */
     .cards-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem; max-width: 1200px; margin: 0 auto 6rem; padding: 0 5vw;
+      gap: 2.5rem; margin: 0 auto;
     }
     .game-card {
       background: var(--bg-card); border: 1px solid var(--glass-border);
@@ -220,9 +225,8 @@
 
     /* --- SETUP GEAR SECTION --- */
     .setup-gear {
-      padding: 5rem 5vw;
       max-width: 1200px;
-      margin: 0 auto 6rem;
+      margin: 0 auto 3rem auto;
     }
     .setup-gear h2 {
       font-family: 'Rajdhani', sans-serif;
@@ -230,7 +234,7 @@
       text-align: center;
       color: #fff;
       text-transform: uppercase;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
       letter-spacing: 4px;
     }
     .gear-container { 
@@ -268,9 +272,8 @@
 
     /* --- TIKTOK SECTION --- */
     .shorts-section {
-      padding: 5rem 5vw;
       max-width: 1200px;
-      margin: 0 auto 6rem;
+      margin: 0 auto 3rem auto;
     }
     .tiktok-grid {
       display: flex;
@@ -318,14 +321,13 @@
     @media (max-width: 992px) {
       .hero { grid-template-columns: 1fr; text-align: center; }
       .hero-text { display: flex; flex-direction: column; align-items: center; }
-      .hero-bio { margin: 0 auto 3rem; }
+      .hero-bio { margin: 0 auto 3rem; text-align: center; }
       .side-agent { display: none; }
     }
   </style>
 </head>
 <body id="body">
 
-  <!-- FONDO GLOBAL Y DECORACIONES -->
   <div class="global-bg"></div>
   <div class="global-overlay"></div>
   <img src="https://valorant-api.com/agents/sage/fullportrait.png" class="side-agent agent-left" alt="deco">
@@ -371,14 +373,12 @@
     </div>
   </header>
 
-  <!-- AGENTS SECTION (Ordenado: Gekko, Sage, Brimstone) -->
   <section id="agents">
     <div class="section-title fade-in-section">
       <h2>Especialidades <span class="highlight">Tácticas</span></h2>
       <p>Sinergia operativa con agentes de control y soporte.</p>
     </div>
     <div class="cards-grid">
-      <!-- GEKKO (Izquierda) -->
       <div class="game-card fade-in-section">
         <div class="img-container">
           <img src="gekko_art.jpg" alt="GEKKO" onerror="this.src='https://valorant-api.com/agents/gekko/fullportrait.png'">
@@ -388,7 +388,6 @@
           <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
         </div>
       </div>
-      <!-- SAGE (Centro) -->
       <div class="game-card fade-in-section">
         <div class="img-container">
           <img src="sage_art.jpg" alt="SAGE" onerror="this.src='https://valorant-api.com/agents/sage/fullportrait.png'">
@@ -398,7 +397,6 @@
           <p>Dominio del control de terreno y sostenibilidad del equipo. Especialista en salvaguardar la ventaja táctica.</p>
         </div>
       </div>
-      <!-- BRIMSTONE (Derecha) -->
       <div class="game-card fade-in-section">
         <div class="img-container">
           <img src="brimstone_art.jpg" alt="BRIMSTONE" onerror="this.src='https://valorant-api.com/agents/brimstone/fullportrait.png'">
@@ -411,7 +409,6 @@
     </div>
   </section>
 
-  <!-- SETUP GEAR SECTION -->
   <section id="gear" class="setup-gear fade-in-section">
     <div class="section-title">
         <h2>Mi Setup <span class="highlight">& Gear</span></h2>
@@ -445,7 +442,6 @@
     </div>
   </section>
 
-  <!-- TIKTOK SECTION -->
   <section id="shorts" class="shorts-section fade-in-section">
     <div class="section-title">
       <h2>The <span class="highlight">Amy Show</span></h2>
@@ -459,6 +455,17 @@
           </section> 
         </blockquote>
       </div>
+
+      <div class="tiktok-wrapper">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7611582111362895126" data-video-id="7611582111362895126" style="max-width: 605px;min-width: 325px;"> 
+          <section> 
+            <a target="_blank" title="@amyjgil" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> 
+            Un ace del otro día 
+            <a title="valorant" target="_blank" href="https://www.tiktok.com/tag/valorant?refer=embed">#valorant</a> 
+            <a title="valorantespaña" target="_blank" href="https://www.tiktok.com/tag/valorantespaña?refer=embed">#valorantespaña</a> 
+          </section> 
+        </blockquote>
+      </div>
     </div>
   </section>
 
@@ -468,14 +475,12 @@
 
   <script async src="https://www.tiktok.com/embed.js"></script>
   <script>
-    // Modo Amor / Competitivo
     const modeBtn = document.getElementById('modeBtn');
     modeBtn.addEventListener('click', () => {
       document.body.classList.toggle('comp-mode');
       modeBtn.textContent = document.body.classList.contains('comp-mode') ? '🛡️' : '🖤';
     });
 
-    // Animaciones de entrada (Intersection Observer)
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
