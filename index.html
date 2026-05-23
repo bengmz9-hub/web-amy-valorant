@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -726,3 +727,1253 @@
   </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMY // Tactical Portfolio</title>
+
+  <meta property="og:title" content="AMY // Tactical Portfolio">
+  <meta property="og:description" content="Portfolio táctico y mejores momentos de Valorant. Rango Platino • Main Sage.">
+  <meta property="og:image" content="amy_art.jpg">
+  <meta property="og:url" content="https://bengmz9-hub.github.io/web-amy-valorant/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;500&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* 🎨 PALETA SOPHISTICATED LOVE */
+      --bg-dark: #0f0a0c;
+      --bg-card: rgba(26, 12, 16, 0.75);
+      --text-main: #ffe4e6;
+      --text-sub: #fbcfe8;
+      --accent: #ff71ce; 
+      --accent-glow: rgba(255, 113, 206, 0.3);
+      --accent-radial: rgba(255, 113, 206, 0.05);
+      --glass: rgba(255, 255, 255, 0.02);
+      --glass-border: rgba(255, 113, 206, 0.15);
+      --radius-lg: 24px;
+      --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    body.comp-mode {
+      --bg-dark: #050608;
+      --bg-card: rgba(15, 17, 23, 0.75);
+      --accent: #ff4655; 
+      --accent-glow: rgba(255, 70, 85, 0.3);
+      --accent-radial: rgba(255, 70, 85, 0.04);
+      --text-main: #ffffff;
+      --text-sub: #94a3b8;
+      --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    /* 📌 BARRA DE DESPLAZAMIENTO PERSONALIZADA */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--glass-border);
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.6s ease;
+    }
+
+    /* 🎇 INTERACTIVE CURSOR GLOW BACKGROUND */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+      background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-radial), transparent 80%);
+      transition: background 0.5s ease;
+    }
+
+    /* --- FONDO GLOBAL PREMIUM --- */
+    .global-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      background-image: url('valorant_art.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: brightness(0.22) contrast(1.15);
+      transition: var(--transition);
+    }
+    .global-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at center, transparent 10%, var(--bg-dark) 100%);
+    }
+
+    /* --- IMÁGENES LATERALES --- */
+    .side-agent {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 220px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.15;
+      transition: var(--transition);
+    }
+    .agent-left {
+      left: -30px;
+      filter: drop-shadow(10px 0 20px var(--accent-glow)) grayscale(20%);
+    }
+    .agent-right {
+      right: -30px;
+      filter: drop-shadow(-10px 0 20px var(--accent-glow)) grayscale(20%);
+    }
+
+    /* --- NAVEGACIÓN PREMIUM REDISEÑADA --- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 5vw;
+      background: linear-gradient(135deg, rgba(15, 12, 14, 0.6), rgba(26, 12, 16, 0.4));
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-bottom: 1px solid rgba(255, 113, 206, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 3rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* LOGO CON EFECTO PREMIUM */
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 8px;
+      background: linear-gradient(135deg, #fff, var(--accent), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      text-shadow: 0 0 30px rgba(255, 113, 206, 0.3);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .logo::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, var(--accent), transparent);
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .logo:hover {
+      letter-spacing: 10px;
+    }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+      border-left: 1px solid var(--glass-border);
+      padding-left: 1.8rem;
+      height: 24px;
+      transition: border 0.5s ease;
+    }
+
+    .social-icon-link {
+      color: #fff;
+      opacity: 0.45;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-icon-link:hover {
+      opacity: 1;
+      color: var(--accent);
+      filter: drop-shadow(0 0 12px var(--accent-glow));
+      transform: translateY(-2px);
+    }
+    
+    .links {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .links a {
+      position: relative;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.7;
+      font-weight: 500;
+      padding: 0.8rem 1.2rem;
+      border-radius: 100px;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      opacity: 0;
+      border-radius: 100px;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .links a:hover::before {
+      opacity: 0.15;
+    }
+
+    .links a:hover {
+      opacity: 1;
+      color: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(255, 113, 206, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .mode-toggle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 113, 206, 0.08);
+      border: 1.5px solid var(--glass-border);
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mode-toggle::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 113, 206, 0.3), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mode-toggle:hover {
+      border-color: var(--accent);
+      transform: scale(1.12) rotateZ(10deg);
+      background: rgba(255, 113, 206, 0.15);
+      box-shadow: 0 0 30px rgba(255, 113, 206, 0.4);
+    }
+
+    .mode-toggle:hover::before {
+      opacity: 1;
+    }
+
+    /* --- HERO SECTION MEJORADA --- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 140px 10vw 60px 10vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(255, 113, 206, 0.1), transparent);
+      filter: blur(80px);
+      pointer-events: none;
+      animation: pulse-subtle 6s ease-in-out infinite;
+    }
+
+    @keyframes pulse-subtle {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr;
+      align-items: center;
+      gap: 5rem;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text {
+      z-index: 10;
+    }
+
+    .hero-text h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      line-height: 1.1;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -2px;
+      margin-bottom: 2rem;
+      text-shadow: 
+        0 0 40px rgba(255, 113, 206, 0.3),
+        0 0 80px rgba(255, 113, 206, 0.15);
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, var(--accent), #ff9de9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px var(--accent-glow));
+      position: relative;
+    }
+    
+    .hero-bio {
+      font-size: 1.1rem;
+      color: var(--text-sub);
+      max-width: 620px;
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 3.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    /* MAIN FRAME - PREMIUM CARD */
+    .main-frame {
+      width: 340px;
+      height: 340px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 2px solid var(--glass-border);
+      background: var(--bg-card);
+      padding: 8px;
+      position: relative;
+      transition: var(--transition);
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(255, 113, 206, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .main-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    .main-frame:hover {
+      border-color: var(--accent);
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 
+        0 30px 80px rgba(255, 113, 206, 0.3),
+        0 0 60px rgba(255, 113, 206, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .main-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: var(--transition);
+    }
+
+    .main-frame:hover img {
+      transform: scale(1.05) rotate(1deg);
+    }
+
+    /* MINI STATS MEJORADAS */
+    .mini-stats {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .mini-stat {
+      background: linear-gradient(135deg, rgba(255, 113, 206, 0.1), rgba(26, 12, 16, 0.8));
+      border: 1.5px solid var(--glass-border);
+      padding: 1rem 1.8rem;
+      border-radius: 100px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .mini-stat:hover::before {
+      left: 100%;
+    }
+
+    .mini-stat:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 
+        0 15px 40px rgba(255, 113, 206, 0.2),
+        0 0 30px rgba(255, 113, 206, 0.1);
+    }
+
+    .mini-stat span {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .mini-stat label {
+      color: var(--accent);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* --- SECTIONS GENERAL SPACING --- */
+    section {
+      padding: 5rem 5vw;
+      max-width: 1200px;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      font-family: 'Rajdhani', sans-serif;
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    /* TÍTULOS DE SECCIÓN MEJORADOS */
+    .section-title h2 {
+      font-size: 3.5rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-weight: 800;
+      position: relative;
+      display: inline-block;
+      text-shadow: 
+        0 0 30px rgba(255, 113, 206, 0.2),
+        0 0 60px rgba(255, 113, 206, 0.1);
+    }
+
+    .section-title h2::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 10px;
+    }
+
+    .section-title h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 1rem auto 0;
+      border-radius: 10px;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .section-title p {
+      color: var(--text-sub);
+      font-size: 1rem;
+      font-weight: 300;
+      margin-top: 1rem;
+      letter-spacing: 1px;
+      opacity: 0.85;
+    }
+
+    /* --- AGENTS SECTION PREMIUM --- */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin: 0 auto;
+    }
+
+    .game-card {
+      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.5));
+      border: 1.5px solid var(--glass-border);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      z-index: 2;
+    }
+
+    .game-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-15px);
+      box-shadow: 
+        0 30px 80px rgba(255, 113, 206, 0.25),
+        0 0 40px rgba(255, 113, 206, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .game-card .img-container {
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 113, 206, 0.1), transparent);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      filter: brightness(0.95);
+    }
+
+    .game-card:hover img {
+      transform: scale(1.08) rotate(2deg);
+      filter: brightness(1.1);
+    }
+
+    .agent-name-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 4rem 2rem 2rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(15, 10, 12, 0.98) 50%, rgba(15, 10, 12, 0.99) 100%);
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .game-card .info {
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 113, 206, 0.02));
+      border-top: 1px solid rgba(255, 113, 206, 0.1);
+    }
+
+    .game-card p {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      font-weight: 300;
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+    }
+
+    /* --- SETUP GEAR SECTION PREMIUM --- */
+    .setup-gear {
+      max-width: 1200px;
+      margin: 0 auto 1.5rem auto;
+    }
+    
+    .gear-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      padding: 0.6rem 1.8rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Rajdhani', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      backdrop-filter: blur(5px);
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 15px var(--accent-glow);
+    }
+
+    .gear-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    /* GEAR ITEMS MEJORADOS */
+    .gear-item {
+      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.4));
+      padding: 2.5rem 1.8rem;
+      border-radius: 24px;
+      border: 1.5px solid var(--glass-border);
+      text-align: center;
+      transition: var(--transition);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .gear-item::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(30px);
+    }
+
+    .gear-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      z-index: 1;
+    }
+
+    .gear-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 20px 60px rgba(255, 113, 206, 0.25),
+        0 0 40px rgba(255, 113, 206, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .gear-item:hover::before {
+      opacity: 0.12;
+    }
+    
+    .gear-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .gear-item h3 {
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      font-size: 1.35rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+      text-shadow: 0 0 20px rgba(255, 113, 206, 0.3);
+    }
+
+    .gear-item p {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .gear-item-spec {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      opacity: 0.85;
+    }
+
+    .gear-status {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--glass-border);
+      color: var(--text-sub);
+      margin-top: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .gear-status.in-stock {
+      color: #4ade80;
+      border-color: rgba(74, 222, 128, 0.5);
+      background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(74, 222, 128, 0.05));
+      box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+    }
+    
+    .gear-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-top: 1.4rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 15px rgba(255, 113, 206, 0.3);
+    }
+    
+    /* SENSITIVITY BAR PREMIUM */
+    .sensitivity-bar {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, rgba(255, 113, 206, 0.1), rgba(255, 113, 206, 0.2));
+      border-radius: 10px;
+      margin-top: 1.2rem;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255, 113, 206, 0.2);
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #ff9de9);
+      box-shadow: 
+        0 0 15px var(--accent-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .gear-item.hidden {
+      display: none;
+    }
+
+    /* --- TIKTOK SECTION PREMIUM --- */
+    .shorts-section {
+      max-width: 1200px;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    .tiktok-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* TIKTOK WRAPPER MEJORADO */
+    .tiktok-wrapper {
+      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.5));
+      padding: 16px;
+      border-radius: 28px;
+      border: 1.5px solid var(--glass-border);
+      transition: var(--transition);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tiktok-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      z-index: 2;
+    }
+
+    .tiktok-wrapper:hover {
+      border-color: var(--accent);
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 
+        0 25px 70px rgba(255, 113, 206, 0.25),
+        0 0 50px rgba(255, 113, 206, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .tiktok-embed {
+      border-radius: 20px !important;
+      overflow: hidden !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* --- FOOTER PREMIUM --- */
+    footer {
+      background: linear-gradient(180deg, transparent, rgba(6, 4, 5, 0.95));
+      border-top: 1px solid var(--glass-border);
+      padding: 5rem 5vw 3rem;
+      text-align: center;
+      color: var(--text-sub);
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 113, 206, 0.3), transparent);
+    }
+
+    footer p {
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    footer:hover p {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    /* --- ANIMACIONES --- */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                  transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 992px) {
+      nav {
+        padding: 1.2rem 4vw;
+        flex-wrap: wrap;
+      }
+      
+      .logo {
+        font-size: 2rem;
+        letter-spacing: 6px;
+      }
+      
+      .links {
+        gap: 1.5rem;
+        order: 3;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .main-frame {
+        width: 280px;
+        height: 280px;
+      }
+      
+      .section-title h2 {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .gear-container {
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 1.2rem;
+      }
+      
+      .gear-item {
+        padding: 1.8rem 1.2rem;
+      }
+      
+      .gear-item h3 {
+        font-size: 1.1rem;
+      }
+      
+      .tiktok-grid {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body id="body">
+
+  <div class="cursor-glow"></div>
+
+  <div class="global-bg"></div>
+  <div class="global-overlay"></div>
+  <img src="https://valorant-api.com/agents/sage/fullportrait.png" class="side-agent agent-left" alt="deco">
+  <img src="https://valorant-api.com/agents/brimstone/fullportrait.png" class="side-agent agent-right" alt="deco">
+
+  <nav>
+    <div class="nav-left">
+      <a href="#" class="logo">AMY</a>
+      <div class="social-links">
+        <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="social-icon-link" title="Sigue a Amy en TikTok">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01V14.5c.01 1.93-.6 3.88-1.8 5.48C13.58 21.76 11.32 23.1 8.88 23c-1.72 0-3.36-.55-4.73-1.6-.92-.77-1.62-1.78-2.04-2.9.02.03.06.07.1.13.45.7 1.19 1.38 2.11 2 1.37 1.05 3.01 1.6 4.73 1.6 3.44 0 5.7-1.34 6.58-3.22.88-1.88 1.32-4.38 1.32-7.36V9.83c.98 1.04 2.24 1.93 3.68 2.6 1.44.67 3.04 1.07 4.7 1.2v-4c-1.66-.13-3.26-.53-4.7-1.2"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="links">
+      <a href="#agents">Especialidades</a>
+      <a href="#gear">Setup</a>
+      <a href="#shorts">The Amy Show</a>
+      <button class="mode-toggle" id="modeBtn" title="Cambiar modo estética">🖤</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1 class="fade-in-section">Disciplina, <br>Análisis y <span class="highlight">Ejecución.</span></h1>
+        <div class="hero-bio fade-in-section">
+          <p>
+            He ido construyendo mi forma de jugar a base de constancia, aprendizaje y muchas horas, entendiendo cómo funciona cada partida. Le doy importancia a cosas como la lectura del mapa, e inteligencia emocional en el equipo.
+            <br><br>
+            Mi main principal es Sage, buscando siempre ayudar al equipo de la forma más útil posible y aportando estabilidad dentro de la partida. Para mí, mejorar no es solo cuestión de mecánica, sino comprensión táctica.
+          </p>
+        </div>
+      </div>
+      <div class="hero-img-container">
+        <div class="hero-right">
+          <div class="main-frame">
+            <img src="amy_art.jpg" alt="Amy Portrait" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
+          </div>
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <label>Rango</label><span>Platino</span>
+            </div>
+            <div class="mini-stat">
+              <label>Main</label><span>Sage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="agents">
+    <div class="section-title fade-in-section">
+      <h2>Especialidades <span class="highlight">Tácticas</span></h2>
+      <p>Sinergia operativa con agentes de control y soporte.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="game-card fade-in-section">
+        <div class="img-container">
+          <img src="gekko_art.jpg" alt="GEKKO" onerror="this.src='https://valorant-api.com/agents/gekko/fullportrait.png'">
+          <div class="agent-name-overlay">GEKKO</div>
+        </div>
+        <div class="info">
+          <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
+        </div>
+      </div>
+      <div class="game-card fade-in-section">
+        <div class="img-container">
+          <img src="sage_art.jpg" alt="SAGE" onerror="this.src='https://valorant-api.com/agents/sage/fullportrait.png'">
+          <div class="agent-name-overlay">SAGE</div>
+        </div>
+        <div class="info">
+          <p>Dominio del control de terreno y sostenibilidad del equipo. Especialista en salvaguardar la ventaja táctica.</p>
+        </div>
+      </div>
+      <div class="game-card fade-in-section">
+        <div class="img-container">
+          <img src="brimstone_art.jpg" alt="BRIMSTONE" onerror="this.src='https://valorant-api.com/agents/brimstone/fullportrait.png'">
+          <div class="agent-name-overlay">BRIMSTONE</div>
+        </div>
+        <div class="info">
+          <p>Liderazgo estratégico y control zonal mediante fuego táctico. Capacidad de orquestar ofensivas coordinadas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gear" class="setup-gear fade-in-section">
+    <div class="section-title">
+        <h2>Mi Setup <span class="highlight">& Gear</span></h2>
+        <p>Herramientas de precisión para el máximo rendimiento.</p>
+    </div>
+    
+    <div class="gear-filters">
+        <button class="filter-btn active" data-filter="all">Todo el Equipo</button>
+        <button class="filter-btn" data-filter="perifericos">Periféricos</button>
+        <button class="filter-btn" data-filter="pc">Hardware PC</button>
+    </div>
+
+    <div class="gear-container">
+        <div class="gear-item" data-category="perifericos">
+            <div class="gear-content">
+                <h3>🖱️ Ratón</h3>
+                <p>Logitech G Pro X Superlight</p>
+                <div class="gear-item-spec">Peso: 63g | Sensor: Hero 25K</div>
+                <span class="gear-status in-stock">✓ Main actual</span>
+                <div class="gear-price">💰 ~$120</div>
+            </div>
+        </div>
+
+        <div class="gear-item" data-category="perifericos">
+            <div class="gear-content">
+                <h3>🎯 Sensibilidad</h3>
+                <p>800 DPI | 0.35 In-game</p>
+                <div class="gear-item-spec">eDPI: 280 | Polling Rate: 1000Hz</div>
+                <div class="sensitivity-bar">
+                    <div class="bar-fill" style="width: 35%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gear-item" data-category="perifericos">
+            <div class="gear-content">
+                <h3>🖥️ Monitor</h3>
+                <p>Zowie XL2546K</p>
+                <div class="gear-item-spec">Panel: TN | Tasa: 240Hz | 0.5ms</div>
+                <span class="gear-status in-stock">✓ En uso</span>
+                <div class="gear-price">💰 ~$450</div>
+            </div>
+        </div>
+
+        <div class="gear-item" data-category="perifericos">
+            <div class="gear-content">
+                <h3>⌨️ Teclado</h3>
+                <p>Wooting 60HE</p>
+                <div class="gear-item-spec">Switches magnéticos | Rapid Trigger</div>
+                <span class="gear-status in-stock">✓ Main actual</span>
+                <div class="gear-price">💰 ~$175</div>
+            </div>
+        </div>
+
+        <div class="gear-item" data-category="pc">
+            <div class="gear-content">
+                <h3>⚙️ Procesador</h3>
+                <p>Intel Core i9 13900k</p>
+                <div class="gear-item-spec">24 Núcleos | 5.8 GHz Turbo</div>
+                <span class="gear-status">Hardware Interno</span>
+            </div>
+        </div>
+
+        <div class="gear-item" data-category="pc">
+            <div class="gear-content">
+                <h3>🎮 Tarjeta Gráfica</h3>
+                <p>Nvidia RTX 3080</p>
+                <div class="gear-item-spec">10GB GDDR6X | Ampere Arch</div>
+                <span class="gear-status">Hardware Interno</span>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="shorts" class="shorts-section fade-in-section">
+    <div class="section-title">
+      <h2>The <span class="highlight">Amy Show</span></h2>
+      <p>Jugadas, errores y momentos divertidos.</p>
+    </div>
+    <div class="tiktok-grid">
+      <div class="tiktok-wrapper">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7581441844328942870" data-video-id="7581441844328942870" style="max-width: 605px;min-width: 325px;"> 
+          <section> 
+            <a target="_blank" title="@amyjgil" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> 
+          </section> 
+        </blockquote>
+      </div>
+
+      <div class="tiktok-wrapper">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7611582111362895126" data-video-id="7611582111362895126" style="max-width: 605px;min-width: 325px;"> 
+          <section> 
+            <a target="_blank" title="@amyjgil" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> 
+            Un ace del otro día 
+            <a title="valorant" target="_blank" href="https://www.tiktok.com/tag/valorant?refer=embed">#valorant</a> 
+            <a title="valorantespaña" target="_blank" href="https://www.tiktok.com/tag/valorantespaña?refer=embed">#valorantespaña</a> 
+          </section> 
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 AMY // Professional Portfolio • Excellence in Execution</p>
+  </footer>
+
+  <script async src="https://www.tiktok.com/embed.js"></script>
+  <script>
+    // Control del cambio de paleta/modo
+    const modeBtn = document.getElementById('modeBtn');
+    modeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('comp-mode');
+      modeBtn.textContent = document.body.classList.contains('comp-mode') ? '🛡️' : '🖤';
+    });
+
+    // Sincronización del ratón con el Interactive Glow Effect Global
+    document.addEventListener('mousemove', (e) => {
+      document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+    });
+
+    // Sistema de Filtros para la sección Gear
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const gearItems = document.querySelectorAll('.gear-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Actualizar botón activo
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Lógica de filtrado
+        const filter = btn.getAttribute('data-filter');
+        
+        gearItems.forEach(item => {
+          if(filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.classList.remove('hidden');
+            item.style.animation = 'none';
+            item.offsetHeight; 
+            item.style.animation = 'fadeIn 0.5s ease forwards';
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Animación suave mediante IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in-section').forEach((section) => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
+>>>>>>> 59b0cdc1c879751fbd5d8ace250f792dd2abae36
