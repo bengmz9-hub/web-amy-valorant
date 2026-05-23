@@ -90,6 +90,7 @@
       font-size: 1.8rem; font-weight: 700;
       color: #fff; text-decoration: none; letter-spacing: 6px;
     }
+    .logo span { color: var(--accent); }
     .links { display: flex; gap: 2.5rem; align-items: center; }
     .links a {
       text-decoration: none; color: #fff;
@@ -108,7 +109,7 @@
     }
     .mode-toggle:hover { background: var(--accent); transform: rotate(15deg); }
 
-    /* --- HERO SECTION REDISEÑADA --- */
+    /* --- HERO SECTION --- */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -129,7 +130,6 @@
     }
     .highlight { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
     
-    /* BIO INTEGRADA EN HERO */
     .hero-bio {
       font-size: 1.1rem; color: var(--text-sub);
       max-width: 600px; margin-bottom: 3rem;
@@ -147,7 +147,7 @@
 
     .hero-img-container { position: relative; display: flex; justify-content: center; }
     .main-frame {
-      width: 300px; height: 300px; /* Tamaño reducido */
+      width: 300px; height: 300px;
       border-radius: var(--radius-lg);
       overflow: hidden; border: 4px solid white;
       box-shadow: 0 0 50px var(--accent-glow);
@@ -156,7 +156,7 @@
     .main-frame:hover { transform: scale(1.05); }
     .main-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* --- AGENTS SECTION (SAGE, BRIMSTONE, GEKKO) --- */
+    /* --- AGENTS SECTION --- */
     .section-title { text-align: center; margin-bottom: 4rem; font-family: 'Rajdhani', sans-serif; }
     .section-title h2 { font-size: 3rem; color: #fff; text-transform: uppercase; letter-spacing: 4px; }
 
@@ -184,7 +184,55 @@
     .game-card .info { padding: 1.5rem; }
     .game-card p { font-size: 1rem; color: var(--text-sub); }
 
-    /* --- BENTO STATS (Sustituido debajo de Agentes) --- */
+    /* --- GEAR SECTION (IMPLEMENTADO Y ESTILIZADO) --- */
+    .setup-gear {
+      padding: 5rem 5vw;
+      max-width: 1200px;
+      margin: 0 auto 6rem;
+    }
+    .setup-gear h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2.5rem;
+      text-align: center;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      letter-spacing: 4px;
+    }
+    .gear-container { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+      gap: 1.5rem; 
+    }
+    .gear-item { 
+      background: var(--bg-card); 
+      padding: 2rem; 
+      border-radius: var(--radius-lg); 
+      border: 1px solid var(--glass-border); 
+      text-align: center;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+    .gear-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px var(--accent-glow);
+    }
+    .gear-item h3 { 
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--accent); 
+      margin-bottom: 0.8rem; 
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+    .gear-item p { 
+      color: var(--text-sub); 
+      font-size: 0.95rem; 
+      font-weight: 500;
+    }
+
+    /* --- BENTO STATS --- */
     .bento-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(2, 220px); gap: 1.5rem;
@@ -211,7 +259,6 @@
     @media (max-width: 992px) {
       .hero { grid-template-columns: 1fr; text-align: center; }
       .hero-text { display: flex; flex-direction: column; align-items: center; }
-      .hero-img-container { order: -1; margin: 0 auto 3rem; }
       .bento-grid { grid-template-columns: repeat(2, 1fr); }
       .side-agent { display: none; }
     }
@@ -229,6 +276,7 @@
     <div class="logo">AMY</div>
     <div class="links">
       <a href="#agents">Especialidades</a>
+      <a href="#gear">Setup</a>
       <a href="#stats">Métricas</a>
       <button class="mode-toggle" id="modeBtn" title="Cambiar modo">🖤</button>
     </div>
@@ -238,8 +286,6 @@
     <div class="hero-container">
       <div class="hero-text">
         <h1>Disciplina, <br>Análisis y <span class="highlight">Ejecución.</span></h1>
-        
-        <!-- BIO INTEGRADA AQUÍ -->
         <div class="hero-bio">
           <p>
             La excelencia en el juego competitivo no surge del azar, sino de la disciplina. Amy ha construido su trayectoria basándose en la arquitectura del juego: análisis de mapas, control de flujo y una ejecución impecable.
@@ -247,14 +293,12 @@
             Su enfoque se centra en la optimización del rol de soporte, transformando la asistencia en una ventaja táctica decisiva. Con una visión orientada al profesionalismo, Amy integra la resiliencia mental con la capacidad técnica.
           </p>
         </div>
-        
         <div class="btn-group">
           <a href="#agents" class="btn btn-primary">Ver Especialidades</a>
         </div>
       </div>
       <div class="hero-img-container">
         <div class="main-frame">
-          <!-- IMAGEN AMY_ART.JPG -->
           <img src="amy_art.jpg" alt="Amy Portrait" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
         </div>
       </div>
@@ -300,6 +344,32 @@
           <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- SETUP GEAR SECTION (IMPLEMENTADO AQUÍ) -->
+  <section id="gear" class="setup-gear">
+    <div class="section-title">
+        <h2>Mi Setup <span class="highlight">& Gear</span></h2>
+        <p>Herramientas de precisión para el máximo rendimiento.</p>
+    </div>
+    <div class="gear-container">
+        <div class="gear-item">
+            <h3>Ratón</h3>
+            <p>Logitech G Pro X Superlight</p>
+        </div>
+        <div class="gear-item">
+            <h3>Sensibilidad</h3>
+            <p>800 DPI | 0.35 In-game</p>
+        </div>
+        <div class="gear-item">
+            <h3>Monitor</h3>
+            <p>Zowie XL2546K 240Hz</p>
+        </div>
+        <div class="gear-item">
+            <h3>Teclado</h3>
+            <p>Wooting 60HE</p>
+        </div>
     </div>
   </section>
 
