@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMY // Tactical Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;600;800&display=swap');
+
+    :root {
+      /* 🎨 PALETA SOPHISTICATED LOVE (SISTEMA POR DEFECTO) */
+      --bg-dark: #0f0a0c;
+      --bg-card: rgba(26, 12, 16, 0.8);
+      --text-main: #ffe4e6;
+      --text-sub: #fbcfe8;
+      --accent: #ff71ce; 
+      --accent-glow: rgba(255, 113, 206, 0.3);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 113, 206, 0.2);
+      --radius-lg: 24px;
+      --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    body.comp-mode {
+      --bg-dark: #050608;
+      --bg-card: rgba(15, 17, 23, 0.8);
+      --accent: #ff4655; 
+      --accent-glow: rgba(255, 70, 85, 0.3);
+      --text-main: #ffffff;
+      --text-sub: #94a3b8;
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.6s ease;
+    }
+
+    /* --- FONDO GLOBAL PREMIUM --- */
+    .global-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2;
+      background-image: url('valorant_art.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: brightness(0.3) contrast(1.1);
+      transition: var(--transition);
+    }
+    .global-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 15%, var(--bg-dark) 100%);
+      z-index: -1;
+    }
+
+    /* --- IMÁGENES LATERALES --- */
+    .side-agent {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 220px;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.2;
+      transition: var(--transition);
+    }
+    .agent-left { left: -30px; filter: drop-shadow(10px 0 20px var(--accent-glow)); }
+    .agent-right { right: -30px; filter: drop-shadow(-10px 0 20px var(--accent-glow)); }
+
+    /* --- NAVEGACIÓN --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 5vw;
+      background: rgba(15, 12, 14, 0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.8rem; font-weight: 700;
+      color: #fff; text-decoration: none; letter-spacing: 6px;
+    }
+    .links { display: flex; gap: 2.5rem; align-items: center; }
+    .links a {
+      text-decoration: none; color: #fff;
+      font-weight: 500; font-size: 0.8rem; 
+      text-transform: uppercase; letter-spacing: 2px;
+      transition: var(--transition); opacity: 0.6;
+    }
+    .links a:hover { opacity: 1; color: var(--accent); }
+    
+    .mode-toggle {
+      background: none; border: 1px solid var(--accent);
+      width: 40px; height: 40px; border-radius: 50%;
+      cursor: pointer; font-size: 1.2rem; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+    }
+    .mode-toggle:hover { background: var(--accent); transform: rotate(15deg); }
+
+    /* --- HERO SECTION REDISEÑADA --- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 10vw;
+      max-width: 1600px; margin: 0 auto;
+    }
+    .hero-container {
+      display: grid; grid-template-columns: 1.5fr 0.7fr;
+      align-items: center; gap: 4rem; width: 100%;
+    }
+    .hero-text { z-index: 10; }
+    .hero-text h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1; margin-bottom: 1.5rem;
+      font-weight: 700; color: #fff;
+    }
+    .highlight { color: var(--accent); text-shadow: 0 0 20px var(--accent-glow); }
+    
+    /* BIO INTEGRADA EN HERO */
+    .hero-bio {
+      font-size: 1.1rem; color: var(--text-sub);
+      max-width: 600px; margin-bottom: 3rem;
+      line-height: 1.8; font-weight: 300;
+    }
+    .btn-primary {
+      padding: 1.2rem 3.5rem; border-radius: 4px;
+      background: var(--accent); color: white;
+      font-weight: 700; text-transform: uppercase;
+      text-decoration: none; transition: var(--transition);
+      display: inline-block;
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+    .btn-primary:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+    .hero-img-container { position: relative; display: flex; justify-content: center; }
+    .main-frame {
+      width: 300px; height: 300px; /* Tamaño reducido */
+      border-radius: var(--radius-lg);
+      overflow: hidden; border: 4px solid white;
+      box-shadow: 0 0 50px var(--accent-glow);
+      transition: var(--transition);
+    }
+    .main-frame:hover { transform: scale(1.05); }
+    .main-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* --- AGENTS SECTION (SAGE, BRIMSTONE, GEKKO) --- */
+    .section-title { text-align: center; margin-bottom: 4rem; font-family: 'Rajdhani', sans-serif; }
+    .section-title h2 { font-size: 3rem; color: #fff; text-transform: uppercase; letter-spacing: 4px; }
+
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem; max-width: 1200px; margin: 0 auto 6rem; padding: 0 5vw;
+    }
+    .game-card {
+      background: var(--bg-card); border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition);
+      position: relative;
+    }
+    .game-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+    .game-card .img-container {
+      width: 100%; height: 400px; overflow: hidden; position: relative;
+    }
+    .game-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+    .game-card:hover img { transform: scale(1.1); }
+    .agent-name-overlay {
+      position: absolute; bottom: 0; left: 0; width: 100%;
+      padding: 2.5rem 1.5rem 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+      color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 700;
+    }
+    .game-card .info { padding: 1.5rem; }
+    .game-card p { font-size: 1rem; color: var(--text-sub); }
+
+    /* --- BENTO STATS (Sustituido debajo de Agentes) --- */
+    .bento-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 220px); gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto 6rem; padding: 0 5vw;
+    }
+    .bento-item {
+      background: var(--bg-card); border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg); padding: 2.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+      transition: var(--transition); backdrop-filter: blur(10px);
+    }
+    .bento-item:hover { border-color: var(--accent); transform: translateY(-5px); background: rgba(255,255,255,0.05); }
+    .bento-item.large { grid-column: span 2; grid-row: span 2; }
+    .bento-item.wide { grid-column: span 2; }
+    .bento-num { font-family: 'Rajdhani', sans-serif; font-size: 3.8rem; font-weight: 800; color: var(--accent); }
+    .bento-label { font-size: 0.8rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 2px; }
+
+    footer {
+      text-align: center; padding: 4rem 5vw;
+      background: #050608; color: var(--text-sub);
+      border-top: 1px solid var(--glass-border);
+    }
+
+    @media (max-width: 992px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-text { display: flex; flex-direction: column; align-items: center; }
+      .hero-img-container { order: -1; margin: 0 auto 3rem; }
+      .bento-grid { grid-template-columns: repeat(2, 1fr); }
+      .side-agent { display: none; }
+    }
+  </style>
+</head>
+<body id="body">
+
+  <!-- FONDO GLOBAL Y DECORACIONES -->
+  <div class="global-bg"></div>
+  <div class="global-overlay"></div>
+  <img src="https://valorant-api.com/agents/sage/fullportrait.png" class="side-agent agent-left" alt="deco">
+  <img src="https://valorant-api.com/agents/brimstone/fullportrait.png" class="side-agent agent-right" alt="deco">
+
+  <nav>
+    <div class="logo">AMY</div>
+    <div class="links">
+      <a href="#agents">Especialidades</a>
+      <a href="#stats">Métricas</a>
+      <button class="mode-toggle" id="modeBtn" title="Cambiar modo">🖤</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Disciplina, <br>Análisis y <span class="highlight">Ejecución.</span></h1>
+        
+        <!-- BIO INTEGRADA AQUÍ -->
+        <div class="hero-bio">
+          <p>
+            La excelencia en el juego competitivo no surge del azar, sino de la disciplina. Amy ha construido su trayectoria basándose en la arquitectura del juego: análisis de mapas, control de flujo y una ejecución impecable.
+            <br><br>
+            Su enfoque se centra en la optimización del rol de soporte, transformando la asistencia en una ventaja táctica decisiva. Con una visión orientada al profesionalismo, Amy integra la resiliencia mental con la capacidad técnica.
+          </p>
+        </div>
+        
+        <div class="btn-group">
+          <a href="#agents" class="btn btn-primary">Ver Especialidades</a>
+        </div>
+      </div>
+      <div class="hero-img-container">
+        <div class="main-frame">
+          <!-- IMAGEN AMY_ART.JPG -->
+          <img src="amy_art.jpg" alt="Amy Portrait" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- AGENTS SECTION -->
+  <section id="agents">
+    <div class="section-title">
+      <h2>Especialidades <span class="highlight">Tácticas</span></h2>
+      <p>Sinergia operativa con agentes de control y soporte.</p>
+    </div>
+    <div class="cards-grid">
+      <!-- SAGE CARD -->
+      <div class="game-card">
+        <div class="img-container">
+          <img src="sage_art.jpg" alt="SAGE" onerror="this.src='https://valorant-api.com/agents/sage/fullportrait.png'">
+          <div class="agent-name-overlay">SAGE</div>
+        </div>
+        <div class="info">
+          <p>Dominio del control de terreno y sostenibilidad del equipo. Especialista en salvaguardar la ventaja táctica.</p>
+        </div>
+      </div>
+      
+      <!-- BRIMSTONE CARD -->
+      <div class="game-card">
+        <div class="img-container">
+          <img src="brimstone_art.jpg" alt="BRIMSTONE" onerror="this.src='https://valorant-api.com/agents/brimstone/fullportrait.png'">
+          <div class="agent-name-overlay">BRIMSTONE</div>
+        </div>
+        <div class="info">
+          <p>Liderazgo estratégico y control zonal mediante fuego táctico. Capacidad de orquestar ofensivas coordinadas.</p>
+        </div>
+      </div>
+      
+      <!-- GEKKO CARD -->
+      <div class="game-card">
+        <div class="img-container">
+          <img src="gekko_art.jpg" alt="GEKKO" onerror="this.src='https://valorant-api.com/agents/gekko/fullportrait.png'">
+          <div class="agent-name-overlay">GEKKO</div>
+        </div>
+        <div class="info">
+          <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section id="stats">
+    <div class="section-title">
+      <h2>Análisis <span class="highlight">Técnico</span></h2>
+      <p>Rendimiento cuantificable en escenarios competitivos.</p>
+    </div>
+    <div class="bento-grid">
+      <div class="bento-item large">
+        <div class="bento-label">Rango Actual</div>
+        <div class="bento-num">IMMORTAL</div>
+        <p style="color:var(--text-sub); font-size: 0.9rem; margin-top: 10px;">Criterio táctico de élite y consistencia en el servidor.</p>
+      </div>
+      <div class="bento-item wide">
+        <div class="bento-label">K/D Ratio</div>
+        <div class="bento-num">1.42</div>
+      </div>
+      <div class="bento-item">
+        <div class="bento-label">Win Rate</div>
+        <div class="bento-num">64%</div>
+      </div>
+      <div class="bento-item">
+        <div class="bento-label">Main Agent</div>
+        <div class="bento-num">SAGE</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 AMY // Profesional Portfolio • Excellence in Execution</p>
+  </footer>
+
+  <script>
+    const modeBtn = document.getElementById('modeBtn');
+    modeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('comp-mode');
+      modeBtn.textContent = document.body.classList.contains('comp-mode') ? '🛡️' : '🖤';
+    });
+  </script>
+</body>
+</html>
