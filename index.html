@@ -56,9 +56,15 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     
+    /* 🎯 CURSOR PERSONALIZADO (Crosshair Táctico) */
     body {
       font-family: 'Inter', sans-serif; background-color: var(--bg-dark);
       color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: background 0.6s ease;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff71ce" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>') 12 12, crosshair;
+    }
+    
+    a, button, .mode-toggle, .filter-btn, .game-card {
+      cursor: pointer;
     }
 
     /* 🎇 INTERACTIVE CURSOR GLOW BACKGROUND */
@@ -94,7 +100,6 @@
     }
     .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 3rem; }
 
-    /* LOGO CON EFECTO PREMIUM */
     .nav-brand { display: flex; align-items: baseline; gap: 0.8rem; flex-shrink: 0; animation: slideInFromLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .logo-text {
       font-family: 'Cinzel', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: 8px;
@@ -115,7 +120,6 @@
       border: 1px solid var(--accent); border-radius: 100px; background: rgba(255, 113, 206, 0.05);
     }
 
-    /* MENÚ CENTRADO MEJORADO */
     .nav-menu { display: flex; gap: 3rem; flex: 1; justify-content: center; align-items: center; animation: slideInFromLeft 0.8s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) backwards; }
     .nav-link {
       position: relative; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; text-transform: uppercase;
@@ -132,7 +136,6 @@
     .link-icon { font-size: 1.2rem; transition: var(--transition); }
     .nav-link:hover .link-icon { transform: scale(1.3) translateY(-2px); }
 
-    /* CONTROLES NAV Y TOGGLE MEJORADO */
     .nav-controls { display: flex; align-items: center; gap: 2rem; flex-shrink: 0; }
     .social-links { display: flex; gap: 1.2rem; align-items: center; border-left: 1px solid var(--glass-border); padding-left: 2rem; }
     .social-link {
@@ -144,7 +147,7 @@
 
     .mode-toggle {
       width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 113, 206, 0.08); border: 1.5px solid var(--glass-border);
-      color: white; font-size: 1.3rem; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.3rem; transition: var(--transition); display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden; backdrop-filter: blur(5px);
     }
     .mode-toggle::before {
@@ -154,18 +157,18 @@
     .mode-toggle:hover { border-color: var(--accent); transform: scale(1.12) rotateZ(10deg); background: rgba(255, 113, 206, 0.15); box-shadow: 0 0 30px rgba(255, 113, 206, 0.4); }
     .mode-toggle:hover::before { opacity: 1; }
 
-    /* --- ANIMACIONES PREMIUM GLOBALES --- */
+    /* --- ANIMACIONES GLOBALES --- */
     @keyframes slideInFromLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
     @keyframes pulse-subtle { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.1); } }
-    @keyframes float-in { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes skeletonPulse { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
     
     .fade-in-section { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
 
-    /* --- HERO SECTION CON EFECTOS DE LUJO --- */
+    /* --- HERO SECTION --- */
     .hero {
-      position: relative; min-height: 100vh; padding: 140px 10vw 60px 10vw; 
+      position: relative; min-height: auto; padding: 160px 10vw 20px 10vw; 
       display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
     .hero::before {
@@ -174,6 +177,8 @@
       filter: blur(80px); pointer-events: none; animation: pulse-subtle 6s ease-in-out infinite;
     }
     .hero-container { display: grid; grid-template-columns: 1.5fr 0.8fr; align-items: center; gap: 5rem; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
+    
+    .parallax-text { transition: transform 0.1s ease-out; }
     
     .hero-text h1 {
       font-family: 'Rajdhani', sans-serif; font-size: clamp(3.5rem, 8vw, 6rem); line-height: 1.1; font-weight: 800;
@@ -185,8 +190,9 @@
     }
     .hero-bio { font-size: 1.1rem; color: var(--text-sub); max-width: 620px; line-height: 1.9; font-weight: 300; margin-bottom: 3.5rem; letter-spacing: 0.5px; }
 
-    /* MAIN FRAME - PREMIUM CARD */
     .hero-right { display: flex; flex-direction: column; align-items: center; gap: 3.5rem; }
+    .parallax-image { transition: transform 0.1s ease-out; }
+
     .main-frame {
       width: 340px; height: 340px; border-radius: 28px; overflow: hidden; border: 2px solid var(--glass-border);
       background: var(--bg-card); padding: 8px; position: relative; transition: var(--transition);
@@ -197,31 +203,15 @@
       border-radius: 24px; pointer-events: none;
     }
     .main-frame:hover {
-      border-color: var(--accent); transform: translateY(-12px) scale(1.03);
+      border-color: var(--accent); transform: translateY(-12px) scale(1.03) !important;
       box-shadow: 0 30px 80px rgba(255, 113, 206, 0.3), 0 0 60px rgba(255, 113, 206, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     .main-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; transition: var(--transition); }
     .main-frame:hover img { transform: scale(1.05) rotate(1deg); }
 
-    /* MINI STATS MEJORADAS */
-    .mini-stats { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
-    .mini-stat {
-      background: linear-gradient(135deg, rgba(255, 113, 206, 0.1), rgba(26, 12, 16, 0.8)); border: 1.5px solid var(--glass-border);
-      padding: 1rem 1.8rem; border-radius: 100px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: var(--transition);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); position: relative; overflow: hidden;
-    }
-    .mini-stat::before {
-      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); transition: left 0.6s ease;
-    }
-    .mini-stat:hover::before { left: 100%; }
-    .mini-stat:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 113, 206, 0.2), 0 0 30px rgba(255, 113, 206, 0.1); }
-    .mini-stat span { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.15rem; color: #fff; letter-spacing: 1px; }
-    .mini-stat label { color: var(--accent); font-size: 0.7rem; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; display: block; margin-bottom: 0.3rem; }
-
-    /* --- CTA BANNER --- */
+    /* CTA BANNER - POSICIÓN ACERCADA AL HERO */
     .cta-banner {
-      position: relative; padding: 5rem 5vw; max-width: 1200px; margin: 3rem auto;
+      position: relative; padding: 4rem 5vw; max-width: 1200px; margin: 1rem auto 3rem auto;
       border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(255, 113, 206, 0.1), rgba(26, 12, 16, 0.8));
       border: 1px solid var(--glass-border); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       display: flex; align-items: center; justify-content: space-between; gap: 3rem; overflow: hidden;
@@ -232,7 +222,7 @@
     .btn-primary {
       font-family: 'Rajdhani', sans-serif; background: var(--accent); color: #fff; border: none; padding: 1rem 2.5rem;
       border-radius: 100px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-      cursor: pointer; transition: var(--transition); box-shadow: 0 0 20px var(--accent-glow); position: relative; overflow: hidden;
+      transition: var(--transition); box-shadow: 0 0 20px var(--accent-glow); position: relative; overflow: hidden;
       display: inline-block; text-decoration: none; text-align: center;
     }
     .btn-primary::before {
@@ -247,7 +237,7 @@
       border-radius: 50%; filter: blur(40px); opacity: 0.6; animation: float 6s ease-in-out infinite; right: -50px;
     }
 
-    /* --- STATS SECTION --- */
+    /* STATS SECTION */
     .stats-section { padding: 4rem 5vw; max-width: 1200px; margin: 2rem auto; }
     .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
     .stat-card {
@@ -258,7 +248,7 @@
     .stat-number { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; text-shadow: 0 0 20px var(--accent-glow); }
     .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-sub); font-weight: 600; }
 
-    /* --- SECTIONS GENERAL Y TÍTULOS LUJOSOS --- */
+    /* SECTIONS & TÍTULOS */
     section { padding: 4rem 5vw; max-width: 1200px; margin: 0 auto 1.5rem auto; }
     .section-title { text-align: center; margin-bottom: 4rem; font-family: 'Rajdhani', sans-serif; position: relative; padding-bottom: 2rem; }
     .section-title h2 {
@@ -275,7 +265,7 @@
     }
     .section-title p { color: var(--text-sub); font-size: 1rem; font-weight: 300; margin-top: 1rem; letter-spacing: 1px; opacity: 0.85; }
 
-    /* --- GAME CARDS - PREMIUM LOOK --- */
+    /* 🎨 AGENT CARDS - DESATURADAS POR DEFECTO (REVEAL) */
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin: 0 auto; }
     .game-card {
       background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.5)); border: 1.5px solid var(--glass-border); border-radius: 28px;
@@ -291,8 +281,11 @@
       box-shadow: 0 30px 80px rgba(255, 113, 206, 0.25), 0 0 40px rgba(255, 113, 206, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     .game-card .img-container { width: 100%; height: 420px; overflow: hidden; position: relative; background: linear-gradient(135deg, rgba(255, 113, 206, 0.1), transparent); }
-    .game-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); filter: brightness(0.95); }
-    .game-card:hover img { transform: scale(1.08) rotate(2deg); filter: brightness(1.1); }
+    
+    /* El truco del blanco y negro al color */
+    .game-card img { width: 100%; height: 100%; object-fit: cover; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); filter: grayscale(100%) brightness(0.7); }
+    .game-card:hover img { transform: scale(1.08) rotate(2deg); filter: grayscale(0%) brightness(1.1); }
+    
     .agent-name-overlay {
       position: absolute; bottom: 0; left: 0; width: 100%; padding: 4rem 2rem 2rem;
       background: linear-gradient(180deg, transparent 0%, rgba(15, 10, 12, 0.98) 50%, rgba(15, 10, 12, 0.99) 100%);
@@ -301,12 +294,12 @@
     .game-card .info { padding: 2rem; background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 113, 206, 0.02)); border-top: 1px solid rgba(255, 113, 206, 0.1); }
     .game-card p { font-size: 0.95rem; color: var(--text-main); font-weight: 300; line-height: 1.8; letter-spacing: 0.5px; }
 
-    /* --- GEAR ITEMS CARDS PREMIUM --- */
+    /* GEAR ITEMS CARDS PREMIUM */
     .setup-gear { max-width: 1200px; margin: 0 auto 1.5rem auto; }
     .gear-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
     .filter-btn {
       background: transparent; border: 1px solid var(--glass-border); color: var(--text-main); padding: 0.6rem 1.8rem; border-radius: 100px;
-      cursor: pointer; transition: var(--transition); font-family: 'Rajdhani', sans-serif;
+      transition: var(--transition); font-family: 'Rajdhani', sans-serif;
       text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; backdrop-filter: blur(5px);
     }
     .filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 15px var(--accent-glow); }
@@ -347,13 +340,16 @@
     .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #ff9de9); box-shadow: 0 0 15px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.3); border-radius: 10px; transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .gear-item.hidden { display: none; }
 
-    /* --- TIKTOK CARDS - CINEMATIC --- */
+    /* 🎨 TIKTOK CARDS - CON SKELETON LOADER ANIMADO */
     .shorts-section { max-width: 1200px; margin: 0 auto 1.5rem auto; }
     .tiktok-grid { display: flex; justify-content: center; gap: 2.5rem; padding: 1rem; flex-wrap: wrap; }
     .tiktok-wrapper {
-      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.5)); padding: 16px; border-radius: 28px;
+      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.8), var(--accent-radial), var(--bg-card));
+      background-size: 200% 200%; animation: skeletonPulse 3s ease infinite;
+      padding: 16px; border-radius: 28px;
       border: 1.5px solid var(--glass-border); transition: var(--transition); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05); position: relative; overflow: hidden;
+      min-height: 500px; min-width: 325px;
     }
     .tiktok-wrapper::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
@@ -363,9 +359,9 @@
       border-color: var(--accent); transform: translateY(-12px) scale(1.02);
       box-shadow: 0 25px 70px rgba(255, 113, 206, 0.25), 0 0 50px rgba(255, 113, 206, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
-    .tiktok-embed { border-radius: 20px !important; overflow: hidden !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important; }
+    .tiktok-embed { border-radius: 20px !important; overflow: hidden !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important; margin: 0; }
 
-    /* --- FOOTER PREMIUM ELEGANCIA FINAL --- */
+    /* FOOTER PREMIUM ELEGANCIA FINAL */
     footer {
       background: linear-gradient(180deg, transparent, rgba(6, 4, 5, 0.95)); border-top: 1px solid var(--glass-border);
       padding: 5rem 5vw 3rem; text-align: center; color: var(--text-sub); font-size: 0.9rem; font-weight: 300;
@@ -376,14 +372,14 @@
     .footer-section h4 { color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; margin-bottom: 1.5rem; letter-spacing: 2px; text-transform: uppercase; }
     .footer-section ul { list-style: none; padding: 0; }
     .footer-section ul li { margin-bottom: 0.8rem; }
-    .footer-section a { color: var(--text-sub); text-decoration: none; transition: var(--transition); font-size: 0.95rem; }
+    .footer-section a { color: var(--text-sub); text-decoration: none; transition: var(--transition); font-size: 0.95rem; cursor: pointer; }
     .footer-section a:hover { color: var(--accent); padding-left: 5px; }
     .footer-socials { display: flex; flex-direction: column; gap: 0.8rem; }
     .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
     footer p { max-width: 800px; margin: 0 auto; opacity: 0.8; transition: opacity 0.3s ease; }
     footer:hover p { opacity: 1; color: var(--accent); }
 
-    /* --- RESPONSIVE - MANTENER LUJO EN MÓVIL --- */
+    /* RESPONSIVE - MANTENER LUJO EN MÓVIL */
     @media (max-width: 992px) {
       .navbar { padding: 1.2rem 4vw; }
       .nav-container { gap: 2rem; flex-wrap: wrap; }
@@ -397,7 +393,7 @@
       .side-agent { display: none; }
       .main-frame { width: 280px; height: 280px; }
       .section-title h2 { font-size: 2.5rem; letter-spacing: 3px; }
-      .cta-banner { flex-direction: column; text-align: center; padding: 3rem 2rem; }
+      .cta-banner { flex-direction: column; text-align: center; padding: 3rem 2rem; margin-top: 1rem; }
       .cta-visual { display: none; }
     }
     
@@ -458,7 +454,7 @@
 
   <header class="hero">
     <div class="hero-container">
-      <div class="hero-text">
+      <div class="hero-text parallax-text">
         <h1 class="fade-in-section">Disciplina, <br>Análisis y <span class="highlight">Ejecución.</span></h1>
         <div class="hero-bio fade-in-section">
           <p>
@@ -468,7 +464,7 @@
           </p>
         </div>
       </div>
-      <div class="hero-img-container">
+      <div class="hero-img-container parallax-image">
         <div class="hero-right">
           <div class="main-frame">
             <img src="amy_art.jpg" alt="Amy Portrait" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
@@ -645,8 +641,8 @@
   <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h4>AMY VALORANT</h4>
-        <p>Professional Player • Content Creator</p>
+        <h4>AMY</h4>
+        <p>Content Creator</p>
       </div>
       <div class="footer-section">
         <h4>Enlaces</h4>
@@ -666,11 +662,12 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 AMY // Professional Portfolio • Excellence in Execution</p>
+      <p>© 2026 AMY // Content Creator Portfolio</p>
     </div>
   </footer>
 
   <script async src="https://www.tiktok.com/embed.js"></script>
+
   <script>
     // Control del cambio de paleta/modo
     const modeBtn = document.getElementById('modeBtn');
@@ -685,17 +682,28 @@
       document.body.style.setProperty('--mouse-y', e.clientY + 'px');
     });
 
+    // 🚀 EFECTO PARALLAX SCROLL PARA LA SECCIÓN HERO
+    window.addEventListener('scroll', () => {
+      const scroll = window.scrollY;
+      const heroText = document.querySelector('.parallax-text');
+      const heroImage = document.querySelector('.parallax-image');
+      
+      // Solo aplicamos el efecto si el usuario está en la parte superior para ahorrar recursos
+      if (scroll < 900) {
+        if (heroText) heroText.style.transform = `translateY(${scroll * 0.35}px)`;
+        if (heroImage) heroImage.style.transform = `translateY(${scroll * 0.15}px)`;
+      }
+    });
+
     // Sistema de Filtros para la sección Gear
     const filterBtns = document.querySelectorAll('.filter-btn');
     const gearItems = document.querySelectorAll('.gear-item');
 
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Actualizar botón activo
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
-        // Lógica de filtrado
         const filter = btn.getAttribute('data-filter');
         
         gearItems.forEach(item => {
