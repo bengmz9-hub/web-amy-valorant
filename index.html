@@ -461,6 +461,20 @@
     @media (max-width: 768px) {
       .gear-container { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
     }
+
+    /* Linterna táctica */
+.tactical-flashlight {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: all 0.05s linear;
+  mix-blend-mode: overlay;
+}
   </style>
 </head>
 <body>
@@ -712,11 +726,16 @@ window.addEventListener('scroll', () => {
   document.getElementById('scrollBar').style.width = scrolled + '%';
 });
 
-// Selector de agente que cambia el color de acento
+// Función para actualizar color de acento y cursor
 function setAgentColor(color) {
+  // Cambiar colores de la web
   document.documentElement.style.setProperty('--accent', color);
   document.documentElement.style.setProperty('--accent-glow', color + '80');
   document.documentElement.style.setProperty('--accent-radial', color + '0D');
+  
+  // Cambiar el color del cursor (crosshair)
+  const svgCursor = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${encodeURIComponent(color)}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>') 12 12, crosshair`;
+  document.body.style.cursor = svgCursor;
 }
 
 // Colores personalizados: Gekko verde, Sage azul, Brimstone naranja
@@ -736,11 +755,21 @@ document.querySelectorAll('.game-card').forEach((card) => {
     else if (agentName === 'brimstone') setAgentColor(agentColors.brimstone);
   });
 });
-// Restablecer color rosa al hacer clic fuera de las tarjetas de agente
+
+// Restablecer color rosa al hacer clic fuera de las tarjetas
 document.body.addEventListener('click', (e) => {
   if (!e.target.closest('.game-card')) {
-    setAgentColor('#ff71ce');  // Vuelve al rosa original
+    setAgentColor('#ff71ce');  // Vuelve al rosa original (cursor también)
   }
+});
+
+// Linterna táctica
+const flashlight = document.createElement('div');
+flashlight.className = 'tactical-flashlight';
+document.body.appendChild(flashlight);
+document.addEventListener('mousemove', (e) => {
+  flashlight.style.left = e.clientX + 'px';
+  flashlight.style.top = e.clientY + 'px';
 });
 </script>
 </body>
