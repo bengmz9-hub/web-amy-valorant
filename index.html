@@ -711,6 +711,37 @@ window.addEventListener('scroll', () => {
   const scrolled = (winScroll / height) * 100;
   document.getElementById('scrollBar').style.width = scrolled + '%';
 });
+
+// Selector de agente que cambia el color de acento
+function setAgentColor(color) {
+  document.documentElement.style.setProperty('--accent', color);
+  document.documentElement.style.setProperty('--accent-glow', color + '80');
+  document.documentElement.style.setProperty('--accent-radial', color + '0D');
+}
+
+// Colores personalizados: Gekko verde, Sage azul, Brimstone naranja
+const agentColors = {
+  gekko: '#4ade80',
+  sage: '#3b82f6',
+  brimstone: '#ff8c00'
+};
+
+// Añadir evento a las tarjetas
+document.querySelectorAll('.game-card').forEach((card) => {
+  card.style.cursor = 'pointer';
+  card.addEventListener('click', () => {
+    const agentName = card.querySelector('.agent-name-overlay')?.innerText?.toLowerCase();
+    if (agentName === 'gekko') setAgentColor(agentColors.gekko);
+    else if (agentName === 'sage') setAgentColor(agentColors.sage);
+    else if (agentName === 'brimstone') setAgentColor(agentColors.brimstone);
+  });
+});
+// Restablecer color rosa al hacer clic fuera de las tarjetas de agente
+document.body.addEventListener('click', (e) => {
+  if (!e.target.closest('.game-card')) {
+    setAgentColor('#ff71ce');  // Vuelve al rosa original
+  }
+});
 </script>
 </body>
 </html>
