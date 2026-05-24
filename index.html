@@ -63,9 +63,7 @@
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff71ce" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>') 12 12, crosshair;
     }
     
-    a, button, .mode-toggle, .filter-btn, .game-card {
-      cursor: pointer;
-    }
+    a, button, .mode-toggle, .filter-btn, .game-card { cursor: pointer; }
 
     /* 🎇 INTERACTIVE CURSOR GLOW BACKGROUND */
     .cursor-glow {
@@ -100,6 +98,7 @@
     }
     .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 3rem; }
 
+    /* LOGO CON EFECTO PREMIUM */
     .nav-brand { display: flex; align-items: baseline; gap: 0.8rem; flex-shrink: 0; animation: slideInFromLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .logo-text {
       font-family: 'Cinzel', serif; font-size: 2.4rem; font-weight: 700; letter-spacing: 8px;
@@ -120,6 +119,7 @@
       border: 1px solid var(--accent); border-radius: 100px; background: rgba(255, 113, 206, 0.05);
     }
 
+    /* MENÚ CENTRADO MEJORADO */
     .nav-menu { display: flex; gap: 3rem; flex: 1; justify-content: center; align-items: center; animation: slideInFromLeft 0.8s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) backwards; }
     .nav-link {
       position: relative; font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; text-transform: uppercase;
@@ -136,6 +136,7 @@
     .link-icon { font-size: 1.2rem; transition: var(--transition); }
     .nav-link:hover .link-icon { transform: scale(1.3) translateY(-2px); }
 
+    /* CONTROLES NAV Y TOGGLE MEJORADO */
     .nav-controls { display: flex; align-items: center; gap: 2rem; flex-shrink: 0; }
     .social-links { display: flex; gap: 1.2rem; align-items: center; border-left: 1px solid var(--glass-border); padding-left: 2rem; }
     .social-link {
@@ -209,7 +210,7 @@
     .main-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; transition: var(--transition); }
     .main-frame:hover img { transform: scale(1.05) rotate(1deg); }
 
-    /* CTA BANNER - POSICIÓN ACERCADA AL HERO */
+    /* CTA BANNER */
     .cta-banner {
       position: relative; padding: 4rem 5vw; max-width: 1200px; margin: 1rem auto 3rem auto;
       border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(255, 113, 206, 0.1), rgba(26, 12, 16, 0.8));
@@ -265,7 +266,7 @@
     }
     .section-title p { color: var(--text-sub); font-size: 1rem; font-weight: 300; margin-top: 1rem; letter-spacing: 1px; opacity: 0.85; }
 
-    /* 🎨 AGENT CARDS - DESATURADAS POR DEFECTO (REVEAL) */
+    /* GAME CARDS */
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin: 0 auto; }
     .game-card {
       background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.5)); border: 1.5px solid var(--glass-border); border-radius: 28px;
@@ -281,11 +282,8 @@
       box-shadow: 0 30px 80px rgba(255, 113, 206, 0.25), 0 0 40px rgba(255, 113, 206, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     .game-card .img-container { width: 100%; height: 420px; overflow: hidden; position: relative; background: linear-gradient(135deg, rgba(255, 113, 206, 0.1), transparent); }
-    
-    /* El truco del blanco y negro al color */
     .game-card img { width: 100%; height: 100%; object-fit: cover; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); filter: grayscale(100%) brightness(0.7); }
     .game-card:hover img { transform: scale(1.08) rotate(2deg); filter: grayscale(0%) brightness(1.1); }
-    
     .agent-name-overlay {
       position: absolute; bottom: 0; left: 0; width: 100%; padding: 4rem 2rem 2rem;
       background: linear-gradient(180deg, transparent 0%, rgba(15, 10, 12, 0.98) 50%, rgba(15, 10, 12, 0.99) 100%);
@@ -294,12 +292,12 @@
     .game-card .info { padding: 2rem; background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(255, 113, 206, 0.02)); border-top: 1px solid rgba(255, 113, 206, 0.1); }
     .game-card p { font-size: 0.95rem; color: var(--text-main); font-weight: 300; line-height: 1.8; letter-spacing: 0.5px; }
 
-    /* GEAR ITEMS CARDS PREMIUM */
+    /* GEAR ITEMS */
     .setup-gear { max-width: 1200px; margin: 0 auto 1.5rem auto; }
     .gear-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
     .filter-btn {
       background: transparent; border: 1px solid var(--glass-border); color: var(--text-main); padding: 0.6rem 1.8rem; border-radius: 100px;
-      transition: var(--transition); font-family: 'Rajdhani', sans-serif;
+      cursor: pointer; transition: var(--transition); font-family: 'Rajdhani', sans-serif;
       text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; backdrop-filter: blur(5px);
     }
     .filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 15px var(--accent-glow); }
@@ -340,7 +338,7 @@
     .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #ff9de9); box-shadow: 0 0 15px var(--accent-glow), inset 0 1px 0 rgba(255, 255, 255, 0.3); border-radius: 10px; transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .gear-item.hidden { display: none; }
 
-    /* 🎨 TIKTOK CARDS - CON SKELETON LOADER ANIMADO */
+    /* TIKTOK CARDS */
     .shorts-section { max-width: 1200px; margin: 0 auto 1.5rem auto; }
     .tiktok-grid { display: flex; justify-content: center; gap: 2.5rem; padding: 1rem; flex-wrap: wrap; }
     .tiktok-wrapper {
@@ -361,7 +359,7 @@
     }
     .tiktok-embed { border-radius: 20px !important; overflow: hidden !important; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important; margin: 0; }
 
-    /* FOOTER PREMIUM ELEGANCIA FINAL */
+    /* FOOTER PREMIUM */
     footer {
       background: linear-gradient(180deg, transparent, rgba(6, 4, 5, 0.95)); border-top: 1px solid var(--glass-border);
       padding: 5rem 5vw 3rem; text-align: center; color: var(--text-sub); font-size: 0.9rem; font-weight: 300;
@@ -379,7 +377,7 @@
     footer p { max-width: 800px; margin: 0 auto; opacity: 0.8; transition: opacity 0.3s ease; }
     footer:hover p { opacity: 1; color: var(--accent); }
 
-    /* RESPONSIVE - MANTENER LUJO EN MÓVIL */
+    /* RESPONSIVE */
     @media (max-width: 992px) {
       .navbar { padding: 1.2rem 4vw; }
       .nav-container { gap: 2rem; flex-wrap: wrap; }
@@ -443,9 +441,6 @@
           <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="social-link tiktok">
             TikTok
           </a>
-          <a href="#" class="social-link instagram" style="display:none;">
-            Instagram
-          </a>
         </div>
         <button class="mode-toggle" id="modeBtn" title="Cambiar modo estética">🖤</button>
       </div>
@@ -496,7 +491,7 @@
         <div class="stat-label">Win Rate</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">340</div>
+        <div class="stat-number">278</div>
         <div class="stat-label">TikTok Followers</div>
       </div>
       <div class="stat-card">
@@ -652,13 +647,11 @@
           <li><a href="#shorts">The Amy Show</a></li>
         </ul>
       </div>
-      <div class="footer-section">
+      <div class="footer-socials">
         <h4>Social</h4>
-        <div class="footer-socials">
-          <a href="https://www.tiktok.com/@amyjgil" target="_blank">TikTok</a>
-          <a href="#">Instagram</a>
-          <a href="#">Twitter (X)</a>
-        </div>
+        <a href="https://www.tiktok.com/@amyjgil" target="_blank">TikTok</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter (X)</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -669,33 +662,28 @@
   <script async src="https://www.tiktok.com/embed.js"></script>
 
   <script>
-    // Control del cambio de paleta/modo
     const modeBtn = document.getElementById('modeBtn');
     modeBtn.addEventListener('click', () => {
       document.body.classList.toggle('comp-mode');
       modeBtn.textContent = document.body.classList.contains('comp-mode') ? '🛡️' : '🖤';
     });
 
-    // Sincronización del ratón con el Interactive Glow Effect Global
     document.addEventListener('mousemove', (e) => {
       document.body.style.setProperty('--mouse-x', e.clientX + 'px');
       document.body.style.setProperty('--mouse-y', e.clientY + 'px');
     });
 
-    // 🚀 EFECTO PARALLAX SCROLL PARA LA SECCIÓN HERO
     window.addEventListener('scroll', () => {
       const scroll = window.scrollY;
       const heroText = document.querySelector('.parallax-text');
       const heroImage = document.querySelector('.parallax-image');
       
-      // Solo aplicamos el efecto si el usuario está en la parte superior para ahorrar recursos
       if (scroll < 900) {
         if (heroText) heroText.style.transform = `translateY(${scroll * 0.35}px)`;
         if (heroImage) heroImage.style.transform = `translateY(${scroll * 0.15}px)`;
       }
     });
 
-    // Sistema de Filtros para la sección Gear
     const filterBtns = document.querySelectorAll('.filter-btn');
     const gearItems = document.querySelectorAll('.gear-item');
 
@@ -719,7 +707,6 @@
       });
     });
 
-    // Animación suave mediante IntersectionObserver
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
