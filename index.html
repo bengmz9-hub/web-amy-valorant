@@ -464,6 +464,7 @@
   </style>
 </head>
 <body>
+<div style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--accent), #ff9de9); z-index: 10000; transition: width 0.1s ease-out; pointer-events: none;" id="scrollBar"></div>
 
 <div class="cursor-glow"></div>
 <div class="global-bg"></div>
@@ -703,6 +704,13 @@
   }
   fetchRealStats();
   */
+ // Barra de progreso de scroll
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('scrollBar').style.width = scrolled + '%';
+});
 </script>
 </body>
 </html>
