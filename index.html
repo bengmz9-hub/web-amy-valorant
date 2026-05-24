@@ -366,7 +366,7 @@
       font-weight: 800;
       letter-spacing: 3px;
     }
-    .game-card .info { padding: 2rem; border-top: 1px solid rgba(255, 113, 206, 0.1); }
+    .game-card .info { padding: 2rem; }
     .game-card p { font-size: 0.95rem; color: var(--text-main); font-weight: 300; line-height: 1.8; }
 
     .setup-gear { max-width: 1200px; margin: 0 auto 1.5rem auto; }
@@ -547,32 +547,75 @@
 </section>
 
 <section id="agents">
-  <div class="section-title">
+  <div class="section-title fade-in-section">
     <h2>Especialidades <span class="highlight">Tácticas</span></h2>
     <p>Sinergia operativa con agentes de control y soporte.</p>
   </div>
   <div class="cards-grid">
-    <div class="game-card">
+    
+    <!-- GEKKO - 35% -->
+    <div class="game-card fade-in-section">
       <div class="img-container">
         <img src="gekko_art.jpg" alt="GEKKO" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=GEKKO'">
         <div class="agent-name-overlay">GEKKO</div>
       </div>
-      <div class="info"><p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p></div>
+      <div class="info">
+        <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
+        <!-- Barra de uso estilizada -->
+        <div style="margin-top: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.7rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 0.4rem;">
+            <span style="font-family: 'Cinzel', serif; font-weight: 400; letter-spacing: 1px; font-size: 0.7rem; color: var(--text-sub);">🦎 tasa de uso</span>
+            <span style="color: #4ade80; font-weight: 700; font-size: 0.85rem;">35%</span>
+          </div>
+          <div style="background: rgba(74, 222, 128, 0.15); border-radius: 20px; height: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);">
+            <div style="background: linear-gradient(90deg, #4ade80, #a3e635); width: 35%; height: 100%; border-radius: 20px;"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="game-card">
+    
+    <!-- SAGE - 45% -->
+    <div class="game-card fade-in-section">
       <div class="img-container">
         <img src="sage_art.jpg" alt="SAGE" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=SAGE'">
         <div class="agent-name-overlay">SAGE</div>
       </div>
-      <div class="info"><p>Dominio del control de terreno y sostenibilidad del equipo. Especialista en salvaguardar la ventaja táctica.</p></div>
+      <div class="info">
+        <p>Dominio del control de terreno y sostenibilidad del equipo. Especialista en salvaguardar la ventaja táctica.</p>
+        <!-- Barra de uso estilizada -->
+        <div style="margin-top: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.7rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 0.4rem;">
+           <span style="font-family: 'Cinzel', serif; font-weight: 400; letter-spacing: 1px; font-size: 0.7rem; color: var(--text-sub);">❄️ tasa de uso</span>
+           <span style="color: #3b82f6; font-weight: 700; font-size: 0.85rem;">45%</span>
+          </div>
+          <div style="background: rgba(59, 130, 246, 0.15); border-radius: 20px; height: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);">
+            <div style="background: linear-gradient(90deg, #3b82f6, #60a5fa); width: 45%; height: 100%; border-radius: 20px;"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="game-card">
+    
+    <!-- BRIMSTONE - 20% -->
+    <div class="game-card fade-in-section">
       <div class="img-container">
         <img src="brimstone_art.jpg" alt="BRIMSTONE" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=BRIMSTONE'">
         <div class="agent-name-overlay">BRIMSTONE</div>
       </div>
-      <div class="info"><p>Liderazgo estratégico y control zonal mediante fuego táctico. Capacidad de orquestar ofensivas coordinadas.</p></div>
+      <div class="info">
+        <p>Liderazgo estratégico y control zonal mediante fuego táctico. Capacidad de orquestar ofensivas coordinadas.</p>
+        <!-- Barra de uso estilizada -->
+        <div style="margin-top: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.7rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 0.4rem;">
+            <span style="font-family: 'Cinzel', serif; font-weight: 400; letter-spacing: 1px; font-size: 0.7rem; color: var(--text-sub);">🔥 tasa de uso</span>
+            <span style="color: #ff8c00; font-weight: 700; font-size: 0.85rem;">20%</span>
+          </div>
+          <div style="background: rgba(255, 140, 0, 0.15); border-radius: 20px; height: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(255, 140, 0, 0.2);">
+            <div style="background: linear-gradient(90deg, #ff8c00, #ffa726); width: 20%; height: 100%; border-radius: 20px;"></div>
+          </div>
+        </div>
+      </div>
     </div>
+    
   </div>
 </section>
 
