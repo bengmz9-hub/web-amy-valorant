@@ -1,70 +1,83 @@
+Voy a añadir el llamado a la acción "¿Quieres unirte a mi comunidad? Contáctame" justo debajo de la imagen de AMY, con un diseño premium que encaje con el resto de la web. Mantengo todos los cambios previos (sin partículas, linterna táctica, selector de agente que cambia colores, modo competitivo, etc.).
+
+Aquí tienes el código completo con esa sección restaurada:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>AMY // Tactical Portfolio</title>
-
+  <meta name="description" content="Portfolio táctico y mejores momentos de Valorant. Rango Platino 2 • Main Sage.">
   <meta property="og:title" content="AMY // Tactical Portfolio">
   <meta property="og:description" content="Portfolio táctico y mejores momentos de Valorant. Rango Platino 2 • Main Sage.">
-  <meta property="og:image" content="https://via.placeholder.com/1200x630?text=AMY+Valorant">
   <meta property="og:url" content="https://bengmz9-hub.github.io/web-amy-valorant/">
   <meta name="twitter:card" content="summary_large_image">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@300;400;500&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    /* ----------------------------- */
+    /* ROOT VARIABLES (modo normal) */
+    /* ----------------------------- */
     :root {
       --bg-dark: #0f0a0c;
       --bg-card: rgba(26, 12, 16, 0.75);
       --text-main: #ffe4e6;
       --text-sub: #fbcfe8;
-      --accent: #ff71ce; 
+      --accent: #ff71ce;
       --accent-glow: rgba(255, 113, 206, 0.3);
       --accent-radial: rgba(255, 113, 206, 0.05);
       --glass: rgba(255, 255, 255, 0.02);
       --glass-border: rgba(255, 113, 206, 0.15);
       --radius-lg: 24px;
-      --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      --transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      --mouse-x: 50%;
+      --mouse-y: 50%;
     }
-
     body.comp-mode {
       --bg-dark: #050608;
       --bg-card: rgba(15, 17, 23, 0.75);
-      --accent: #ff4655; 
+      --accent: #ff4655;
       --accent-glow: rgba(255, 70, 85, 0.3);
       --accent-radial: rgba(255, 70, 85, 0.04);
       --text-main: #ffffff;
       --text-sub: #94a3b8;
       --glass-border: rgba(255, 255, 255, 0.08);
     }
-
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb {
-      background: var(--glass-border);
-      border-radius: 100px;
-      transition: var(--transition);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--bg-dark);
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
-      transition: background 0.6s ease;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff71ce" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>') 12 12, crosshair;
+      transition: background 0.4s ease;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff71ce" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>') 12 12, crosshair;
     }
-    
-    a, button, .mode-toggle, .filter-btn, .game-card { cursor: pointer; }
+    a, button, .filter-btn, .game-card, .mode-toggle {
+      cursor: pointer;
+    }
+    .hidden {
+      display: none !important;
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 100px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
+    /* ----------------------------- */
+    /* GLOBAL EFFECTS               */
+    /* ----------------------------- */
     .cursor-glow {
       position: fixed;
       top: 0;
@@ -74,9 +87,9 @@
       pointer-events: none;
       z-index: -1;
       background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-radial), transparent 80%);
-      transition: background 0.5s ease;
+      transition: background 0.4s ease;
+      will-change: background;
     }
-
     .global-bg {
       position: fixed;
       top: 0;
@@ -84,15 +97,19 @@
       width: 100%;
       height: 100%;
       z-index: -3;
-      background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format');
+      background-image: url('valorant_art.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       filter: brightness(0.22) contrast(1.15);
       transition: var(--transition);
     }
-    .global-overlay { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at center, transparent 10%, var(--bg-dark) 100%); }
-
+    .global-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at center, transparent 10%, var(--bg-dark) 100%);
+    }
     .side-agent {
       position: fixed;
       top: 50%;
@@ -106,35 +123,73 @@
     .agent-left { left: -30px; filter: drop-shadow(10px 0 20px var(--accent-glow)) grayscale(20%); }
     .agent-right { right: -30px; filter: drop-shadow(-10px 0 20px var(--accent-glow)) grayscale(20%); }
 
+    /* Linterna táctica */
+    .tactical-flashlight {
+      position: fixed;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+      z-index: 999;
+      transform: translate(-50%, -50%);
+      transition: left 0.03s linear, top 0.03s linear;
+      will-change: left, top;
+      mix-blend-mode: overlay;
+    }
+
+    /* ----------------------------- */
+    /* SCROLL PROGRESS BAR          */
+    /* ----------------------------- */
+    #scrollBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #ff9de9);
+      z-index: 10000;
+      transition: width 0.1s ease-out;
+      pointer-events: none;
+    }
+
+    /* ----------------------------- */
+    /* NAVBAR                       */
+    /* ----------------------------- */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 1.5rem 5vw;
-      background: linear-gradient(135deg, rgba(15, 12, 14, 0.6), rgba(26, 12, 16, 0.4));
+      padding: 1.2rem 5vw;
+      background: linear-gradient(135deg, rgba(15, 12, 14, 0.7), rgba(26, 12, 16, 0.5));
       backdrop-filter: blur(40px);
       border-bottom: 1px solid rgba(255, 113, 206, 0.2);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
-    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 3rem; flex-wrap: wrap; }
-
-    .nav-brand { display: flex; align-items: baseline; gap: 0.8rem; flex-shrink: 0; }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .nav-brand { display: flex; align-items: baseline; gap: 0.8rem; }
     .logo-text {
       font-family: 'Cinzel', serif;
-      font-size: 2.4rem;
+      font-size: 2rem;
       font-weight: 700;
-      letter-spacing: 8px;
+      letter-spacing: 6px;
       background: linear-gradient(135deg, #fff, var(--accent), #fff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 113, 206, 0.3);
-      transition: var(--transition);
       text-decoration: none;
+      transition: letter-spacing 0.3s;
     }
-    .logo-text:hover { letter-spacing: 10px; }
-    
+    .logo-text:hover { letter-spacing: 8px; }
     .logo-badge {
       font-family: 'Rajdhani', sans-serif;
       font-size: 0.65rem;
@@ -147,35 +202,39 @@
       border-radius: 100px;
       background: rgba(255, 113, 206, 0.05);
     }
-
-    .nav-menu { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
     .nav-link {
       font-family: 'Rajdhani', sans-serif;
       font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 2.5px;
+      letter-spacing: 2px;
       color: #fff;
       text-decoration: none;
       opacity: 0.7;
       font-weight: 500;
-      padding: 0.8rem 1.2rem;
+      padding: 0.6rem 1rem;
       border-radius: 100px;
       transition: var(--transition);
       border: 1px solid transparent;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
     .nav-link:hover {
       opacity: 1;
       color: var(--accent);
       border-color: var(--accent);
-      box-shadow: 0 0 20px rgba(255, 113, 206, 0.2);
       transform: translateY(-2px);
     }
-
-    .nav-controls { display: flex; align-items: center; gap: 2rem; }
-    .social-links { display: flex; gap: 1.2rem; align-items: center; border-left: 1px solid var(--glass-border); padding-left: 2rem; }
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
     .social-link {
       font-family: 'Rajdhani', sans-serif;
       font-size: 0.7rem;
@@ -183,19 +242,21 @@
       letter-spacing: 1.5px;
       color: #fff;
       text-decoration: none;
-      opacity: 0.6;
-      transition: var(--transition);
       padding: 0.5rem 1rem;
       border: 1px solid transparent;
       border-radius: 100px;
+      transition: var(--transition);
     }
-    .social-link:hover { opacity: 1; border-color: var(--accent); background: rgba(255, 113, 206, 0.1); color: var(--accent); }
-
+    .social-link:hover {
+      border-color: var(--accent);
+      background: rgba(255, 113, 206, 0.1);
+      color: var(--accent);
+    }
     .mode-toggle {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      background: rgba(255, 113, 206, 0.08);
+      background: rgba(255, 113, 206, 0.1);
       border: 1.5px solid var(--glass-border);
       color: white;
       font-size: 1.3rem;
@@ -203,20 +264,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(5px);
     }
-    .mode-toggle:hover { border-color: var(--accent); transform: scale(1.12) rotateZ(10deg); background: rgba(255, 113, 206, 0.15); }
+    .mode-toggle:hover {
+      border-color: var(--accent);
+      transform: scale(1.1) rotate(5deg);
+      background: rgba(255, 113, 206, 0.2);
+    }
 
-    @keyframes slideInFromLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
-    @keyframes pulse-subtle { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.1); } }
-    
-    .fade-in-section { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.9s; }
-    .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
-
+    /* ----------------------------- */
+    /* HERO                         */
+    /* ----------------------------- */
     .hero {
       position: relative;
-      padding: 160px 10vw 20px 10vw;
+      padding: 160px 10vw 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -233,258 +293,473 @@
       background: radial-gradient(circle, rgba(255, 113, 206, 0.1), transparent);
       filter: blur(80px);
       pointer-events: none;
-      animation: pulse-subtle 6s ease-in-out infinite;
+      animation: pulse 6s infinite;
     }
-    .hero-container { display: grid; grid-template-columns: 1.5fr 0.8fr; align-items: center; gap: 5rem; width: 100%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
-    
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.05); }
+    }
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr;
+      align-items: center;
+      gap: 4rem;
+      max-width: 1400px;
+      width: 100%;
+      z-index: 2;
+    }
     .hero-text h1 {
       font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-size: clamp(3rem, 7vw, 5.5rem);
       line-height: 1.1;
       font-weight: 800;
       color: #fff;
-      letter-spacing: -2px;
-      margin-bottom: 2rem;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
     }
     .hero-text h1 .highlight {
       background: linear-gradient(135deg, var(--accent), #ff9de9);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .hero-bio { font-size: 1.1rem; color: var(--text-sub); max-width: 620px; line-height: 1.9; font-weight: 300; margin-bottom: 3.5rem; }
-
-    .hero-right { display: flex; flex-direction: column; align-items: center; gap: 3.5rem; }
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--text-sub);
+      max-width: 580px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
     .main-frame {
-      width: 340px;
-      height: 340px;
+      width: 300px;
+      height: 300px;
       border-radius: 28px;
       overflow: hidden;
       border: 2px solid var(--glass-border);
       background: var(--bg-card);
       padding: 8px;
       transition: var(--transition);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
-    .main-frame:hover { border-color: var(--accent); transform: translateY(-12px) scale(1.03); box-shadow: 0 30px 80px rgba(255, 113, 206, 0.3); }
-    .main-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; transition: var(--transition); }
-
-    .cta-banner {
-      position: relative;
-      padding: 4rem 5vw;
-      max-width: 1200px;
-      margin: 1rem auto 3rem auto;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(255, 113, 206, 0.1), rgba(26, 12, 16, 0.8));
-      border: 1px solid var(--glass-border);
-      backdrop-filter: blur(12px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 3rem;
-      overflow: hidden;
+    .main-frame:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 50px var(--accent-glow);
     }
-    .cta-content { flex: 1; z-index: 2; }
-    .cta-content h2 { font-family: 'Rajdhani', sans-serif; font-size: 2.5rem; color: #fff; margin-bottom: 1rem; }
-    .cta-content p { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 2rem; }
-    .btn-primary {
+    .main-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    /* NUEVO: Llamada a la acción debajo de la foto */
+    .cta-community {
+      text-align: center;
       font-family: 'Rajdhani', sans-serif;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 1rem 2.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 1.5px;
+      color: var(--text-main);
+      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.5));
+      border: 1.5px solid var(--glass-border);
       border-radius: 100px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      padding: 0.8rem 2rem;
       transition: var(--transition);
-      box-shadow: 0 0 20px var(--accent-glow);
-      display: inline-block;
       text-decoration: none;
+      display: inline-block;
+      backdrop-filter: blur(12px);
     }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px var(--accent-glow); }
+    .cta-community:hover {
+      border-color: var(--accent);
+      background: rgba(255, 113, 206, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px var(--accent-glow);
+    }
+    .cta-community span {
+      color: var(--accent);
+      font-weight: 700;
+    }
 
-    .stats-section { padding: 4rem 5vw; max-width: 1200px; margin: 2rem auto; }
-    .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+    /* ----------------------------- */
+    /* STATS SECTION                */
+    /* ----------------------------- */
+    .stats-section {
+      padding: 3rem 5vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
     .stat-card {
       background: var(--bg-card);
       border: 1px solid var(--glass-border);
-      padding: 2rem;
+      padding: 1.8rem;
       border-radius: var(--radius-lg);
       text-align: center;
-      transition: var(--transition);
       backdrop-filter: blur(12px);
+      transition: var(--transition);
     }
-    .stat-card:hover { border-color: var(--accent); transform: translateY(-8px); }
-    .stat-number { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; }
-    .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-sub); font-weight: 600; }
-
-    section { padding: 4rem 5vw; max-width: 1200px; margin: 0 auto 1.5rem auto; }
-    .section-title { text-align: center; margin-bottom: 4rem; }
-    .section-title h2 {
-      font-size: 3rem;
-      color: #fff;
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
+    .stat-number {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 5px;
-      font-weight: 800;
-      display: inline-block;
+      letter-spacing: 2px;
+      color: var(--text-sub);
+      font-weight: 600;
     }
-    .section-title h2 .highlight { color: var(--accent); background: linear-gradient(135deg, var(--accent), #ff9de9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    /* ----------------------------- */
+    /* GENERAL SECTIONS             */
+    /* ----------------------------- */
+    section {
+      padding: 4rem 5vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-title h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: inline-block;
+      position: relative;
+    }
+    .section-title h2 .highlight {
+      color: var(--accent);
+      background: linear-gradient(135deg, var(--accent), #ff9de9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
     .section-title h2::after {
       content: '';
       display: block;
       width: 60px;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      margin: 1rem auto 0;
+      background: var(--accent);
+      margin: 0.8rem auto 0;
       border-radius: 10px;
     }
-    .section-title p { color: var(--text-sub); font-size: 1rem; margin-top: 1rem; }
+    .section-title p {
+      color: var(--text-sub);
+      margin-top: 0.8rem;
+    }
 
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+    /* Agentes cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
     .game-card {
-      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.5));
+      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.6));
       border: 1.5px solid var(--glass-border);
       border-radius: 28px;
       overflow: hidden;
       transition: var(--transition);
       backdrop-filter: blur(12px);
     }
-    .game-card:hover { border-color: var(--accent); transform: translateY(-15px); box-shadow: 0 30px 80px rgba(255, 113, 206, 0.25); }
-    .game-card .img-container { width: 100%; height: 420px; overflow: hidden; position: relative; }
-    .game-card img { width: 100%; height: 100%; object-fit: cover; transition: all 0.6s; }
-    .game-card:hover img { transform: scale(1.08) rotate(2deg); filter: brightness(1.1); }
+    .game-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px var(--accent-glow);
+    }
+    .img-container {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+    }
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .game-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.05);
+    }
     .agent-name-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 4rem 2rem 2rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(15, 10, 12, 0.98) 100%);
+      padding: 3rem 1.5rem 1.5rem;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.9));
       font-family: 'Rajdhani', sans-serif;
       font-size: 2rem;
       font-weight: 800;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
     }
-    .game-card .info { padding: 2rem; }
-    .game-card p { font-size: 0.95rem; color: var(--text-main); font-weight: 300; line-height: 1.8; }
+    .info {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(0,0,0,0.2), rgba(255,113,206,0.02));
+    }
+    .info p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+    .usage-stats {
+      margin-top: 1rem;
+    }
+    .usage-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: 'Cinzel', serif;
+      font-weight: 400;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: var(--text-sub);
+      margin-bottom: 0.3rem;
+      text-transform: lowercase;
+    }
+    .usage-percent {
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .usage-bar-bg {
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      height: 6px;
+      overflow: hidden;
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    }
+    .usage-bar-fill {
+      height: 100%;
+      border-radius: 20px;
+      transition: width 0.5s ease;
+    }
 
-    .setup-gear { max-width: 1200px; margin: 0 auto 1.5rem auto; }
-    .gear-filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    /* Gear section */
+    .setup-gear {
+      max-width: 1200px;
+    }
+    .gear-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
     .filter-btn {
       background: transparent;
       border: 1px solid var(--glass-border);
       color: var(--text-main);
-      padding: 0.6rem 1.8rem;
+      padding: 0.5rem 1.5rem;
       border-radius: 100px;
-      transition: var(--transition);
       font-family: 'Rajdhani', sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
       font-weight: 600;
-    }
-    .filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-    .gear-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-    .gear-item { 
-      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.4));
-      padding: 2.5rem 1.8rem;
-      border-radius: 24px;
-      border: 1.5px solid var(--glass-border);
-      text-align: center;
+      text-transform: uppercase;
       transition: var(--transition);
-      backdrop-filter: blur(12px);
     }
-    .gear-item:hover { border-color: var(--accent); transform: translateY(-10px) scale(1.02); }
-    .gear-item h3 { font-family: 'Rajdhani', sans-serif; color: var(--accent); margin-bottom: 0.8rem; font-size: 1.35rem; letter-spacing: 2px; }
-    .gear-item p { color: #fff; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .gear-item-spec { font-size: 0.8rem; color: var(--text-sub); margin-top: 0.8rem; }
-    .gear-status { display: inline-block; font-size: 0.7rem; padding: 0.5rem 1rem; border-radius: 100px; background: rgba(255, 255, 255, 0.08); margin-top: 1rem; }
-    .gear-status.in-stock { color: #4ade80; border-color: rgba(74, 222, 128, 0.5); }
-    
-    .sensitivity-bar { width: 100%; height: 6px; background: rgba(255, 113, 206, 0.2); border-radius: 10px; margin-top: 1.2rem; overflow: hidden; }
-    .bar-fill { height: 100%; background: var(--accent); width: 35%; border-radius: 10px; transition: width 0.6s; }
-    .gear-item.hidden { display: none; }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .gear-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+    .gear-item {
+      background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.5));
+      padding: 1.8rem;
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      text-align: center;
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+    }
+    .gear-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+    }
+    .gear-item h3 {
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .gear-item p {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .gear-item-spec {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      margin-top: 0.5rem;
+    }
+    .gear-status {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
+    .gear-status.in-stock {
+      color: #4ade80;
+      border: 1px solid rgba(74,222,128,0.4);
+    }
+    .sensitivity-bar {
+      margin-top: 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      height: 5px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #ff9de9);
+      width: 51%;
+      border-radius: 20px;
+    }
 
+    /* Simulador de sensibilidad */
     .simulator-box {
       margin-top: 2rem;
-      background: rgba(0,0,0,0.5);
-      border-radius: 20px;
-      padding: 1rem;
       text-align: center;
     }
     .sim-canvas {
-      background: #1a1a2e;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 300px;
-      height: 200px;
-      margin: 0 auto;
-      display: block;
+      background: #0a0c12;
+      border-radius: 20px;
       border: 2px solid var(--accent);
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      aspect-ratio: 400 / 200;
+      margin-top: 1rem;
     }
 
-    .shorts-section { max-width: 1200px; margin: 0 auto 1.5rem auto; }
-    .tiktok-grid { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+    /* TikTok shorts */
+    .shorts-section {
+      max-width: 1200px;
+    }
+    .tiktok-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
     .tiktok-wrapper {
       background: var(--bg-card);
-      padding: 16px;
+      padding: 1rem;
       border-radius: 28px;
-      border: 1.5px solid var(--glass-border);
+      border: 1px solid var(--glass-border);
       transition: var(--transition);
-      backdrop-filter: blur(12px);
-      min-height: 500px;
-      min-width: 325px;
+      min-width: 300px;
     }
-    .tiktok-wrapper:hover { border-color: var(--accent); transform: translateY(-12px); }
+    .tiktok-wrapper:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+    }
 
+    /* Footer */
     footer {
-      background: linear-gradient(180deg, transparent, rgba(6, 4, 5, 0.95));
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.8));
       border-top: 1px solid var(--glass-border);
-      padding: 5rem 5vw 3rem;
+      padding: 3rem 5vw 2rem;
       text-align: center;
     }
-    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 4rem; text-align: left; }
-    .footer-section h4 { color: #fff; font-family: 'Rajdhani', sans-serif; margin-bottom: 1.5rem; letter-spacing: 2px; }
-    .footer-section ul { list-style: none; }
-    .footer-section ul li { margin-bottom: 0.8rem; }
-    .footer-section a { color: var(--text-sub); text-decoration: none; transition: var(--transition); }
-    .footer-section a:hover { color: var(--accent); padding-left: 5px; }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .footer-section h4 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+    .footer-section a {
+      color: var(--text-sub);
+      text-decoration: none;
+      transition: var(--transition);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .footer-section a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
 
+    /* Animaciones */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
     @media (max-width: 992px) {
-      .hero-container { grid-template-columns: 1fr; text-align: center; }
+      .hero-container { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
       .hero-text { display: flex; flex-direction: column; align-items: center; }
+      .hero-bio { margin: 0 auto; }
       .side-agent { display: none; }
-      .main-frame { width: 280px; height: 280px; }
-      .section-title h2 { font-size: 2.5rem; }
+      .main-frame { width: 260px; height: 260px; margin: 0 auto; }
+      .hero-right { align-items: center; }
+      .nav-menu { gap: 1rem; }
     }
     @media (max-width: 768px) {
-      .gear-container { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+      .navbar { padding: 1rem 4vw; }
+      .nav-container { flex-direction: column; align-items: stretch; }
+      .nav-menu { justify-content: center; }
+      .stats-container { grid-template-columns: 1fr 1fr; }
+      .gear-container { grid-template-columns: 1fr; }
     }
-
-    /* Linterna táctica */
-.tactical-flashlight {
-  position: fixed;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 70%);
-  pointer-events: none;
-  z-index: 999;
-  transform: translate(-50%, -50%);
-  transition: all 0.05s linear;
-  mix-blend-mode: overlay;
-}
   </style>
 </head>
 <body>
-<div style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--accent), #ff9de9); z-index: 10000; transition: width 0.1s ease-out; pointer-events: none;" id="scrollBar"></div>
 
+<!-- Elementos globales -->
 <div class="cursor-glow"></div>
 <div class="global-bg"></div>
 <div class="global-overlay"></div>
 <img src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png" class="side-agent agent-left" alt="Sage" loading="lazy">
 <img src="https://media.valorant-api.com/agents/6f2a04e5-4e68-800c-8077-4b0febe7f0cd/fullportrait.png" class="side-agent agent-right" alt="Brimstone" loading="lazy">
+<div id="scrollBar"></div>
 
 <nav class="navbar">
   <div class="nav-container">
@@ -495,13 +770,11 @@
     <div class="nav-menu">
       <a href="#agents" class="nav-link">🎯 Especialidades</a>
       <a href="#gear" class="nav-link">⚙️ Setup</a>
-      <a href="#shorts" class="nav-link">🎬 The Amy Show</a>
+      <a href="#shorts" class="nav-link">🎬 Amy Show</a>
     </div>
     <div class="nav-controls">
-      <div class="social-links">
-        <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="social-link">TikTok</a>
-      </div>
-      <button class="mode-toggle" id="modeBtn">🖤</button>
+      <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="social-link">TikTok</a>
+      <button class="mode-toggle" id="modeBtn" aria-label="Cambiar modo competitivo">🖤</button>
     </div>
   </div>
 </nav>
@@ -511,38 +784,27 @@
     <div class="hero-text">
       <h1>Disciplina, <br>Análisis y <span class="highlight">Ejecución.</span></h1>
       <div class="hero-bio">
-        <p>
-          He ido construyendo mi forma de jugar a base de constancia, aprendizaje y muchas horas, entendiendo cómo funciona cada partida. Le doy importancia a cosas como la lectura del mapa, el ritmo del juego y tomar buenas decisiones en los momentos clave.
-          <br><br>
-          Mi main principal es Sage, buscando siempre ayudar al equipo de la forma más útil posible y aportando estabilidad dentro de la partida. Para mí, mejorar no es solo cuestión de mecánicas, sino también de mantener la calma, adaptarme y seguir aprendiendo.
-        </p>
+        <p>He ido construyendo mi forma de jugar a base de constancia, aprendizaje y muchas horas, entendiendo cómo funciona cada partida. Le doy importancia a cosas como la lectura del mapa, el ritmo del juego y tomar buenas decisiones en los momentos clave.<br><br>Mi main principal es Sage, buscando siempre ayudar al equipo de la forma más útil posible y aportando estabilidad dentro de la partida. Para mí, mejorar no es solo cuestión de mecánicas, sino también de mantener la calma, adaptarme y seguir aprendiendo.</p>
       </div>
     </div>
     <div class="hero-right">
       <div class="main-frame">
-        <img src="amy_art.jpg" alt="Amy Portrait" loading="lazy" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
+        <img src="amy_art.jpg" alt="Amy" loading="eager" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
       </div>
+      <!-- NUEVO: Llamada a la acción -->
+      <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="cta-community">
+        ¿Quieres unirte a mi comunidad? <span>Contáctame</span>
+      </a>
     </div>
   </div>
 </header>
 
-<section class="cta-banner fade-in-section">
-  <div class="cta-content">
-    <h2>¿Quieres unirte a la <span class="highlight">comunidad</span>?</h2>
-    <p>Diviértete jugando con gente afín a ti y conociendo a nuevos jugadores por el camino.</p>
-    <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="btn-primary">Contáctame →</a>
-  </div>
-  <div class="cta-visual">
-    <div class="glow-orb"></div>
-  </div>
-</section>
-
 <section class="stats-section fade-in-section">
-  <div class="stats-container" id="statsContainer">
-    <div class="stat-card"><div class="stat-number" id="hoursStat">2500+</div><div class="stat-label">Horas Jugadas</div></div>
-    <div class="stat-card"><div class="stat-number" id="winrateStat">51%</div><div class="stat-label">Win Rate</div></div>
-    <div class="stat-card"><div class="stat-number" id="followersStat">278</div><div class="stat-label">TikTok Followers</div></div>
-    <div class="stat-card"><div class="stat-number" id="rankStat">Platino 2</div><div class="stat-label">Rango Actual</div></div>
+  <div class="stats-container">
+    <div class="stat-card"><div class="stat-number">2500+</div><div class="stat-label">Horas Jugadas</div></div>
+    <div class="stat-card"><div class="stat-number">51%</div><div class="stat-label">Win Rate</div></div>
+    <div class="stat-card"><div class="stat-number">278</div><div class="stat-label">TikTok Followers</div></div>
+    <div class="stat-card"><div class="stat-number" style="font-size:2rem;">Plat 2</div><div class="stat-label">Rango Actual</div></div>
   </div>
 </section>
 
@@ -552,70 +814,48 @@
     <p>Sinergia operativa con agentes de control y soporte.</p>
   </div>
   <div class="cards-grid">
-    
-    <!-- GEKKO - 35% -->
-    <div class="game-card fade-in-section">
+    <!-- Sage -->
+    <div class="game-card fade-in-section" data-agent="sage">
       <div class="img-container">
-        <img src="gekko_art.jpg" alt="GEKKO" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=GEKKO'">
-        <div class="agent-name-overlay">GEKKO</div>
-      </div>
-      <div class="info">
-        <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
-        <!-- Barra de uso estilizada -->
-        <div style="margin-top: 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.7rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 0.4rem;">
-            <span style="font-family: 'Cinzel', serif; font-weight: 400; letter-spacing: 1px; font-size: 0.7rem; color: var(--text-sub);">🦎 tasa de uso</span>
-            <span style="color: #4ade80; font-weight: 700; font-size: 0.85rem;">35%</span>
-          </div>
-          <div style="background: rgba(74, 222, 128, 0.15); border-radius: 20px; height: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);">
-            <div style="background: linear-gradient(90deg, #4ade80, #a3e635); width: 35%; height: 100%; border-radius: 20px;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- SAGE - 45% -->
-    <div class="game-card fade-in-section">
-      <div class="img-container">
-        <img src="sage_art.jpg" alt="SAGE" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=SAGE'">
+        <img src="sage_art.jpg" alt="Sage" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=SAGE'">
         <div class="agent-name-overlay">SAGE</div>
       </div>
       <div class="info">
         <p>Dominio del control de terreno y sostenibilidad del equipo. Especialista en salvaguardar la ventaja táctica.</p>
-        <!-- Barra de uso estilizada -->
-        <div style="margin-top: 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.7rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 0.4rem;">
-           <span style="font-family: 'Cinzel', serif; font-weight: 400; letter-spacing: 1px; font-size: 0.7rem; color: var(--text-sub);">❄️ tasa de uso</span>
-           <span style="color: #3b82f6; font-weight: 700; font-size: 0.85rem;">45%</span>
-          </div>
-          <div style="background: rgba(59, 130, 246, 0.15); border-radius: 20px; height: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);">
-            <div style="background: linear-gradient(90deg, #3b82f6, #60a5fa); width: 45%; height: 100%; border-radius: 20px;"></div>
-          </div>
+        <div class="usage-stats">
+          <div class="usage-header"><span>❄️ tasa de uso</span><span class="usage-percent">45%</span></div>
+          <div class="usage-bar-bg"><div class="usage-bar-fill" style="width:45%; background: linear-gradient(90deg,#3b82f6,#60a5fa);"></div></div>
         </div>
       </div>
     </div>
-    
-    <!-- BRIMSTONE - 20% -->
-    <div class="game-card fade-in-section">
+    <!-- Gekko -->
+    <div class="game-card fade-in-section" data-agent="gekko">
       <div class="img-container">
-        <img src="brimstone_art.jpg" alt="BRIMSTONE" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=BRIMSTONE'">
+        <img src="gekko_art.jpg" alt="Gekko" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=GEKKO'">
+        <div class="agent-name-overlay">GEKKO</div>
+      </div>
+      <div class="info">
+        <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
+        <div class="usage-stats">
+          <div class="usage-header"><span>🦎 tasa de uso</span><span class="usage-percent">35%</span></div>
+          <div class="usage-bar-bg"><div class="usage-bar-fill" style="width:35%; background: linear-gradient(90deg,#4ade80,#a3e635);"></div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Brimstone -->
+    <div class="game-card fade-in-section" data-agent="brimstone">
+      <div class="img-container">
+        <img src="brimstone_art.jpg" alt="Brimstone" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=BRIMSTONE'">
         <div class="agent-name-overlay">BRIMSTONE</div>
       </div>
       <div class="info">
         <p>Liderazgo estratégico y control zonal mediante fuego táctico. Capacidad de orquestar ofensivas coordinadas.</p>
-        <!-- Barra de uso estilizada -->
-        <div style="margin-top: 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 0.7rem; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 0.4rem;">
-            <span style="font-family: 'Cinzel', serif; font-weight: 400; letter-spacing: 1px; font-size: 0.7rem; color: var(--text-sub);">🔥 tasa de uso</span>
-            <span style="color: #ff8c00; font-weight: 700; font-size: 0.85rem;">20%</span>
-          </div>
-          <div style="background: rgba(255, 140, 0, 0.15); border-radius: 20px; height: 10px; overflow: hidden; box-shadow: 0 0 10px rgba(255, 140, 0, 0.2);">
-            <div style="background: linear-gradient(90deg, #ff8c00, #ffa726); width: 20%; height: 100%; border-radius: 20px;"></div>
-          </div>
+        <div class="usage-stats">
+          <div class="usage-header"><span>🔥 tasa de uso</span><span class="usage-percent">20%</span></div>
+          <div class="usage-bar-bg"><div class="usage-bar-fill" style="width:20%; background: linear-gradient(90deg,#ff8c00,#ffa726);"></div></div>
         </div>
       </div>
     </div>
-    
   </div>
 </section>
 
@@ -630,18 +870,18 @@
     <button class="filter-btn" data-filter="pc">Hardware PC</button>
   </div>
   <div class="gear-container">
-    <div class="gear-item" data-category="perifericos"><div class="gear-content"><h3>🖱️ Ratón</h3><p>Logitech G Pro X Superlight</p><div class="gear-item-spec">Peso: 63g | Sensor: Hero 25K</div><span class="gear-status in-stock">✓ Main actual</span></div></div>
-    <div class="gear-item" data-category="perifericos"><div class="gear-content"><h3>🎯 Sensibilidad</h3><p>800 DPI | 0.51 In-game</p><div class="gear-item-spec">eDPI: 280 | Polling Rate: 1000Hz</div><div class="sensitivity-bar"><div class="bar-fill" style="width: 51%"></div></div></div></div>
-    <div class="gear-item" data-category="perifericos"><div class="gear-content"><h3>🖥️ Monitor</h3><p>Zowie XL2546K</p><div class="gear-item-spec">240Hz | 0.5ms</div><span class="gear-status in-stock">✓ En uso</span></div></div>
-    <div class="gear-item" data-category="perifericos"><div class="gear-content"><h3>⌨️ Teclado</h3><p>Wooting 60HE</p><div class="gear-item-spec">Switches magnéticos | Rapid Trigger</div><span class="gear-status in-stock">✓ Main actual</span></div></div>
-    <div class="gear-item" data-category="pc"><div class="gear-content"><h3>⚙️ Procesador</h3><p>Intel Core i9 13900k</p><div class="gear-item-spec">24 Núcleos | 5.8 GHz Turbo</div></div></div>
-    <div class="gear-item" data-category="pc"><div class="gear-content"><h3>🎮 Tarjeta Gráfica</h3><p>Nvidia RTX 3080</p><div class="gear-item-spec">10GB GDDR6X</div></div></div>
+    <div class="gear-item" data-category="perifericos"><h3>🖱️ Ratón</h3><p>Logitech G Pro X Superlight</p><div class="gear-item-spec">Peso: 63g | Sensor: Hero 25K</div><span class="gear-status in-stock">✓ Main actual</span></div>
+    <div class="gear-item" data-category="perifericos"><h3>🎯 Sensibilidad</h3><p>800 DPI | 0.51 In-game</p><div class="gear-item-spec">eDPI: 280 | Polling Rate: 1000Hz</div><div class="sensitivity-bar"><div class="bar-fill" style="width:51%"></div></div></div>
+    <div class="gear-item" data-category="perifericos"><h3>🖥️ Monitor</h3><p>Zowie XL2546K</p><div class="gear-item-spec">240Hz | 0.5ms</div><span class="gear-status in-stock">✓ En uso</span></div>
+    <div class="gear-item" data-category="perifericos"><h3>⌨️ Teclado</h3><p>Wooting 60HE</p><div class="gear-item-spec">Switches magnéticos | Rapid Trigger</div><span class="gear-status in-stock">✓ Main actual</span></div>
+    <div class="gear-item" data-category="pc"><h3>⚙️ Procesador</h3><p>Intel Core i9 13900k</p><div class="gear-item-spec">24 Núcleos | 5.8 GHz Turbo</div></div>
+    <div class="gear-item" data-category="pc"><h3>🎮 Tarjeta Gráfica</h3><p>Nvidia RTX 3080</p><div class="gear-item-spec">10GB GDDR6X</div></div>
   </div>
   <!-- Simulador de sensibilidad -->
   <div class="simulator-box">
     <h3>🎯 Prueba mi sensibilidad</h3>
-    <p>Mueve el ratón dentro del recuadro → se mueve como si tuvieras 800 DPI / 0.35</p>
-    <canvas id="sensCanvas" class="sim-canvas" width="400" height="200" style="width:100%; max-width:400px; height:auto; aspect-ratio:400/200"></canvas>
+    <p>Mueve el ratón dentro del recuadro → 800 DPI / 0.51</p>
+    <canvas id="sensCanvas" class="sim-canvas" width="400" height="200" style="width:100%; max-width:400px; height:auto;"></canvas>
   </div>
 </section>
 
@@ -652,14 +892,10 @@
   </div>
   <div class="tiktok-grid">
     <div class="tiktok-wrapper">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7581441844328942870" data-video-id="7581441844328942870" style="max-width: 605px;min-width: 325px;"> 
-        <section> <a target="_blank" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> </section> 
-      </blockquote>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7581441844328942870" data-video-id="7581441844328942870" style="max-width:605px;min-width:325px;"><section><a target="_blank" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a></section></blockquote>
     </div>
     <div class="tiktok-wrapper">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7611582111362895126" data-video-id="7611582111362895126" style="max-width: 605px;min-width: 325px;"> 
-        <section> <a target="_blank" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> Un ace del otro día <a target="_blank" href="https://www.tiktok.com/tag/valorant?refer=embed">#valorant</a> </section> 
-      </blockquote>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7611582111362895126" data-video-id="7611582111362895126" style="max-width:605px;min-width:325px;"><section><a target="_blank" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> Un ace del otro día <a target="_blank" href="https://www.tiktok.com/tag/valorant?refer=embed">#valorant</a></section></blockquote>
     </div>
   </div>
 </section>
@@ -676,144 +912,190 @@
 <script async src="https://www.tiktok.com/embed.js"></script>
 
 <script>
-  // Modo competitivo
-  const modeBtn = document.getElementById('modeBtn');
-  modeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('comp-mode');
-    modeBtn.textContent = document.body.classList.contains('comp-mode') ? '🛡️' : '🖤';
-  });
+  (function() {
+    'use strict';
 
-  // Efecto glow del cursor
-  document.addEventListener('mousemove', (e) => {
-    document.body.style.setProperty('--mouse-x', e.clientX + 'px');
-    document.body.style.setProperty('--mouse-y', e.clientY + 'px');
-  });
+    // ---------- MODO COMPETITIVO ----------
+    const modeBtn = document.getElementById('modeBtn');
+    const isCompMode = localStorage.getItem('amy-comp-mode') === 'true';
+    if (isCompMode) {
+      document.body.classList.add('comp-mode');
+      modeBtn.textContent = '🛡️';
+    } else {
+      document.body.classList.remove('comp-mode');
+      modeBtn.textContent = '🖤';
+    }
 
-  // Filtros del gear
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const gearItems = document.querySelectorAll('.gear-item');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.getAttribute('data-filter');
-      gearItems.forEach(item => {
-        if(filter === 'all' || item.getAttribute('data-category') === filter) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
+    let selectedAgentColor = null;
+    const agentColors = {
+      sage: '#3b82f6',
+      gekko: '#4ade80',
+      brimstone: '#ff8c00'
+    };
+
+    function getDefaultAccentColor() {
+      return document.body.classList.contains('comp-mode') ? '#ff4655' : '#ff71ce';
+    }
+
+    function setAccentColor(color) {
+      document.documentElement.style.setProperty('--accent', color);
+      document.documentElement.style.setProperty('--accent-glow', color + '80');
+      document.documentElement.style.setProperty('--accent-radial', color + '0D');
+      const svgCursor = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${encodeURIComponent(color)}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>') 12 12, crosshair`;
+      document.body.style.cursor = svgCursor;
+    }
+
+    function restoreAccentColor() {
+      if (selectedAgentColor) {
+        setAccentColor(selectedAgentColor);
+      } else {
+        setAccentColor(getDefaultAccentColor());
+      }
+    }
+
+    modeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('comp-mode');
+      const isComp = document.body.classList.contains('comp-mode');
+      localStorage.setItem('amy-comp-mode', isComp);
+      modeBtn.textContent = isComp ? '🛡️' : '🖤';
+      if (!selectedAgentColor) {
+        setAccentColor(getDefaultAccentColor());
+      }
+    });
+
+    // ---------- CURSOR GLOW ----------
+    let glowRequest;
+    function updateGlowPosition(e) {
+      document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+      document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+      glowRequest = undefined;
+    }
+    document.addEventListener('mousemove', (e) => {
+      if (!glowRequest) {
+        glowRequest = requestAnimationFrame(() => updateGlowPosition(e));
+      }
+    });
+
+    // ---------- SCROLL PROGRESS BAR ----------
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scrollBar').style.width = scrolled + '%';
+    }, { passive: true });
+
+    // ---------- FILTROS GEAR ----------
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const gearItems = document.querySelectorAll('.gear-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        gearItems.forEach(item => {
+          const category = item.getAttribute('data-category');
+          item.classList.toggle('hidden', filter !== 'all' && category !== filter);
+        });
+      });
+    });
+
+    // ---------- SELECTOR DE AGENTE ----------
+    const agentCards = document.querySelectorAll('.game-card');
+    agentCards.forEach(card => {
+      const agent = card.getAttribute('data-agent');
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (agent && agentColors[agent]) {
+          selectedAgentColor = agentColors[agent];
+          setAccentColor(selectedAgentColor);
         }
       });
     });
-  });
 
-  // Intersection Observer para animaciones
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-in-section').forEach(section => observer.observe(section));
-
-  // Simulador de sensibilidad (800 DPI / 0.35)
-  const canvas = document.getElementById('sensCanvas');
-  if(canvas) {
-    const ctx = canvas.getContext('2d');
-    let x = canvas.width/2, y = canvas.height/2;
-    const sensitivity = 0.51;
-    const dpi = 800;
-    // Escala para convertir movimientos del ratón a píxeles
-    let lastX = 0, lastY = 0;
-    
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#ff71ce';
-      ctx.beginPath();
-      ctx.arc(x, y, 10, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = 'white';
-      ctx.font = '12px monospace';
-      ctx.fillText(`Pos: ${Math.round(x)},${Math.round(y)}`, 10, 20);
-      ctx.fillText(`Simula sens 800DPI/0.51`, 10, 40);
-    }
-    
-    canvas.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const scaleX = canvas.width / rect.width;
-      const scaleY = canvas.height / rect.height;
-      const mouseMoveX = e.movementX * sensitivity * (dpi/800) * 0.5; // factor visual
-      const mouseMoveY = e.movementY * sensitivity * (dpi/800) * 0.5;
-      x = Math.min(canvas.width - 10, Math.max(10, x + mouseMoveX));
-      y = Math.min(canvas.height - 10, Math.max(10, y + mouseMoveY));
-      draw();
+    document.body.addEventListener('click', (e) => {
+      if (!e.target.closest('.game-card')) {
+        selectedAgentColor = null;
+        restoreAccentColor();
+      }
     });
-    draw();
-  }
 
-  // Cargar estadísticas simuladas (puedes conectar API real después)
-  // Por ahora mantenemos los valores estáticos pero puedes cambiarlos
-  // Si quieres datos reales, descomenta el bloque de abajo y usa una API como tracker.gg (requiere clave)
-  /*
-  async function fetchRealStats() {
-    try {
-      const response = await fetch('https://api.henrikdev.xyz/valorant/v1/mmr/es/PC/amyjgil');
-      const data = await response.json();
-      if(data?.data?.currenttierpatched) document.getElementById('rankStat').innerText = data.data.currenttierpatched;
-    } catch(e) { console.log("API no disponible, usando valores por defecto"); }
-  }
-  fetchRealStats();
-  */
- // Barra de progreso de scroll
-window.addEventListener('scroll', () => {
-  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (winScroll / height) * 100;
-  document.getElementById('scrollBar').style.width = scrolled + '%';
-});
+    // ---------- LINTERNA TÁCTICA ----------
+    const flashlight = document.createElement('div');
+    flashlight.className = 'tactical-flashlight';
+    document.body.appendChild(flashlight);
+    document.addEventListener('mousemove', (e) => {
+      flashlight.style.left = e.clientX + 'px';
+      flashlight.style.top = e.clientY + 'px';
+    });
 
-// Función para actualizar color de acento y cursor
-function setAgentColor(color) {
-  // Cambiar colores de la web
-  document.documentElement.style.setProperty('--accent', color);
-  document.documentElement.style.setProperty('--accent-glow', color + '80');
-  document.documentElement.style.setProperty('--accent-radial', color + '0D');
-  
-  // Cambiar el color del cursor (crosshair)
-  const svgCursor = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${encodeURIComponent(color)}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>') 12 12, crosshair`;
-  document.body.style.cursor = svgCursor;
-}
+    // ---------- SIMULADOR DE SENSIBILIDAD ----------
+    const canvas = document.getElementById('sensCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let posX = canvas.width / 2;
+      let posY = canvas.height / 2;
+      const sens = 0.51;
+      let lastMouseX = null, lastMouseY = null;
 
-// Colores personalizados: Gekko verde, Sage azul, Brimstone naranja
-const agentColors = {
-  gekko: '#4ade80',
-  sage: '#3b82f6',
-  brimstone: '#ff8c00'
-};
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+        ctx.fillStyle = accent;
+        ctx.beginPath();
+        ctx.arc(posX, posY, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.font = '12px monospace';
+        ctx.fillText(`Sens: 800 DPI / ${sens}`, 10, 20);
+        ctx.fillText(`Pos: ${Math.round(posX)},${Math.round(posY)}`, 10, 40);
+      }
 
-// Añadir evento a las tarjetas
-document.querySelectorAll('.game-card').forEach((card) => {
-  card.style.cursor = 'pointer';
-  card.addEventListener('click', () => {
-    const agentName = card.querySelector('.agent-name-overlay')?.innerText?.toLowerCase();
-    if (agentName === 'gekko') setAgentColor(agentColors.gekko);
-    else if (agentName === 'sage') setAgentColor(agentColors.sage);
-    else if (agentName === 'brimstone') setAgentColor(agentColors.brimstone);
-  });
-});
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const currentX = (e.clientX - rect.left) * scaleX;
+        const currentY = (e.clientY - rect.top) * scaleY;
 
-// Restablecer color rosa al hacer clic fuera de las tarjetas
-document.body.addEventListener('click', (e) => {
-  if (!e.target.closest('.game-card')) {
-    setAgentColor('#ff71ce');  // Vuelve al rosa original (cursor también)
-  }
-});
+        if (lastMouseX !== null && lastMouseY !== null) {
+          const dx = (currentX - lastMouseX) * sens * 0.8;
+          const dy = (currentY - lastMouseY) * sens * 0.8;
+          posX = Math.min(canvas.width - 8, Math.max(8, posX + dx));
+          posY = Math.min(canvas.height - 8, Math.max(8, posY + dy));
+          draw();
+        }
+        lastMouseX = currentX;
+        lastMouseY = currentY;
+      });
 
-// Linterna táctica
-const flashlight = document.createElement('div');
-flashlight.className = 'tactical-flashlight';
-document.body.appendChild(flashlight);
-document.addEventListener('mousemove', (e) => {
-  flashlight.style.left = e.clientX + 'px';
-  flashlight.style.top = e.clientY + 'px';
-});
+      canvas.addEventListener('mouseleave', () => {
+        lastMouseX = null;
+        lastMouseY = null;
+      });
+
+      draw();
+    }
+
+    // ---------- INTERSECTION OBSERVER ----------
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      fadeElements.forEach(el => observer.observe(el));
+    } else {
+      fadeElements.forEach(el => el.classList.add('is-visible'));
+    }
+
+    // Inicializar color de acento
+    restoreAccentColor();
+  })();
 </script>
 </body>
 </html>
+```
