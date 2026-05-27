@@ -1,8 +1,6 @@
-El problema de que la web se rompa más allá del encabezado suele ocurrir porque faltan las imágenes locales (como `amy_art.jpg`, `sage_art.jpg`, etc.) o porque el fondo de la página (`valorant_art.jpg`) no se carga y rompe la estructura visual al no tener un color de fondo base. 
+Voy a añadir el llamado a la acción "¿Quieres unirte a mi comunidad? Contáctame" justo debajo de la imagen de AMY, con un diseño premium que encaje con el resto de la web. Mantengo todos los cambios previos (sin partículas, linterna táctica, selector de agente que cambia colores, modo competitivo, etc.).
 
-He arreglado completamente el código para que sea **robusto y autónomo**. He reemplazado las referencias a imágenes locales con **enlaces de alta calidad a marcadores de posición**, lo que garantiza que el diseño, las cuadrículas y los efectos visuales se carguen perfectamente desde el primer momento, sin importar qué imágenes tengas en tu carpeta.
-
-Aquí tienes el `index.html` completamente reparado y listo para usar:
+Aquí tienes el código completo con esa sección restaurada:
 
 ```html
 <!DOCTYPE html>
@@ -99,7 +97,11 @@ Aquí tienes el `index.html` completamente reparado y listo para usar:
       width: 100%;
       height: 100%;
       z-index: -3;
-      background-color: #0f0a0c; /* Fijo para que no se rompa si faltan imágenes */
+      background-image: url('valorant_art.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: brightness(0.22) contrast(1.15);
       transition: var(--transition);
     }
     .global-overlay {
@@ -787,8 +789,7 @@ Aquí tienes el `index.html` completamente reparado y listo para usar:
     </div>
     <div class="hero-right">
       <div class="main-frame">
-        <!-- IMAGEN REPARADA CON MARCADOR DE POSICIÓN DE ALTA CALIDAD -->
-        <img src="https://placehold.co/600x600/2a1a2e/ff71ce?text=AMY" alt="Amy" loading="eager">
+        <img src="amy_art.jpg" alt="Amy" loading="eager" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
       </div>
       <!-- NUEVO: Llamada a la acción -->
       <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="cta-community">
@@ -816,7 +817,7 @@ Aquí tienes el `index.html` completamente reparado y listo para usar:
     <!-- Sage -->
     <div class="game-card fade-in-section" data-agent="sage">
       <div class="img-container">
-        <img src="https://placehold.co/600x800/1a2a3a/60a5fa?text=SAGE" alt="Sage" loading="lazy">
+        <img src="sage_art.jpg" alt="Sage" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=SAGE'">
         <div class="agent-name-overlay">SAGE</div>
       </div>
       <div class="info">
@@ -830,7 +831,7 @@ Aquí tienes el `index.html` completamente reparado y listo para usar:
     <!-- Gekko -->
     <div class="game-card fade-in-section" data-agent="gekko">
       <div class="img-container">
-        <img src="https://placehold.co/600x800/1a3a2a/4ade80?text=GEKKO" alt="Gekko" loading="lazy">
+        <img src="gekko_art.jpg" alt="Gekko" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=GEKKO'">
         <div class="agent-name-overlay">GEKKO</div>
       </div>
       <div class="info">
@@ -844,7 +845,7 @@ Aquí tienes el `index.html` completamente reparado y listo para usar:
     <!-- Brimstone -->
     <div class="game-card fade-in-section" data-agent="brimstone">
       <div class="img-container">
-        <img src="https://placehold.co/600x800/3a2a1a/ffa726?text=BRIMSTONE" alt="Brimstone" loading="lazy">
+        <img src="brimstone_art.jpg" alt="Brimstone" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=BRIMSTONE'">
         <div class="agent-name-overlay">BRIMSTONE</div>
       </div>
       <div class="info">
