@@ -1,8 +1,3 @@
-Voy a añadir el llamado a la acción "¿Quieres unirte a mi comunidad? Contáctame" justo debajo de la imagen de AMY, con un diseño premium que encaje con el resto de la web. Mantengo todos los cambios previos (sin partículas, linterna táctica, selector de agente que cambia colores, modo competitivo, etc.).
-
-Aquí tienes el código completo con esa sección restaurada:
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -357,7 +352,8 @@ Aquí tienes el código completo con esa sección restaurada:
       object-fit: cover;
       border-radius: 20px;
     }
-    /* NUEVO: Llamada a la acción debajo de la foto */
+    
+    /* Llamada a la acción debajo de la foto */
     .cta-community {
       text-align: center;
       font-family: 'Rajdhani', sans-serif;
@@ -656,6 +652,7 @@ Aquí tienes el código completo con esa sección restaurada:
       height: auto;
       aspect-ratio: 400 / 200;
       margin-top: 1rem;
+      touch-action: none; /* Previene scroll nativo al dibujar */
     }
 
     /* TikTok shorts */
@@ -732,6 +729,16 @@ Aquí tienes el código completo con esa sección restaurada:
       transform: translateY(0);
     }
 
+    /* Optimizaciones táctiles: ocultamos efectos interactivos que molestan en móvil */
+    @media (hover: none) and (pointer: coarse) {
+      .tactical-flashlight {
+        display: none !important;
+      }
+      .cursor-glow {
+        display: none !important; 
+      }
+    }
+
     /* Responsive */
     @media (max-width: 992px) {
       .hero-container { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
@@ -744,21 +751,26 @@ Aquí tienes el código completo con esa sección restaurada:
     }
     @media (max-width: 768px) {
       .navbar { padding: 1rem 4vw; }
-      .nav-container { flex-direction: column; align-items: stretch; }
-      .nav-menu { justify-content: center; }
+      .nav-container { flex-direction: column; align-items: stretch; gap: 1.2rem; }
+      .nav-menu { justify-content: center; flex-wrap: wrap; }
+      .nav-controls { justify-content: center; }
       .stats-container { grid-template-columns: 1fr 1fr; }
       .gear-container { grid-template-columns: 1fr; }
+      .hero { padding: 130px 5vw 20px; } /* Menos padding en móviles para mejor vista inicial */
+      .cards-grid { grid-template-columns: 1fr; }
+      .tiktok-wrapper { min-width: 100%; } /* Evita que Tiktok desborde horizontalmente */
+      blockquote.tiktok-embed { min-width: 100% !important; }
     }
   </style>
 </head>
 <body>
 
-<!-- Elementos globales -->
 <div class="cursor-glow"></div>
 <div class="global-bg"></div>
 <div class="global-overlay"></div>
-<img src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png" class="side-agent agent-left" alt="Sage" loading="lazy">
-<img src="https://media.valorant-api.com/agents/6f2a04e5-4e68-800c-8077-4b0febe7f0cd/fullportrait.png" class="side-agent agent-right" alt="Brimstone" loading="lazy">
+
+<img src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png" class="side-agent agent-left" alt="" loading="lazy" onerror="this.style.display='none'">
+<img src="https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/fullportrait.png" class="side-agent agent-right" alt="" loading="lazy" onerror="this.style.display='none'">
 <div id="scrollBar"></div>
 
 <nav class="navbar">
@@ -791,7 +803,6 @@ Aquí tienes el código completo con esa sección restaurada:
       <div class="main-frame">
         <img src="amy_art.jpg" alt="Amy" loading="eager" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
       </div>
-      <!-- NUEVO: Llamada a la acción -->
       <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="cta-community">
         ¿Quieres unirte a mi comunidad? <span>Contáctame</span>
       </a>
@@ -814,7 +825,6 @@ Aquí tienes el código completo con esa sección restaurada:
     <p>Sinergia operativa con agentes de control y soporte.</p>
   </div>
   <div class="cards-grid">
-    <!-- Sage -->
     <div class="game-card fade-in-section" data-agent="sage">
       <div class="img-container">
         <img src="sage_art.jpg" alt="Sage" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=SAGE'">
@@ -828,7 +838,6 @@ Aquí tienes el código completo con esa sección restaurada:
         </div>
       </div>
     </div>
-    <!-- Gekko -->
     <div class="game-card fade-in-section" data-agent="gekko">
       <div class="img-container">
         <img src="gekko_art.jpg" alt="Gekko" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=GEKKO'">
@@ -842,7 +851,6 @@ Aquí tienes el código completo con esa sección restaurada:
         </div>
       </div>
     </div>
-    <!-- Brimstone -->
     <div class="game-card fade-in-section" data-agent="brimstone">
       <div class="img-container">
         <img src="brimstone_art.jpg" alt="Brimstone" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=BRIMSTONE'">
@@ -877,10 +885,9 @@ Aquí tienes el código completo con esa sección restaurada:
     <div class="gear-item" data-category="pc"><h3>⚙️ Procesador</h3><p>Intel Core i9 13900k</p><div class="gear-item-spec">24 Núcleos | 5.8 GHz Turbo</div></div>
     <div class="gear-item" data-category="pc"><h3>🎮 Tarjeta Gráfica</h3><p>Nvidia RTX 3080</p><div class="gear-item-spec">10GB GDDR6X</div></div>
   </div>
-  <!-- Simulador de sensibilidad -->
   <div class="simulator-box">
     <h3>🎯 Prueba mi sensibilidad</h3>
-    <p>Mueve el ratón dentro del recuadro → 800 DPI / 0.51</p>
+    <p>Mueve el ratón (o desliza en tu móvil) dentro del recuadro → 800 DPI / 0.51</p>
     <canvas id="sensCanvas" class="sim-canvas" width="400" height="200" style="width:100%; max-width:400px; height:auto;"></canvas>
   </div>
 </section>
@@ -1050,6 +1057,7 @@ Aquí tienes el código completo con esa sección restaurada:
         ctx.fillText(`Pos: ${Math.round(posX)},${Math.round(posY)}`, 10, 40);
       }
 
+      // Eventos para Ratón
       canvas.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
@@ -1069,6 +1077,38 @@ Aquí tienes el código completo con esa sección restaurada:
       });
 
       canvas.addEventListener('mouseleave', () => {
+        lastMouseX = null;
+        lastMouseY = null;
+      });
+
+      // Eventos para Táctil (Móvil)
+      canvas.addEventListener('touchstart', (e) => {
+        if(e.touches.length > 0) {
+          const rect = canvas.getBoundingClientRect();
+          lastMouseX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
+          lastMouseY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
+        }
+      }, { passive: true });
+
+      canvas.addEventListener('touchmove', (e) => {
+        if(e.touches.length > 0 && lastMouseX !== null && lastMouseY !== null) {
+          e.preventDefault(); // Evita que la pantalla se desplace al probar el simulador
+          const rect = canvas.getBoundingClientRect();
+          const currentX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
+          const currentY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
+
+          const dx = (currentX - lastMouseX) * sens * 0.8;
+          const dy = (currentY - lastMouseY) * sens * 0.8;
+          posX = Math.min(canvas.width - 8, Math.max(8, posX + dx));
+          posY = Math.min(canvas.height - 8, Math.max(8, posY + dy));
+          draw();
+
+          lastMouseX = currentX;
+          lastMouseY = currentY;
+        }
+      }, { passive: false });
+
+      canvas.addEventListener('touchend', () => {
         lastMouseX = null;
         lastMouseY = null;
       });
@@ -1098,4 +1138,3 @@ Aquí tienes el código completo con esa sección restaurada:
 </script>
 </body>
 </html>
-```
