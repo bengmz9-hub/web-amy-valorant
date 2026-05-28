@@ -740,25 +740,39 @@
     }
 
     /* Responsive */
-    @media (max-width: 992px) {
-      .hero-container { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-      .hero-text { display: flex; flex-direction: column; align-items: center; }
-      .hero-bio { margin: 0 auto; }
-      .side-agent { display: none; }
-      .main-frame { width: 260px; height: 260px; margin: 0 auto; }
-      .hero-right { align-items: center; }
-      .nav-menu { gap: 1rem; }
-    }
     @media (max-width: 768px) {
-      .navbar { padding: 1rem 4vw; }
-      .nav-container { flex-direction: column; align-items: stretch; gap: 1.2rem; }
-      .nav-menu { justify-content: center; flex-wrap: wrap; }
-      .nav-controls { justify-content: center; }
+      /* Barra de navegación más compacta */
+      .navbar { padding: 0.8rem 4vw; }
+      
+      /* Distribuimos en 2 filas: Logo y Controles arriba, Menú abajo */
+      .nav-container { 
+        flex-direction: row; 
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        align-items: center;
+        gap: 1rem; 
+      }
+      
+      /* El menú ocupa el 100% del ancho y se va a la fila inferior (order: 3) */
+      .nav-menu { 
+        order: 3; 
+        width: 100%; 
+        justify-content: center; 
+        flex-wrap: wrap; 
+        gap: 0.5rem; 
+      }
+      
+      /* Hacemos los botones un poquito más pequeños para que encajen bien */
+      .nav-link { padding: 0.5rem 0.8rem; font-size: 0.75rem; }
+      
+      /* Bajamos el texto principal para que respire por debajo del menú */
+      .hero { padding: 200px 5vw 20px; } 
+      
+      /* Resto de ajustes móviles intactos */
       .stats-container { grid-template-columns: 1fr 1fr; }
       .gear-container { grid-template-columns: 1fr; }
-      .hero { padding: 130px 5vw 20px; } /* Menos padding en móviles para mejor vista inicial */
       .cards-grid { grid-template-columns: 1fr; }
-      .tiktok-wrapper { min-width: 100%; } /* Evita que Tiktok desborde horizontalmente */
+      .tiktok-wrapper { min-width: 100%; } 
       blockquote.tiktok-embed { min-width: 100% !important; }
     }
   </style>
