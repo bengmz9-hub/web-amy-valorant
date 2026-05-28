@@ -741,34 +741,55 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      /* Barra de navegación más compacta */
-      .navbar { padding: 0.8rem 4vw; }
+      /* 1. Barra de navegación más compacta */
+      .navbar { padding: 1rem 4vw; }
       
-      /* Distribuimos en 2 filas: Logo y Controles arriba, Menú abajo */
+      /* 2. Reestructuramos la barra usando Grid para evitar saltos descontrolados */
       .nav-container { 
-        flex-direction: row; 
-        flex-wrap: wrap; 
-        justify-content: space-between; 
+        display: grid;
+        grid-template-columns: auto auto; /* Dos columnas: Izquierda y Derecha */
+        gap: 1rem;
         align-items: center;
-        gap: 1rem; 
+        justify-content: space-between;
       }
       
-      /* El menú ocupa el 100% del ancho y se va a la fila inferior (order: 3) */
+      /* 3. Logo y Etiqueta a la izquierda */
+      .nav-brand {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .logo-text { font-size: 1.6rem; letter-spacing: 4px; }
+      .logo-badge { font-size: 0.55rem; padding: 0.2rem 0.5rem; margin-top: 2px; }
+      
+      /* 4. Botones de control a la derecha */
+      .nav-controls {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .social-link { padding: 0.4rem 0.8rem; font-size: 0.65rem; }
+      .mode-toggle { width: 36px; height: 36px; font-size: 1rem; }
+      
+      /* 5. Menú en la segunda fila, ocupando todo el ancho */
       .nav-menu { 
-        order: 3; 
-        width: 100%; 
-        justify-content: center; 
+        grid-column: 1 / -1; /* Ocupa desde la primera hasta la última columna */
+        display: flex;
+        justify-content: center;
         flex-wrap: wrap; 
-        gap: 0.5rem; 
+        gap: 0.6rem;
+        width: 100%;
+        margin-top: -0.2rem;
       }
+      .nav-link { padding: 0.4rem 0.6rem; font-size: 0.7rem; letter-spacing: 1.5px; }
       
-      /* Hacemos los botones un poquito más pequeños para que encajen bien */
-      .nav-link { padding: 0.5rem 0.8rem; font-size: 0.75rem; }
+      /* 6. Ajuste del texto principal para que NO sea tapado por la barra */
+      .hero { padding: 220px 5vw 20px; } 
+      .hero-text h1 { font-size: 2.8rem; line-height: 1.1; margin-bottom: 1.5rem; }
+      .hero-container { gap: 2.5rem; }
       
-      /* Bajamos el texto principal para que respire por debajo del menú */
-      .hero { padding: 200px 5vw 20px; } 
-      
-      /* Resto de ajustes móviles intactos */
+      /* 7. Resto de ajustes móviles */
       .stats-container { grid-template-columns: 1fr 1fr; }
       .gear-container { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
