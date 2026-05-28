@@ -741,60 +741,66 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      /* 1. Barra de navegación más compacta */
-      .navbar { padding: 1rem 4vw; }
-      
-      /* 2. Reestructuramos la barra usando Grid para evitar saltos descontrolados */
+      /* 1. BARRA DE NAVEGACIÓN SÚPER COMPACTA */
+      .navbar { padding: 0.8rem 4vw; }
       .nav-container { 
-        display: grid;
-        grid-template-columns: auto auto; /* Dos columnas: Izquierda y Derecha */
-        gap: 1rem;
-        align-items: center;
-        justify-content: space-between;
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: space-between; 
+        align-items: center; 
+        gap: 0.8rem;
       }
       
-      /* 3. Logo y Etiqueta a la izquierda */
-      .nav-brand {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        align-items: center;
-      }
-      .logo-text { font-size: 1.6rem; letter-spacing: 4px; }
-      .logo-badge { font-size: 0.55rem; padding: 0.2rem 0.5rem; margin-top: 2px; }
+      .nav-brand { gap: 0.4rem; }
+      .logo-text { font-size: 1.5rem; letter-spacing: 2px; }
+      .logo-badge { font-size: 0.55rem; padding: 0.2rem 0.4rem; }
       
-      /* 4. Botones de control a la derecha */
-      .nav-controls {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-      }
-      .social-link { padding: 0.4rem 0.8rem; font-size: 0.65rem; }
+      .nav-controls { gap: 0.5rem; }
+      .social-link { padding: 0.4rem 0.6rem; font-size: 0.65rem; }
       .mode-toggle { width: 36px; height: 36px; font-size: 1rem; }
       
-      /* 5. Menú en la segunda fila, ocupando todo el ancho */
       .nav-menu { 
-        grid-column: 1 / -1; /* Ocupa desde la primera hasta la última columna */
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap; 
-        gap: 0.6rem;
-        width: 100%;
-        margin-top: -0.2rem;
+        width: 100%; 
+        justify-content: center; 
+        gap: 0.5rem; 
+        margin-top: 0;
       }
-      .nav-link { padding: 0.4rem 0.6rem; font-size: 0.7rem; letter-spacing: 1.5px; }
+      .nav-link { padding: 0.4rem 0.6rem; font-size: 0.7rem; letter-spacing: 1px; }
+
+      /* 2. ESPACIADO DEL HERO Y TEXTO DINÁMICO */
+      .hero { padding: 180px 5vw 20px; } /* Espacio suficiente para que no tape el H1 */
+      .hero-container { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+      .hero-text h1 { 
+        font-size: clamp(2.2rem, 8vw, 3.5rem); /* Se adapta al tamaño de la pantalla */
+        margin-bottom: 1rem; 
+      }
+      .hero-bio { font-size: 0.95rem; }
       
-      /* 6. Ajuste del texto principal para que NO sea tapado por la barra */
-      .hero { padding: 220px 5vw 20px; } 
-      .hero-text h1 { font-size: 2.8rem; line-height: 1.1; margin-bottom: 1.5rem; }
-      .hero-container { gap: 2.5rem; }
-      
-      /* 7. Resto de ajustes móviles */
-      .stats-container { grid-template-columns: 1fr 1fr; }
+      /* 3. AJUSTE DE IMAGEN Y BOTÓN PARA EVITAR CORTES */
+      .hero-right { width: 100%; align-items: center; }
+      .main-frame { 
+        width: 100%; 
+        max-width: 250px; 
+        height: 250px; 
+        margin: 0 auto; 
+      }
+      .cta-community { 
+        width: 100%; 
+        max-width: 280px; /* Evita que el botón se salga por los lados */
+        padding: 0.8rem 1rem; 
+        font-size: 0.85rem; 
+        white-space: normal; /* Permite que el texto baje de línea si no cabe */
+        line-height: 1.4;
+      }
+
+      /* 4. RESTO DE COMPONENTES MÓVILES */
+      .stats-container { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .stat-card { padding: 1.2rem; }
+      .stat-number { font-size: 2rem; }
       .gear-container { grid-template-columns: 1fr; }
       .cards-grid { grid-template-columns: 1fr; }
-      .tiktok-wrapper { min-width: 100%; } 
-      blockquote.tiktok-embed { min-width: 100% !important; }
+      .tiktok-wrapper { min-width: 100%; padding: 10px; } 
+      blockquote.tiktok-embed { min-width: 100% !important; margin: 0 !important; }
     }
   </style>
 </head>
