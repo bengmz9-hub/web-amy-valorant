@@ -247,6 +247,19 @@
       background: rgba(255, 113, 206, 0.1);
       color: var(--accent);
     }
+    .social-icon-link {
+      padding: 0.4rem;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .social-icon {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
     .mode-toggle {
       width: 46px;
       height: 46px;
@@ -848,7 +861,9 @@
       <a href="#shorts" class="nav-link">🎬 Amy Show</a>
     </div>
     <div class="nav-controls">
-      <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="social-link">TikTok</a>
+      <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="social-link social-icon-link" aria-label="TikTok">
+        <img src="tiktok_art.jpg" alt="TikTok" class="social-icon">
+      </a>
       <button class="mode-toggle" id="modeBtn" aria-label="Cambiar modo competitivo">🖤</button>
     </div>
   </div>
