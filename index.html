@@ -660,10 +660,11 @@
       max-width: 1200px;
     }
     .tiktok-grid {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(320px, 1fr));
       justify-content: center;
       gap: 2rem;
-      flex-wrap: wrap;
+      width: 100%;
     }
     .tiktok-wrapper {
       background: var(--bg-card);
@@ -671,13 +672,17 @@
       border-radius: 28px;
       border: 1px solid var(--glass-border);
       transition: var(--transition);
-      flex: 1 1 320px;
+      width: 100%;
       max-width: 360px;
-      min-width: 320px;
     }
     .tiktok-wrapper:hover {
       border-color: var(--accent);
       transform: translateY(-8px);
+    }
+    .tiktok-wrapper blockquote.tiktok-embed {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
     }
 
     /* Footer */
