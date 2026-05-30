@@ -465,9 +465,23 @@
 
     /* Agentes cards */
     .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.75rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+    .cards-grid::-webkit-scrollbar {
+      height: 8px;
+    }
+    .cards-grid::-webkit-scrollbar-thumb {
+      background: rgba(255, 113, 206, 0.35);
+      border-radius: 999px;
+    }
+    .cards-grid::-webkit-scrollbar-track {
+      background: transparent;
     }
     .game-card {
       background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.6));
@@ -476,6 +490,9 @@
       overflow: hidden;
       transition: var(--transition);
       backdrop-filter: blur(12px);
+      flex: 0 0 320px;
+      width: 320px;
+      scroll-snap-align: start;
     }
     .game-card:hover {
       border-color: var(--accent);
@@ -820,7 +837,6 @@
       .stat-card { padding: 1.2rem; }
       .stat-number { font-size: 2rem; }
       .gear-container { grid-template-columns: 1fr; }
-      .cards-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1071,9 +1087,20 @@
     });
 
     // ---------- SELECTOR DE AGENTE ----------
+    let hoverAgentColor = null;
     const agentCards = document.querySelectorAll('.game-card');
     agentCards.forEach(card => {
       const agent = card.getAttribute('data-agent');
+      card.addEventListener('mouseenter', () => {
+        if (agent && agentColors[agent]) {
+          hoverAgentColor = agentColors[agent];
+          setAccentColor(hoverAgentColor);
+        }
+      });
+      card.addEventListener('mouseleave', () => {
+        hoverAgentColor = null;
+        restoreAccentColor();
+      });
       card.addEventListener('click', (e) => {
         e.stopPropagation();
         if (agent && agentColors[agent]) {
