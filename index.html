@@ -465,23 +465,10 @@
 
     /* Agentes cards */
     .cards-grid {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      padding-bottom: 0.75rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 1.5rem;
       width: 100%;
-    }
-    .cards-grid::-webkit-scrollbar {
-      height: 8px;
-    }
-    .cards-grid::-webkit-scrollbar-thumb {
-      background: rgba(255, 113, 206, 0.35);
-      border-radius: 999px;
-    }
-    .cards-grid::-webkit-scrollbar-track {
-      background: transparent;
     }
     .game-card {
       background: linear-gradient(135deg, var(--bg-card), rgba(26, 12, 16, 0.6));
@@ -490,9 +477,8 @@
       overflow: hidden;
       transition: var(--transition);
       backdrop-filter: blur(12px);
-      flex: 0 0 320px;
-      width: 320px;
-      scroll-snap-align: start;
+      width: auto;
+      min-width: 0;
     }
     .game-card:hover {
       border-color: var(--accent);
