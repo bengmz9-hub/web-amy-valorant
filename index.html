@@ -1111,13 +1111,13 @@
         
         <div class="abilities-container">
           <div class="ability-tabs">
-            <button class="ability-tab active" data-ability="C">Control</button>
+            <button class="ability-tab active" data-ability="C">Ctrl</button>
             <button class="ability-tab" data-ability="Q">Q</button>
             <button class="ability-tab" data-ability="E">E</button>
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Orbe de Barrera (Control)</div>
+            <div class="ability-name">Orbe de Barrera (Ctrl)</div>
             <div class="ability-desc">Uso el muro principalmente para asegurar el site</div>
           </div>
         </div>
@@ -1141,13 +1141,13 @@
 
         <div class="abilities-container">
           <div class="ability-tabs">
-            <button class="ability-tab active" data-ability="C">Control</button>
+            <button class="ability-tab active" data-ability="C">Ctrl</button>
             <button class="ability-tab" data-ability="Q">Q</button>
             <button class="ability-tab" data-ability="E">E</button>
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Mosh Pit (Control)</div>
+            <div class="ability-name">Mosh Pit (Ctrl)</div>
             <div class="ability-desc">Granada de gran daño. La uso para denegar el defuse post-plant o limpiar esquinas cerradas.</div>
           </div>
         </div>
@@ -1171,13 +1171,13 @@
 
         <div class="abilities-container">
           <div class="ability-tabs">
-            <button class="ability-tab active" data-ability="C">Control</button>
+            <button class="ability-tab active" data-ability="C">Ctrl</button>
             <button class="ability-tab" data-ability="Q">Q</button>
             <button class="ability-tab" data-ability="E">E</button>
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Baliza de Estimulante (Control)</div>
+            <div class="ability-name">Baliza de Estimulante (Ctrl)</div>
             <div class="ability-desc">Aumenta la cadencia. La tiro justo antes de entrar a un site para dar ventaja en los duelos.</div>
           </div>
         </div>
@@ -1210,8 +1210,8 @@
     <div class="gear-item" data-category="pc"><h3>🎮 Tarjeta Gráfica</h3><p>Nvidia RTX 3080</p><div class="gear-item-spec">10GB GDDR6X</div></div>
   </div>
   <div class="simulator-box" style="margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center;">
-    <h3>🎯 Prueba mi sensibilidad</h3>
-    <p style="margin-bottom: 0.8rem;">Mueve el ratón dentro del recuadro para probar la mira. ¡O inicia el desafío de puntería!</p>
+    <h3>🎯 Desafío de Puntería</h3>
+    <p style="margin-bottom: 0.8rem;">Mueve el ratón dentro del recuadro para apuntar y haz clic para disparar. ¡Inicia el desafío para probar tus reflejos!</p>
     
     <div id="aimStats" class="aim-stats" style="display: none; justify-content: center; gap: 1.5rem; margin-bottom: 0.8rem; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1px; color: var(--text-main); width: 100%;">
       <div>DIANAS: <span id="aimScore" style="color: var(--accent);">0</span></div>
@@ -1222,14 +1222,8 @@
     <canvas id="sensCanvas" class="sim-canvas" width="800" height="400" style="width:100%; max-width:800px; height:auto;"></canvas>
 
     <div class="simulator-controls" style="margin-top: 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; width: 100%;">
-      <div class="slider-container" style="display: flex; align-items: center; gap: 1rem; width: 100%; max-width: 320px;">
-        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-sub);">Sensibilidad:</span>
-        <input type="range" id="sensSlider" min="0.1" max="2.0" step="0.01" value="0.51" style="flex: 1; accent-color: var(--accent); cursor: pointer;">
-        <span id="sensVal" style="font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--accent); min-width: 35px; text-align: right;">0.51</span>
-      </div>
       <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-        <button id="resetSensBtn" class="filter-btn" style="font-size: 0.8rem; padding: 0.4rem 1rem;">Reset (0.51)</button>
-        <button id="startAimBtn" class="filter-btn active" style="font-size: 0.8rem; padding: 0.4rem 1rem;">Iniciar Aim Challenge 🎯</button>
+        <button id="startAimBtn" class="filter-btn active" style="font-size: 0.85rem; padding: 0.5rem 1.5rem; border-radius: 100px;">Iniciar Juego 🎯</button>
       </div>
     </div>
   </div>
@@ -1466,15 +1460,12 @@
       flashlight.style.top = e.clientY + 'px';
     });
 
-    // Simulador de sensibilidad y Aim Trainer Game
+    // Desafío de Puntería (Aim Trainer Game)
     const canvas = document.getElementById('sensCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
       
       // Elementos del DOM
-      const sensSlider = document.getElementById('sensSlider');
-      const sensVal = document.getElementById('sensVal');
-      const resetSensBtn = document.getElementById('resetSensBtn');
       const startAimBtn = document.getElementById('startAimBtn');
       const aimStats = document.getElementById('aimStats');
       const aimScoreVal = document.getElementById('aimScore');
@@ -1482,13 +1473,10 @@
       const aimTimeVal = document.getElementById('aimTime');
 
       // Estado del juego
-      let sens = 0.51;
       let posX = canvas.width / 2;
       let posY = canvas.height / 2;
-      let lastMouseX = null, lastMouseY = null;
 
       let isPlaying = false;
-      let score = 0;
       let hits = 0;
       let totalClicks = 0;
       let timeLeft = 15;
@@ -1496,20 +1484,6 @@
       let targetX = 0;
       let targetY = 0;
       const targetRadius = 14;
-
-      // Sincronizar slider y sens
-      sensSlider.addEventListener('input', () => {
-        sens = parseFloat(sensSlider.value);
-        sensVal.textContent = sens.toFixed(2);
-        draw();
-      });
-
-      resetSensBtn.addEventListener('click', () => {
-        sens = 0.51;
-        sensSlider.value = 0.51;
-        sensVal.textContent = "0.51";
-        draw();
-      });
 
       // Lógica de juego
       function spawnTarget() {
@@ -1533,7 +1507,7 @@
         aimStats.style.display = 'flex';
         spawnTarget();
         updateStats();
-        startAimBtn.textContent = "Detener Desafío ⏹️";
+        startAimBtn.textContent = "Detener Juego ⏹️";
         if (gameInterval) clearInterval(gameInterval);
         gameInterval = setInterval(() => {
           timeLeft--;
@@ -1553,7 +1527,7 @@
           clearInterval(gameInterval);
           gameInterval = null;
         }
-        startAimBtn.textContent = "Iniciar Aim Challenge 🎯";
+        startAimBtn.textContent = "Iniciar Juego 🎯";
         draw();
       }
 
@@ -1638,7 +1612,7 @@
         } else {
           ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
           ctx.font = '12px monospace';
-          ctx.fillText(`Sens: 800 DPI / ${sens.toFixed(2)}`, 10, 20);
+          ctx.fillText("Aim Game: Apunta y dispara", 10, 20);
           
           if (totalClicks > 0) {
             ctx.fillStyle = accent;
@@ -1654,66 +1628,41 @@
             ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
             ctx.font = '12px sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText("Mueve tu ratón aquí para probar", canvas.width / 2, canvas.height / 2);
+            ctx.fillText("Mueve tu ratón aquí para jugar", canvas.width / 2, canvas.height / 2);
             ctx.textAlign = 'left';
           }
         }
       }
 
-      // Eventos del ratón/táctiles
+      // Eventos del ratón/táctiles (Movimiento 1:1 directo)
       canvas.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
         const scaleY = canvas.height / rect.height;
-        const currentX = (e.clientX - rect.left) * scaleX;
-        const currentY = (e.clientY - rect.top) * scaleY;
-
-        if (lastMouseX !== null && lastMouseY !== null) {
-          const dx = (currentX - lastMouseX) * sens * 0.8;
-          const dy = (currentY - lastMouseY) * sens * 0.8;
-          posX = Math.min(canvas.width - 8, Math.max(8, posX + dx));
-          posY = Math.min(canvas.height - 8, Math.max(8, posY + dy));
-          draw();
-        }
-        lastMouseX = currentX;
-        lastMouseY = currentY;
-      });
-
-      canvas.addEventListener('mouseleave', () => {
-        lastMouseX = null;
-        lastMouseY = null;
+        posX = (e.clientX - rect.left) * scaleX;
+        posY = (e.clientY - rect.top) * scaleY;
+        draw();
       });
 
       canvas.addEventListener('touchstart', (e) => {
         if(e.touches.length > 0) {
           const rect = canvas.getBoundingClientRect();
-          lastMouseX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
-          lastMouseY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
+          posX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
+          posY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
+          draw();
         }
       }, { passive: true });
 
       canvas.addEventListener('touchmove', (e) => {
-        if(e.touches.length > 0 && lastMouseX !== null && lastMouseY !== null) {
+        if(e.touches.length > 0) {
           e.preventDefault();
           const rect = canvas.getBoundingClientRect();
-          const currentX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
-          const currentY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
-
-          const dx = (currentX - lastMouseX) * sens * 0.8;
-          const dy = (currentY - lastMouseY) * sens * 0.8;
-          posX = Math.min(canvas.width - 8, Math.max(8, posX + dx));
-          posY = Math.min(canvas.height - 8, Math.max(8, posY + dy));
+          posX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
+          posY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
           draw();
-
-          lastMouseX = currentX;
-          lastMouseY = currentY;
         }
       }, { passive: false });
 
-      canvas.addEventListener('touchend', () => {
-        lastMouseX = null;
-        lastMouseY = null;
-      });
 
       draw();
     }
