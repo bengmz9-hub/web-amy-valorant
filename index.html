@@ -536,10 +536,22 @@
       transition: var(--transition);
       backdrop-filter: blur(12px);
     }
+    .game-card[data-agent="sage"] {
+      --accent-local: #3b82f6;
+      --accent-glow-local: rgba(59, 130, 246, 0.3);
+    }
+    .game-card[data-agent="gekko"] {
+      --accent-local: #4ade80;
+      --accent-glow-local: rgba(74, 222, 128, 0.3);
+    }
+    .game-card[data-agent="brimstone"] {
+      --accent-local: #ff8c00;
+      --accent-glow-local: rgba(255, 140, 0, 0.3);
+    }
     .game-card:hover {
-      border-color: var(--accent);
+      border-color: var(--accent-local);
       transform: translateY(-12px);
-      box-shadow: 0 25px 50px var(--accent-glow);
+      box-shadow: 0 25px 50px var(--accent-glow-local);
     }
     .img-container {
       width: 100%;
@@ -592,9 +604,10 @@
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--glass-border);
       color: var(--text-sub);
-      width: 34px;
+      min-width: 34px;
       height: 34px;
-      border-radius: 50%;
+      padding: 0 12px;
+      border-radius: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -605,10 +618,10 @@
       transition: var(--transition);
     }
     .ability-tab:hover, .ability-tab.active {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: var(--accent-local);
+      border-color: var(--accent-local);
       color: #000;
-      box-shadow: 0 0 10px var(--accent-glow);
+      box-shadow: 0 0 10px var(--accent-glow-local);
     }
     .ability-info-box {
       background: rgba(0, 0, 0, 0.25);
@@ -623,7 +636,7 @@
       font-family: 'Rajdhani', sans-serif;
       font-size: 0.9rem;
       font-weight: 700;
-      color: var(--accent);
+      color: var(--accent-local);
       margin-bottom: 0.2rem;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -759,10 +772,10 @@
       border-radius: 20px;
       border: 2px solid var(--accent);
       width: 100%;
-      max-width: 400px;
+      max-width: 800px;
       height: auto;
-      aspect-ratio: 400 / 200;
-      min-height: 180px;
+      aspect-ratio: 800 / 400;
+      min-height: 250px;
       margin-top: 1rem;
       touch-action: none;
     }
@@ -1098,14 +1111,14 @@
         
         <div class="abilities-container">
           <div class="ability-tabs">
-            <button class="ability-tab active" data-ability="C">C</button>
+            <button class="ability-tab active" data-ability="C">Control</button>
             <button class="ability-tab" data-ability="Q">Q</button>
             <button class="ability-tab" data-ability="E">E</button>
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Orbe de Barrera (C)</div>
-            <div class="ability-desc">Uso el muro principalmente para asegurar el plantado en B de Bind, o ralentizar el push en Split.</div>
+            <div class="ability-name">Orbe de Barrera (Control)</div>
+            <div class="ability-desc">Uso el muro principalmente para asegurar el site</div>
           </div>
         </div>
 
@@ -1128,13 +1141,13 @@
 
         <div class="abilities-container">
           <div class="ability-tabs">
-            <button class="ability-tab active" data-ability="C">C</button>
+            <button class="ability-tab active" data-ability="C">Control</button>
             <button class="ability-tab" data-ability="Q">Q</button>
             <button class="ability-tab" data-ability="E">E</button>
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Mosh Pit (C)</div>
+            <div class="ability-name">Mosh Pit (Control)</div>
             <div class="ability-desc">Granada de gran daño. La uso para denegar el defuse post-plant o limpiar esquinas cerradas.</div>
           </div>
         </div>
@@ -1158,13 +1171,13 @@
 
         <div class="abilities-container">
           <div class="ability-tabs">
-            <button class="ability-tab active" data-ability="C">C</button>
+            <button class="ability-tab active" data-ability="C">Control</button>
             <button class="ability-tab" data-ability="Q">Q</button>
             <button class="ability-tab" data-ability="E">E</button>
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Baliza de Estimulante (C)</div>
+            <div class="ability-name">Baliza de Estimulante (Control)</div>
             <div class="ability-desc">Aumenta la cadencia. La tiro justo antes de entrar a un site para dar ventaja en los duelos.</div>
           </div>
         </div>
@@ -1206,7 +1219,7 @@
       <div>TIEMPO: <span id="aimTime" style="color: var(--accent);">15s</span></div>
     </div>
 
-    <canvas id="sensCanvas" class="sim-canvas" width="400" height="200" style="width:100%; max-width:400px; height:auto;"></canvas>
+    <canvas id="sensCanvas" class="sim-canvas" width="800" height="400" style="width:100%; max-width:800px; height:auto;"></canvas>
 
     <div class="simulator-controls" style="margin-top: 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; width: 100%;">
       <div class="slider-container" style="display: flex; align-items: center; gap: 1rem; width: 100%; max-width: 320px;">
@@ -1401,19 +1414,19 @@
     // Datos de habilidades para los agentes
     const abilitiesData = {
       sage: {
-        C: { name: "Orbe de Barrera (C)", desc: "Uso el muro principalmente para asegurar el plantado en B de Bind, o ralentizar el push en Split." },
-        Q: { name: "Orbe de Ralentización (Q)", desc: "Perfecto para combinar con granadas de daño de aliados o detener ejecuciones rápidas." },
-        E: { name: "Orbe de Curación (E)", desc: "Priorizo curar al duelista principal en rondas clave o a mí misma tras un trade favorable." },
-        X: { name: "Resurrección (X)", desc: "Busco revivir a compañeros que tengan su habilidad definitiva lista para dar la vuelta a la ronda." }
+        C: { name: "Orbe de Barrera (Control)", desc: "Uso el muro principalmente para asegurar el site" },
+        Q: { name: "Orbe de Ralentización (Q)", desc: "Perfecto para relentizar o detener ejecuciones enemigas rápidas" },
+        E: { name: "Orbe de Curación (E)", desc: " Lo utilizo para curar a mi equipo o a mi misma" },
+        X: { name: "Resurrección (X)", desc: "Busco revivir a compañeros" }
       },
       gekko: {
-        C: { name: "Mosh Pit (C)", desc: "Granada de gran daño. La uso para denegar el defuse post-plant o limpiar esquinas cerradas." },
+        C: { name: "Mosh Pit (Control)", desc: "Granada de gran daño. La uso para denegar el defuse post-plant o limpiar esquinas cerradas." },
         Q: { name: "Wingman (Q)", desc: "¡El main de Gekko! Plantar o defusar a distancia mientras cubro otros ángulos es clave." },
         E: { name: "Dizzy (E)", desc: "Flash de información. Si Dizzy dispara su pintura azul, ya sé la posición exacta del enemigo." },
         X: { name: "Thrash (X)", desc: "La definitiva. Permite limpiar el site entero y retener a los enemigos para un push fácil." }
       },
       brimstone: {
-        C: { name: "Baliza de Estimulante (C)", desc: "Aumenta la cadencia. La tiro justo antes de entrar a un site para dar ventaja en los duelos." },
+        C: { name: "Baliza de Estimulante (Control)", desc: "Aumenta la cadencia. La tiro justo antes de entrar a un site para dar ventaja en los duelos." },
         Q: { name: "Incendiario (Q)", desc: "Molly clásica. Esencial para denegar plantados o tapar cuellos de botella." },
         E: { name: "Humo del Cielo (E)", desc: "Tres humos de larga duración. Bloqueo visual instantáneo para ejecutar entradas limpias." },
         X: { name: "Golpe Orbital (X)", desc: "Limpio posiciones comunes de defensa o aseguro la ronda denegando el defuse." }
