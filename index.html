@@ -1493,6 +1493,10 @@
       let targetY = 0;
       const targetRadius = 14;
 
+      let particles = [];
+      let floatingTexts = [];
+      let animFrameId = null;
+
       // Lógica de juego
       function spawnTarget() {
         const margin = 30;
@@ -1505,6 +1509,47 @@
         const accuracy = totalClicks > 0 ? Math.round((hits / totalClicks) * 100) : 100;
         aimAccuracyVal.textContent = accuracy + "%";
         aimTimeVal.textContent = timeLeft + "s";
+      }
+
+      function createExplosion(x, y, color) {
+        for (let i = 0; i < 12; i++) {
+          particles.push({
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 5,
+            vy: (Math.random() - 0.5) * 5,
+            radius: Math.random() * 2.5 + 1.5,
+            alpha: 1,
+            decay: Math.random() * 0.04 + 0.02,
+            color: color
+          });
+        }
+      }
+
+      function spawnFloatingText(x, y, text, color) {
+        floatingTexts.push({
+          x: x,
+          y: y,
+          vy: -1.2,
+          alpha: 1,
+          text: text,
+          color: color
+        });
+      }
+
+      function gameLoop() {
+        if (isPlaying || particles.length > 0 || floatingTexts.length > 0) {
+          draw();
+          animFrameId = requestAnimationFrame(gameLoop);
+        } else {
+          animFrameId = null;
+        }
+      }
+
+      function triggerAnimation() {
+        if (!animFrameId) {
+          gameLoop();
+        }
       }
 
       function startGame() {
@@ -1524,9 +1569,8 @@
           } else {
             updateStats();
           }
-          draw();
         }, 1000);
-        draw();
+        triggerAnimation();
       }
 
       function endGame() {
@@ -1537,19 +1581,28 @@
         }
         startAimBtn.textContent = "Iniciar Juego 🎯";
         aimStats.style.visibility = 'hidden';
-        draw();
+        setTimeout(() => {
+          if (!animFrameId) draw();
+        }, 200);
       }
 
       function shoot() {
         if (!isPlaying) return;
         totalClicks++;
         const dist = Math.hypot(posX - targetX, posY - targetY);
+        const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
         if (dist <= targetRadius + 8) {
           hits++;
+          playSynthSound('hit');
+          createExplosion(targetX, targetY, accentColor);
+          spawnFloatingText(targetX, targetY - 20, "+1", "#ffffff");
           spawnTarget();
+        } else {
+          playSynthSound('miss');
+          spawnFloatingText(posX, posY - 20, "MISS", "#ff4655");
         }
         updateStats();
-        draw();
+        triggerAnimation();
       }
 
       startAimBtn.addEventListener('click', () => {
@@ -1592,6 +1645,42 @@
           ctx.beginPath();
           ctx.arc(targetX, targetY, 3, 0, Math.PI * 2);
           ctx.fill();
+        }
+
+        // Dibujar y actualizar partículas
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= p.decay;
+          if (p.alpha <= 0) {
+            particles.splice(i, 1);
+          } else {
+            ctx.save();
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+
+        // Dibujar y actualizar textos flotantes
+        for (let i = floatingTexts.length - 1; i >= 0; i--) {
+          const ft = floatingTexts[i];
+          ft.y += ft.vy;
+          ft.alpha -= 0.025;
+          if (ft.alpha <= 0) {
+            floatingTexts.splice(i, 1);
+          } else {
+            ctx.save();
+            ctx.globalAlpha = ft.alpha;
+            ctx.fillStyle = ft.color;
+            ctx.font = 'bold 12px monospace';
+            ctx.fillText(ft.text, ft.x, ft.y);
+            ctx.restore();
+          }
         }
         
         // Dibujar retícula (crosshair)
@@ -1651,7 +1740,9 @@
         const scaleY = canvas.height / rect.height;
         posX = (e.clientX - rect.left) * scaleX;
         posY = (e.clientY - rect.top) * scaleY;
-        draw();
+        if (!animFrameId) {
+          draw();
+        }
       });
 
       canvas.addEventListener('touchstart', (e) => {
@@ -1659,7 +1750,9 @@
           const rect = canvas.getBoundingClientRect();
           posX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
           posY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
-          draw();
+          if (!animFrameId) {
+            draw();
+          }
         }
       }, { passive: true });
 
@@ -1669,7 +1762,9 @@
           const rect = canvas.getBoundingClientRect();
           posX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
           posY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
-          draw();
+          if (!animFrameId) {
+            draw();
+          }
         }
       }, { passive: false });
 
