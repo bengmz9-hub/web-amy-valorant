@@ -1215,7 +1215,7 @@
     <h3>🎯 Desafío de Puntería</h3>
     <p style="margin-bottom: 0.8rem;">Mueve el ratón dentro del recuadro para apuntar y haz clic para disparar. ¡Inicia el desafío para probar tus reflejos!</p>
     
-    <div id="aimStats" class="aim-stats" style="display: none; justify-content: center; gap: 1.5rem; margin-bottom: 0.8rem; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1px; color: var(--text-main); width: 100%;">
+    <div id="aimStats" class="aim-stats" style="display: flex; visibility: hidden; justify-content: center; gap: 1.5rem; margin-bottom: 0.8rem; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1px; color: var(--text-main); width: 100%;">
       <div>DIANAS: <span id="aimScore" style="color: var(--accent);">0</span></div>
       <div>PRECISIÓN: <span id="aimAccuracy" style="color: var(--accent);">100%</span></div>
       <div>TIEMPO: <span id="aimTime" style="color: var(--accent);">15s</span></div>
@@ -1512,7 +1512,7 @@
         hits = 0;
         totalClicks = 0;
         timeLeft = 15;
-        aimStats.style.display = 'flex';
+        aimStats.style.visibility = 'visible';
         spawnTarget();
         updateStats();
         startAimBtn.textContent = "Detener Juego ⏹️";
@@ -1536,6 +1536,7 @@
           gameInterval = null;
         }
         startAimBtn.textContent = "Iniciar Juego 🎯";
+        aimStats.style.visibility = 'hidden';
         draw();
       }
 
@@ -1552,6 +1553,7 @@
       }
 
       startAimBtn.addEventListener('click', () => {
+        startAimBtn.blur();
         if (isPlaying) {
           endGame();
         } else {
