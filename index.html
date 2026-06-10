@@ -580,6 +580,7 @@
       font-size: 1.8rem;
       font-weight: 800;
       letter-spacing: 2px;
+      margin: 0;
     }
     .info {
       padding: 1.5rem;
@@ -637,6 +638,7 @@
       font-size: 0.9rem;
       font-weight: 700;
       color: var(--accent-local);
+      margin: 0;
       margin-bottom: 0.2rem;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -1037,8 +1039,8 @@
 <div class="agent-bg-overlay"></div>
 <div class="global-overlay"></div>
 
-<img src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png" class="side-agent agent-left" alt="" loading="lazy" onerror="this.style.display='none'">
-<img src="https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/fullportrait.png" class="side-agent agent-right" alt="" loading="lazy" onerror="this.style.display='none'">
+<img src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png" class="side-agent agent-left" alt="" loading="lazy" onerror="this.onerror=null; this.style.display='none'">
+<img src="https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/fullportrait.png" class="side-agent agent-right" alt="" loading="lazy" onerror="this.onerror=null; this.style.display='none'">
 <div id="scrollBar"></div>
 
 <nav class="navbar">
@@ -1053,7 +1055,7 @@
       <a href="#shorts" class="nav-link">🎬 Amy Show</a>
     </div>
     <div class="nav-controls">
-      <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="social-link social-icon-link" aria-label="TikTok">
+      <a href="https://www.tiktok.com/@amyjgil" target="_blank" rel="noopener noreferrer" class="social-link social-icon-link" aria-label="TikTok">
         <img src="tiktok_art.svg" alt="TikTok" class="social-icon">
       </a>
       <button class="mode-toggle" id="modeBtn" aria-label="Cambiar modo competitivo">🖤</button>
@@ -1073,10 +1075,10 @@
       <div class="main-frame">
         <picture>
           <source srcset="amy_art.avif" type="image/avif">
-          <img src="amy_art.webp" width="600" height="710" alt="Amy" loading="eager" onerror="this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
+          <img src="amy_art.webp" width="600" height="710" alt="Amy" loading="eager" onerror="this.onerror=null; this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
         </picture>
       </div>
-      <a href="https://www.tiktok.com/@amyjgil" target="_blank" class="cta-community">
+      <a href="https://www.tiktok.com/@amyjgil" target="_blank" rel="noopener noreferrer" class="cta-community">
         ¿Quieres unirte a mi comunidad? <span>Contáctame</span>
       </a>
     </div>
@@ -1102,9 +1104,9 @@
       <div class="img-container">
         <picture>
           <source srcset="sage_art.avif" type="image/avif">
-          <img src="sage_art.webp" width="800" height="446" alt="Sage" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=SAGE'">
+          <img src="sage_art.webp" width="800" height="446" alt="Sage" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x800/1a1d25/ffffff?text=SAGE'">
         </picture>
-        <div class="agent-name-overlay">SAGE</div>
+        <h3 class="agent-name-overlay">SAGE</h3>
       </div>
       <div class="info">
         <p>Dominio del control de terreno y sostenibilidad del equipo. Especialista en salvaguardar la ventaja táctica.</p>
@@ -1117,7 +1119,7 @@
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Orbe de Barrera (Ctrl)</div>
+            <h4 class="ability-name">Orbe de Barrera (Ctrl)</h4>
             <div class="ability-desc">Uso el muro principalmente para asegurar el site</div>
           </div>
         </div>
@@ -1132,9 +1134,9 @@
       <div class="img-container">
         <picture>
           <source srcset="gekko_art.avif" type="image/avif">
-          <img src="gekko_art.webp" width="800" height="533" alt="Gekko" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=GEKKO'">
+          <img src="gekko_art.webp" width="800" height="533" alt="Gekko" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x800/1a1d25/ffffff?text=GEKKO'">
         </picture>
-        <div class="agent-name-overlay">GEKKO</div>
+        <h3 class="agent-name-overlay">GEKKO</h3>
       </div>
       <div class="info">
         <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
@@ -1147,7 +1149,7 @@
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Mosh Pit (Ctrl)</div>
+            <h4 class="ability-name">Mosh Pit (Ctrl)</h4>
             <div class="ability-desc">Granada de gran daño. La uso para denegar el defuse post-plant o limpiar esquinas cerradas.</div>
           </div>
         </div>
@@ -1162,9 +1164,9 @@
       <div class="img-container">
         <picture>
           <source srcset="brimstone_art.avif" type="image/avif">
-          <img src="brimstone_art.webp" width="800" height="500" alt="Brimstone" loading="lazy" onerror="this.src='https://placehold.co/600x800/1a1d25/ffffff?text=BRIMSTONE'">
+          <img src="brimstone_art.webp" width="800" height="500" alt="Brimstone" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x800/1a1d25/ffffff?text=BRIMSTONE'">
         </picture>
-        <div class="agent-name-overlay">BRIMSTONE</div>
+        <h3 class="agent-name-overlay">BRIMSTONE</h3>
       </div>
       <div class="info">
         <p>Liderazgo estratégico y control zonal mediante fuego táctico. Capacidad de orquestar ofensivas coordinadas.</p>
@@ -1177,7 +1179,7 @@
             <button class="ability-tab" data-ability="X">X</button>
           </div>
           <div class="ability-info-box">
-            <div class="ability-name">Baliza de Estimulante (Ctrl)</div>
+            <h4 class="ability-name">Baliza de Estimulante (Ctrl)</h4>
             <div class="ability-desc">Aumenta la cadencia. La tiro justo antes de entrar a un site para dar ventaja en los duelos.</div>
           </div>
         </div>
@@ -1236,13 +1238,13 @@
   </div>
   <div class="tiktok-grid">
     <div class="tiktok-wrapper">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7581441844328942870" data-video-id="7581441844328942870" style="max-width:605px;min-width:325px;"><section><a target="_blank" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a></section></blockquote>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7581441844328942870" data-video-id="7581441844328942870" style="max-width:605px;min-width:325px;"><section><a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a></section></blockquote>
     </div>
     <div class="tiktok-wrapper">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7611582111362895126" data-video-id="7611582111362895126" style="max-width:605px;min-width:325px;"><section><a target="_blank" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> Un ace del otro día <a target="_blank" href="https://www.tiktok.com/tag/valorant?refer=embed">#valorant</a></section></blockquote>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7611582111362895126" data-video-id="7611582111362895126" style="max-width:605px;min-width:325px;"><section><a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> Un ace del otro día <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/tag/valorant?refer=embed">#valorant</a></section></blockquote>
     </div>
     <div class="tiktok-wrapper">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7596081926155291926" data-video-id="7596081926155291926" style="max-width: 605px;min-width: 325px;"><section><a target="_blank" title="@amyjgil" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> Pov un día chill en bcn 🙃 <a title="gamegirl" target="_blank" href="https://www.tiktok.com/tag/gamegirl?refer=embed">#gamegirl</a> <a title="valorantespaña" target="_blank" href="https://www.tiktok.com/tag/valorantespa%C3%B1a?refer=embed">#valorantespaña</a> <a title="valorant" target="_blank" href="https://www.tiktok.com/tag/valorant?refer=embed">#valorant</a> <a title="valorantgaming" target="_blank" href="https://www.tiktok.com/tag/valorantgaming?refer=embed">#valorantgaming</a> <a title="valorantgirls" target="_blank" href="https://www.tiktok.com/tag/valorantgirls?refer=embed">#valorantgirls</a> <a target="_blank" title="♬ original sound - &#34;The Audio Demon&#34; Dante" href="https://www.tiktok.com/music/original-sound-6591555328398068486?refer=embed">♬ original sound - &#34;The Audio Demon&#34; Dante</a></section></blockquote>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@amyjgil/video/7596081926155291926" data-video-id="7596081926155291926" style="max-width: 605px;min-width: 325px;"><section><a target="_blank" rel="noopener noreferrer" title="@amyjgil" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a> Pov un día chill en bcn 🙃 <a title="gamegirl" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/tag/gamegirl?refer=embed">#gamegirl</a> <a title="valorantespaña" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/tag/valorantespa%C3%B1a?refer=embed">#valorantespaña</a> <a title="valorant" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/tag/valorant?refer=embed">#valorant</a> <a title="valorantgaming" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/tag/valorantgaming?refer=embed">#valorantgaming</a> <a title="valorantgirls" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/tag/valorantgirls?refer=embed">#valorantgirls</a> <a target="_blank" rel="noopener noreferrer" title="♬ original sound - &#34;The Audio Demon&#34; Dante" href="https://www.tiktok.com/music/original-sound-6591555328398068486?refer=embed">♬ original sound - &#34;The Audio Demon&#34; Dante</a></section></blockquote>
     </div>
   </div>
 </section>
@@ -1251,7 +1253,7 @@
   <div class="footer-content">
     <div class="footer-section"><h4>AMY</h4><p>Content Creator</p></div>
     <div class="footer-section"><h4>Enlaces</h4><ul><li><a href="#agents">Especialidades</a></li><li><a href="#gear">Setup</a></li><li><a href="#shorts">The Amy Show</a></li></ul></div>
-    <div class="footer-section"><h4>Social</h4><a href="https://www.tiktok.com/@amyjgil" target="_blank">TikTok</a></div>
+    <div class="footer-section"><h4>Social</h4><a href="https://www.tiktok.com/@amyjgil" target="_blank" rel="noopener noreferrer">TikTok</a></div>
   </div>
   <div class="footer-bottom"><p>© 2026 AMY // Content Creator Portfolio</p></div>
 </footer>
@@ -1326,25 +1328,15 @@
       }
     });
 
-    // Cursor glow
-    let glowRequest;
-    function updateGlowPosition(e) {
-      document.body.style.setProperty('--mouse-x', e.clientX + 'px');
-      document.body.style.setProperty('--mouse-y', e.clientY + 'px');
-      glowRequest = undefined;
-    }
-    document.addEventListener('mousemove', (e) => {
-      if (!glowRequest) {
-        glowRequest = requestAnimationFrame(() => updateGlowPosition(e));
-      }
-    });
-
     // Scroll progress
+    const scrollBar = document.getElementById('scrollBar');
     window.addEventListener('scroll', () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolled = (winScroll / height) * 100;
-      document.getElementById('scrollBar').style.width = scrolled + '%';
+      if (scrollBar) {
+        scrollBar.style.width = scrolled + '%';
+      }
     }, { passive: true });
 
     // Filtros gear
@@ -1451,13 +1443,29 @@
       });
     });
 
-    // Linterna táctica
+    // Cursor glow y Linterna táctica (Unificado y Optimizado con rAF)
     const flashlight = document.createElement('div');
     flashlight.className = 'tactical-flashlight';
     document.body.appendChild(flashlight);
+
+    let mouseMoveRequest;
+    let mouseX = 0;
+    let mouseY = 0;
+
+    function updateMousePositions() {
+      document.body.style.setProperty('--mouse-x', mouseX + 'px');
+      document.body.style.setProperty('--mouse-y', mouseY + 'px');
+      flashlight.style.left = mouseX + 'px';
+      flashlight.style.top = mouseY + 'px';
+      mouseMoveRequest = null;
+    }
+
     document.addEventListener('mousemove', (e) => {
-      flashlight.style.left = e.clientX + 'px';
-      flashlight.style.top = e.clientY + 'px';
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!mouseMoveRequest) {
+        mouseMoveRequest = requestAnimationFrame(updateMousePositions);
+      }
     });
 
     // Desafío de Puntería (Aim Trainer Game)
