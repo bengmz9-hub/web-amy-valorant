@@ -13,7 +13,7 @@
   <meta name="twitter:image" content="https://bengmz9-hub.github.io/web-amy-valorant/amy_art.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Rajdhani:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="preload" href="amy_art.avif" as="image" type="image/avif">
   <style>
     /* ----------------------------- */
@@ -536,6 +536,7 @@
       overflow: hidden;
       transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
       transform-style: preserve-3d;
+      will-change: transform;
       backdrop-filter: blur(12px);
     }
     .game-card[data-agent="sage"] {
@@ -782,29 +783,7 @@
       margin-top: 1rem;
       touch-action: none;
     }
-    .slider-container input[type="range"] {
-      -webkit-appearance: none;
-      appearance: none;
-      height: 6px;
-      border-radius: 5px;
-      background: rgba(255, 255, 255, 0.1);
-      outline: none;
-      transition: background 0.3s;
-    }
-    .slider-container input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-      box-shadow: 0 0 8px var(--accent-glow);
-      transition: transform 0.1s;
-    }
-    .slider-container input[type="range"]::-webkit-slider-thumb:hover {
-      transform: scale(1.2);
-    }
+    /* (Slider CSS eliminado - componente retirado) */
 
     /* TikTok shorts */
     .tiktok-grid {
@@ -1114,7 +1093,7 @@
       <a href="#gear" class="nav-link glitch-hover">⚙️ Setup</a>
       <a href="#shorts" class="nav-link glitch-hover">🎬 Amy Show</a>
     </div>
-    <div class="nav-controls" style="display: flex; gap: 0.5rem; align-items: center;">
+    <div class="nav-controls">
       <a href="https://www.tiktok.com/@amyjgil" target="_blank" rel="noopener noreferrer" class="social-link social-icon-link" aria-label="TikTok">
         <img src="tiktok_art.svg" alt="TikTok" class="social-icon">
       </a>
@@ -1726,7 +1705,7 @@
       sage: {
         C: { name: "Orbe de Barrera (Control)", desc: "Uso el muro principalmente para asegurar el site" },
         Q: { name: "Orbe de Ralentización (Q)", desc: "Perfecto para relentizar o detener ejecuciones enemigas rápidas" },
-        E: { name: "Orbe de Curación (E)", desc: " Lo utilizo para curar a mi equipo o a mi misma" },
+        E: { name: "Orbe de Curación (E)", desc: "Lo utilizo para curar a mi equipo o a mi misma" },
         X: { name: "Resurrección (X)", desc: "Busco revivir a compañeros" }
       },
       gekko: {
@@ -1914,7 +1893,7 @@
         if (!isPlaying) return;
         totalClicks++;
         const dist = Math.hypot(posX - targetX, posY - targetY);
-        const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+        const accentColor = getAccent();
         if (dist <= targetRadius + 8) {
           hits++;
           playSynthSound('hit');
@@ -1945,9 +1924,20 @@
       });
 
       // Renderizado
+      let cachedAccent = '';
+      let accentCacheTime = 0;
+      function getAccent() {
+        const now = performance.now();
+        if (now - accentCacheTime > 200) {
+          cachedAccent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+          accentCacheTime = now;
+        }
+        return cachedAccent;
+      }
+
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+        const accent = getAccent();
         
         if (isPlaying) {
           // Dibujar diana (target)
