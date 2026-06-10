@@ -638,9 +638,9 @@
 
     .ability-tab:hover,
     .ability-tab.active {
-      background: #ff4655;
-      border-color: #ff4655;
-      color: #0f1923;
+      background: var(--glow-local, var(--accent-glow));
+      border-color: var(--border-local, var(--accent));
+      color: var(--border-local, var(--accent));
     }
 
     .ability-info-box {
@@ -654,7 +654,7 @@
       font-family: 'Rajdhani', sans-serif;
       font-size: 0.8rem;
       font-weight: 700;
-      color: #ff4655;
+      color: var(--border-local, var(--accent));
       margin: 0 0 0.2rem 0;
       text-transform: uppercase;
       letter-spacing: 1px;
