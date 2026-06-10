@@ -96,13 +96,30 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -3;
+      z-index: -4;
       background-image: url('valorant_art.webp');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       filter: brightness(0.22) contrast(1.15);
       transition: var(--transition);
+    }
+    .agent-bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      filter: blur(25px) brightness(0.12) contrast(1.1);
+      transition: opacity 0.8s ease, background-image 0.8s ease;
+      pointer-events: none;
+    }
+    .agent-bg-overlay.active {
+      opacity: 1;
     }
     .global-overlay {
       position: fixed;
@@ -561,6 +578,61 @@
       line-height: 1.5;
       color: var(--text-main);
     }
+    .abilities-container {
+      margin-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1rem;
+    }
+    .ability-tabs {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 0.8rem;
+    }
+    .ability-tab {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      color: var(--text-sub);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .ability-tab:hover, .ability-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+    .ability-info-box {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 0.8rem;
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .ability-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .ability-desc {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-main);
+    }
     .usage-stats {
       margin-top: 1rem;
     }
@@ -693,6 +765,29 @@
       min-height: 180px;
       margin-top: 1rem;
       touch-action: none;
+    }
+    .slider-container input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      transition: background 0.3s;
+    }
+    .slider-container input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 8px var(--accent-glow);
+      transition: transform 0.1s;
+    }
+    .slider-container input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
     }
 
     /* TikTok shorts */
@@ -926,6 +1021,7 @@
 
 <div class="cursor-glow"></div>
 <div class="global-bg"></div>
+<div class="agent-bg-overlay"></div>
 <div class="global-overlay"></div>
 
 <img src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png" class="side-agent agent-left" alt="" loading="lazy" onerror="this.style.display='none'">
@@ -999,6 +1095,20 @@
       </div>
       <div class="info">
         <p>Dominio del control de terreno y sostenibilidad del equipo. Especialista en salvaguardar la ventaja táctica.</p>
+        
+        <div class="abilities-container">
+          <div class="ability-tabs">
+            <button class="ability-tab active" data-ability="C">C</button>
+            <button class="ability-tab" data-ability="Q">Q</button>
+            <button class="ability-tab" data-ability="E">E</button>
+            <button class="ability-tab" data-ability="X">X</button>
+          </div>
+          <div class="ability-info-box">
+            <div class="ability-name">Orbe de Barrera (C)</div>
+            <div class="ability-desc">Uso el muro principalmente para asegurar el plantado en B de Bind, o ralentizar el push en Split.</div>
+          </div>
+        </div>
+
         <div class="usage-stats">
           <div class="usage-header"><span>❄️ tasa de uso</span><span class="usage-percent">45%</span></div>
           <div class="usage-bar-bg"><div class="usage-bar-fill" style="width:45%; background: linear-gradient(90deg,#3b82f6,#60a5fa);"></div></div>
@@ -1015,6 +1125,20 @@
       </div>
       <div class="info">
         <p>Inteligencia móvil y reconocimiento dinámico. Especialista en la disrupción del posicionamiento enemigo.</p>
+
+        <div class="abilities-container">
+          <div class="ability-tabs">
+            <button class="ability-tab active" data-ability="C">C</button>
+            <button class="ability-tab" data-ability="Q">Q</button>
+            <button class="ability-tab" data-ability="E">E</button>
+            <button class="ability-tab" data-ability="X">X</button>
+          </div>
+          <div class="ability-info-box">
+            <div class="ability-name">Mosh Pit (C)</div>
+            <div class="ability-desc">Granada de gran daño. La uso para denegar el defuse post-plant o limpiar esquinas cerradas.</div>
+          </div>
+        </div>
+
         <div class="usage-stats">
           <div class="usage-header"><span>🦎 tasa de uso</span><span class="usage-percent">35%</span></div>
           <div class="usage-bar-bg"><div class="usage-bar-fill" style="width:35%; background: linear-gradient(90deg,#4ade80,#a3e635);"></div></div>
@@ -1031,6 +1155,20 @@
       </div>
       <div class="info">
         <p>Liderazgo estratégico y control zonal mediante fuego táctico. Capacidad de orquestar ofensivas coordinadas.</p>
+
+        <div class="abilities-container">
+          <div class="ability-tabs">
+            <button class="ability-tab active" data-ability="C">C</button>
+            <button class="ability-tab" data-ability="Q">Q</button>
+            <button class="ability-tab" data-ability="E">E</button>
+            <button class="ability-tab" data-ability="X">X</button>
+          </div>
+          <div class="ability-info-box">
+            <div class="ability-name">Baliza de Estimulante (C)</div>
+            <div class="ability-desc">Aumenta la cadencia. La tiro justo antes de entrar a un site para dar ventaja en los duelos.</div>
+          </div>
+        </div>
+
         <div class="usage-stats">
           <div class="usage-header"><span>🔥 tasa de uso</span><span class="usage-percent">20%</span></div>
           <div class="usage-bar-bg"><div class="usage-bar-fill" style="width:20%; background: linear-gradient(90deg,#ff8c00,#ffa726);"></div></div>
@@ -1058,10 +1196,29 @@
     <div class="gear-item" data-category="pc"><h3>⚙️ Procesador</h3><p>Intel Core i9 13900k</p><div class="gear-item-spec">24 Núcleos | 5.8 GHz Turbo</div></div>
     <div class="gear-item" data-category="pc"><h3>🎮 Tarjeta Gráfica</h3><p>Nvidia RTX 3080</p><div class="gear-item-spec">10GB GDDR6X</div></div>
   </div>
-  <div class="simulator-box">
+  <div class="simulator-box" style="margin-top: 2.5rem; display: flex; flex-direction: column; align-items: center;">
     <h3>🎯 Prueba mi sensibilidad</h3>
-    <p>Mueve el ratón (o desliza en tu móvil) dentro del recuadro → 800 DPI / 0.51</p>
+    <p style="margin-bottom: 0.8rem;">Mueve el ratón dentro del recuadro para probar la mira. ¡O inicia el desafío de puntería!</p>
+    
+    <div id="aimStats" class="aim-stats" style="display: none; justify-content: center; gap: 1.5rem; margin-bottom: 0.8rem; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1px; color: var(--text-main); width: 100%;">
+      <div>DIANAS: <span id="aimScore" style="color: var(--accent);">0</span></div>
+      <div>PRECISIÓN: <span id="aimAccuracy" style="color: var(--accent);">100%</span></div>
+      <div>TIEMPO: <span id="aimTime" style="color: var(--accent);">15s</span></div>
+    </div>
+
     <canvas id="sensCanvas" class="sim-canvas" width="400" height="200" style="width:100%; max-width:400px; height:auto;"></canvas>
+
+    <div class="simulator-controls" style="margin-top: 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; width: 100%;">
+      <div class="slider-container" style="display: flex; align-items: center; gap: 1rem; width: 100%; max-width: 320px;">
+        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-sub);">Sensibilidad:</span>
+        <input type="range" id="sensSlider" min="0.1" max="2.0" step="0.01" value="0.51" style="flex: 1; accent-color: var(--accent); cursor: pointer;">
+        <span id="sensVal" style="font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--accent); min-width: 35px; text-align: right;">0.51</span>
+      </div>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <button id="resetSensBtn" class="filter-btn" style="font-size: 0.8rem; padding: 0.4rem 1rem;">Reset (0.51)</button>
+        <button id="startAimBtn" class="filter-btn active" style="font-size: 0.8rem; padding: 0.4rem 1rem;">Iniciar Aim Challenge 🎯</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1110,11 +1267,27 @@
     }
 
     let selectedAgentColor = null;
+    let selectedAgent = null;
+    const agentBgOverlay = document.querySelector('.agent-bg-overlay');
+    const agentBgImages = {
+      sage: 'sage_art.avif',
+      gekko: 'gekko_art.avif',
+      brimstone: 'brimstone_art.avif'
+    };
     const agentColors = {
       sage: '#3b82f6',
       gekko: '#4ade80',
       brimstone: '#ff8c00'
     };
+
+    function restoreAgentBg() {
+      if (selectedAgent && agentBgImages[selectedAgent]) {
+        agentBgOverlay.style.backgroundImage = `url('${agentBgImages[selectedAgent]}')`;
+        agentBgOverlay.classList.add('active');
+      } else {
+        agentBgOverlay.classList.remove('active');
+      }
+    }
 
     function getDefaultAccentColor() {
       return document.body.classList.contains('comp-mode') ? '#ff4655' : '#ff71ce';
@@ -1182,7 +1355,7 @@
       });
     });
 
-    // Selector de agente (color)
+    // Selector de agente (color y fondo dinámico)
     let hoverAgentColor = null;
     const agentCards = document.querySelectorAll('.game-card');
     agentCards.forEach(card => {
@@ -1191,26 +1364,84 @@
         if (agent && agentColors[agent]) {
           hoverAgentColor = agentColors[agent];
           setAccentColor(hoverAgentColor);
+          if (agentBgImages[agent]) {
+            agentBgOverlay.style.backgroundImage = `url('${agentBgImages[agent]}')`;
+            agentBgOverlay.classList.add('active');
+          }
         }
       });
       card.addEventListener('mouseleave', () => {
         hoverAgentColor = null;
         restoreAccentColor();
+        restoreAgentBg();
       });
       card.addEventListener('click', (e) => {
         e.stopPropagation();
         if (agent && agentColors[agent]) {
+          selectedAgent = agent;
           selectedAgentColor = agentColors[agent];
           setAccentColor(selectedAgentColor);
+          if (agentBgImages[agent]) {
+            agentBgOverlay.style.backgroundImage = `url('${agentBgImages[agent]}')`;
+            agentBgOverlay.classList.add('active');
+          }
         }
       });
     });
 
     document.body.addEventListener('click', (e) => {
       if (!e.target.closest('.game-card')) {
+        selectedAgent = null;
         selectedAgentColor = null;
         restoreAccentColor();
+        restoreAgentBg();
       }
+    });
+
+    // Datos de habilidades para los agentes
+    const abilitiesData = {
+      sage: {
+        C: { name: "Orbe de Barrera (C)", desc: "Uso el muro principalmente para asegurar el plantado en B de Bind, o ralentizar el push en Split." },
+        Q: { name: "Orbe de Ralentización (Q)", desc: "Perfecto para combinar con granadas de daño de aliados o detener ejecuciones rápidas." },
+        E: { name: "Orbe de Curación (E)", desc: "Priorizo curar al duelista principal en rondas clave o a mí misma tras un trade favorable." },
+        X: { name: "Resurrección (X)", desc: "Busco revivir a compañeros que tengan su habilidad definitiva lista para dar la vuelta a la ronda." }
+      },
+      gekko: {
+        C: { name: "Mosh Pit (C)", desc: "Granada de gran daño. La uso para denegar el defuse post-plant o limpiar esquinas cerradas." },
+        Q: { name: "Wingman (Q)", desc: "¡El main de Gekko! Plantar o defusar a distancia mientras cubro otros ángulos es clave." },
+        E: { name: "Dizzy (E)", desc: "Flash de información. Si Dizzy dispara su pintura azul, ya sé la posición exacta del enemigo." },
+        X: { name: "Thrash (X)", desc: "La definitiva. Permite limpiar el site entero y retener a los enemigos para un push fácil." }
+      },
+      brimstone: {
+        C: { name: "Baliza de Estimulante (C)", desc: "Aumenta la cadencia. La tiro justo antes de entrar a un site para dar ventaja en los duelos." },
+        Q: { name: "Incendiario (Q)", desc: "Molly clásica. Esencial para denegar plantados o tapar cuellos de botella." },
+        E: { name: "Humo del Cielo (E)", desc: "Tres humos de larga duración. Bloqueo visual instantáneo para ejecutar entradas limpias." },
+        X: { name: "Golpe Orbital (X)", desc: "Limpio posiciones comunes de defensa o aseguro la ronda denegando el defuse." }
+      }
+    };
+
+    // Habilidades de agentes (Pestañas Interactivas)
+    const abilityButtons = document.querySelectorAll('.ability-tab');
+    abilityButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evitar seleccionar la tarjeta al hacer clic en las habilidades
+        const card = btn.closest('.game-card');
+        const agent = card.getAttribute('data-agent');
+        const key = btn.getAttribute('data-ability');
+        
+        // Desactivar otros botones de esta tarjeta
+        const siblings = card.querySelectorAll('.ability-tab');
+        siblings.forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Actualizar textos dinámicos
+        const nameEl = card.querySelector('.ability-name');
+        const descEl = card.querySelector('.ability-desc');
+        if (abilitiesData[agent] && abilitiesData[agent][key]) {
+          nameEl.textContent = abilitiesData[agent][key].name;
+          descEl.textContent = abilitiesData[agent][key].desc;
+        }
+      });
     });
 
     // Linterna táctica
@@ -1222,28 +1453,201 @@
       flashlight.style.top = e.clientY + 'px';
     });
 
-    // Simulador de sensibilidad
+    // Simulador de sensibilidad y Aim Trainer Game
     const canvas = document.getElementById('sensCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
+      
+      // Elementos del DOM
+      const sensSlider = document.getElementById('sensSlider');
+      const sensVal = document.getElementById('sensVal');
+      const resetSensBtn = document.getElementById('resetSensBtn');
+      const startAimBtn = document.getElementById('startAimBtn');
+      const aimStats = document.getElementById('aimStats');
+      const aimScoreVal = document.getElementById('aimScore');
+      const aimAccuracyVal = document.getElementById('aimAccuracy');
+      const aimTimeVal = document.getElementById('aimTime');
+
+      // Estado del juego
+      let sens = 0.51;
       let posX = canvas.width / 2;
       let posY = canvas.height / 2;
-      const sens = 0.51;
       let lastMouseX = null, lastMouseY = null;
 
+      let isPlaying = false;
+      let score = 0;
+      let hits = 0;
+      let totalClicks = 0;
+      let timeLeft = 15;
+      let gameInterval = null;
+      let targetX = 0;
+      let targetY = 0;
+      const targetRadius = 14;
+
+      // Sincronizar slider y sens
+      sensSlider.addEventListener('input', () => {
+        sens = parseFloat(sensSlider.value);
+        sensVal.textContent = sens.toFixed(2);
+        draw();
+      });
+
+      resetSensBtn.addEventListener('click', () => {
+        sens = 0.51;
+        sensSlider.value = 0.51;
+        sensVal.textContent = "0.51";
+        draw();
+      });
+
+      // Lógica de juego
+      function spawnTarget() {
+        const margin = 30;
+        targetX = margin + Math.random() * (canvas.width - margin * 2);
+        targetY = margin + Math.random() * (canvas.height - margin * 2);
+      }
+
+      function updateStats() {
+        aimScoreVal.textContent = hits;
+        const accuracy = totalClicks > 0 ? Math.round((hits / totalClicks) * 100) : 100;
+        aimAccuracyVal.textContent = accuracy + "%";
+        aimTimeVal.textContent = timeLeft + "s";
+      }
+
+      function startGame() {
+        isPlaying = true;
+        hits = 0;
+        totalClicks = 0;
+        timeLeft = 15;
+        aimStats.style.display = 'flex';
+        spawnTarget();
+        updateStats();
+        startAimBtn.textContent = "Detener Desafío ⏹️";
+        if (gameInterval) clearInterval(gameInterval);
+        gameInterval = setInterval(() => {
+          timeLeft--;
+          if (timeLeft <= 0) {
+            endGame();
+          } else {
+            updateStats();
+          }
+          draw();
+        }, 1000);
+        draw();
+      }
+
+      function endGame() {
+        isPlaying = false;
+        if (gameInterval) {
+          clearInterval(gameInterval);
+          gameInterval = null;
+        }
+        startAimBtn.textContent = "Iniciar Aim Challenge 🎯";
+        draw();
+      }
+
+      function shoot() {
+        if (!isPlaying) return;
+        totalClicks++;
+        const dist = Math.hypot(posX - targetX, posY - targetY);
+        if (dist <= targetRadius + 8) {
+          hits++;
+          spawnTarget();
+        }
+        updateStats();
+        draw();
+      }
+
+      startAimBtn.addEventListener('click', () => {
+        if (isPlaying) {
+          endGame();
+        } else {
+          startGame();
+        }
+      });
+
+      canvas.addEventListener('click', () => {
+        if (isPlaying) {
+          shoot();
+        }
+      });
+
+      // Renderizado
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-        ctx.fillStyle = accent;
+        
+        if (isPlaying) {
+          // Dibujar diana (target)
+          ctx.fillStyle = accent + '33'; // Brillo exterior translúcido
+          ctx.strokeStyle = accent;
+          ctx.lineWidth = 2;
+          
+          ctx.beginPath();
+          ctx.arc(targetX, targetY, targetRadius + 6, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
+          
+          ctx.fillStyle = accent;
+          ctx.beginPath();
+          ctx.arc(targetX, targetY, targetRadius - 4, 0, Math.PI * 2);
+          ctx.fill();
+          
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(targetX, targetY, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        
+        // Dibujar retícula (crosshair)
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = accent;
+        ctx.lineWidth = 1.5;
+        
+        ctx.beginPath();
+        ctx.arc(posX, posY, 3, 0, Math.PI * 2);
+        ctx.fill();
+        
         ctx.beginPath();
         ctx.arc(posX, posY, 8, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#fff';
-        ctx.font = '12px monospace';
-        ctx.fillText(`Sens: 800 DPI / ${sens}`, 10, 20);
-        ctx.fillText(`Pos: ${Math.round(posX)},${Math.round(posY)}`, 10, 40);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(posX - 12, posY); ctx.lineTo(posX - 5, posY);
+        ctx.moveTo(posX + 5, posY);  ctx.lineTo(posX + 12, posY);
+        ctx.moveTo(posX, posY - 12); ctx.lineTo(posX, posY - 5);
+        ctx.moveTo(posX, posY + 5);  ctx.lineTo(posX, posY + 12);
+        ctx.stroke();
+        
+        // Textos del canvas
+        if (isPlaying) {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+          ctx.font = '10px monospace';
+          ctx.fillText(`Tiempo: ${timeLeft}s`, 10, 20);
+        } else {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+          ctx.font = '12px monospace';
+          ctx.fillText(`Sens: 800 DPI / ${sens.toFixed(2)}`, 10, 20);
+          
+          if (totalClicks > 0) {
+            ctx.fillStyle = accent;
+            ctx.font = 'bold 16px Rajdhani, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText("¡DESAFÍO COMPLETADO!", canvas.width / 2, canvas.height / 2 - 10);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '13px monospace';
+            const acc = Math.round((hits / totalClicks) * 100);
+            ctx.fillText(`Dianas: ${hits} | Prec: ${acc}%`, canvas.width / 2, canvas.height / 2 + 15);
+            ctx.textAlign = 'left';
+          } else {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText("Mueve tu ratón aquí para probar", canvas.width / 2, canvas.height / 2);
+            ctx.textAlign = 'left';
+          }
+        }
       }
 
+      // Eventos del ratón/táctiles
       canvas.addEventListener('mousemove', (e) => {
         const rect = canvas.getBoundingClientRect();
         const scaleX = canvas.width / rect.width;
