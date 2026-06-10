@@ -534,7 +534,7 @@
       border: 1.5px solid var(--glass-border);
       border-radius: 28px;
       overflow: hidden;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease-out;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
       transform-style: preserve-3d;
       backdrop-filter: blur(12px);
     }
@@ -1279,7 +1279,7 @@
     <div id="aimStats" class="aim-stats" style="display: flex; visibility: hidden; justify-content: center; gap: 1.5rem; margin-bottom: 0.8rem; font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1px; color: var(--text-main); width: 100%;">
       <div>DIANAS: <span id="aimScore" style="color: var(--accent);">0</span></div>
       <div>PRECISIÓN: <span id="aimAccuracy" style="color: var(--accent);">100%</span></div>
-      <div>TIEMPO: <span id="aimTime" style="color: var(--accent);">15s</span></div>
+      <div>TIEMPO: <span id="aimTime" style="color: var(--accent);">10s</span></div>
     </div>
 
     <canvas id="sensCanvas" class="sim-canvas" width="800" height="400" style="width:100%; max-width:800px; height:auto;"></canvas>
@@ -1418,8 +1418,6 @@
         initAudio();
         if (!audioEnabled) {
           stopAmbient();
-        } else if (selectedAgent) {
-          playAgentAmbient(selectedAgent);
         }
       });
     }
@@ -1665,18 +1663,18 @@
     agentCards.forEach(card => {
       const agent = card.getAttribute('data-agent');
       
-      // Rotación 3D Dinámica
+      // Rotación 3D Dinámica (sutil y elegante)
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         const xc = rect.width / 2;
         const yc = rect.height / 2;
-        const rotateX = -(y - yc) / 12;
-        const rotateY = (x - xc) / 12;
+        const rotateX = -(y - yc) / 40;
+        const rotateY = (x - xc) / 40;
         
         requestAnimationFrame(() => {
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
         });
       });
 
@@ -1688,7 +1686,6 @@
             agentBgOverlay.style.backgroundImage = `url('${agentBgImages[agent]}')`;
             agentBgOverlay.classList.add('active');
           }
-          playAgentAmbient(agent);
         }
       });
 
@@ -1696,7 +1693,6 @@
         hoverAgentColor = null;
         restoreAccentColor();
         restoreAgentBg();
-        stopAmbient();
         requestAnimationFrame(() => {
           card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
         });
@@ -1712,7 +1708,6 @@
             agentBgOverlay.style.backgroundImage = `url('${agentBgImages[agent]}')`;
             agentBgOverlay.classList.add('active');
           }
-          playAgentAmbient(agent);
         }
       });
     });
@@ -1723,7 +1718,6 @@
         selectedAgentColor = null;
         restoreAccentColor();
         restoreAgentBg();
-        stopAmbient();
       }
     });
 
@@ -1817,7 +1811,7 @@
       let isPlaying = false;
       let hits = 0;
       let totalClicks = 0;
-      let timeLeft = 15;
+      let timeLeft = 10;
       let gameInterval = null;
       let targetX = 0;
       let targetY = 0;
@@ -1846,11 +1840,11 @@
           particles.push({
             x: x,
             y: y,
-            vx: (Math.random() - 0.5) * 5,
-            vy: (Math.random() - 0.5) * 5,
+            vx: (Math.random() - 0.5) * 2.5,
+            vy: (Math.random() - 0.5) * 2.5,
             radius: Math.random() * 2.5 + 1.5,
             alpha: 1,
-            decay: Math.random() * 0.04 + 0.02,
+            decay: Math.random() * 0.015 + 0.008,
             color: color
           });
         }
@@ -1860,7 +1854,7 @@
         floatingTexts.push({
           x: x,
           y: y,
-          vy: -1.2,
+          vy: -0.6,
           alpha: 1,
           text: text,
           color: color
@@ -1886,7 +1880,7 @@
         isPlaying = true;
         hits = 0;
         totalClicks = 0;
-        timeLeft = 15;
+        timeLeft = 10;
         aimStats.style.visibility = 'visible';
         spawnTarget();
         updateStats();
@@ -2000,7 +1994,7 @@
         for (let i = floatingTexts.length - 1; i >= 0; i--) {
           const ft = floatingTexts[i];
           ft.y += ft.vy;
-          ft.alpha -= 0.025;
+          ft.alpha -= 0.01;
           if (ft.alpha <= 0) {
             floatingTexts.splice(i, 1);
           } else {
