@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bengmz9-hub.github.io/web-amy-valorant/sitemap.xml

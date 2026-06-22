@@ -1,0 +1,18 @@
+{
+  "name": "AMY | Valorant Player",
+  "short_name": "AMY",
+  "description": "Portfolio táctico de AMY: estadísticas, setup gaming, clips y mejores momentos en Valorant.",
+  "lang": "es",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0a0c",
+  "theme_color": "#0f0a0c",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
