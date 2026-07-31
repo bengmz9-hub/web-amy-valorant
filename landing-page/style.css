@@ -79,7 +79,7 @@ a, button, .filter-btn, .game-card, .mode-toggle {
   width: 100%;
   height: 100%;
   z-index: -4;
-  background-image: url('valorant_art.webp');
+  background-image: url('assets/imagenes/valorant_art.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

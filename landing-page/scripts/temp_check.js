@@ -76,7 +76,7 @@
     let audioCtx = null;
     let audioEnabled = safeStorage.getItem('amy-audio-enabled') === 'true';
     const audioBtn = document.getElementById('audioBtn');
-    
+
     function initAudio() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -137,16 +137,16 @@
         ambientOsc = audioCtx.createOscillator();
         ambientOsc.type = 'triangle';
         ambientOsc.frequency.setValueAtTime(220, audioCtx.currentTime);
-        
+
         const filter = audioCtx.createBiquadFilter();
         filter.type = 'bandpass';
         filter.frequency.setValueAtTime(1000, audioCtx.currentTime);
         filter.Q.setValueAtTime(1, audioCtx.currentTime);
-        
+
         ambientOsc.connect(filter);
         filter.connect(ambientGain);
         ambientOsc.start();
-        
+
         chimeInterval = setInterval(() => {
           if (!audioCtx || !audioEnabled) return;
           const chimeOsc = audioCtx.createOscillator();
@@ -156,7 +156,7 @@
           chimeGain.gain.setValueAtTime(0, audioCtx.currentTime);
           chimeGain.gain.linearRampToValueAtTime(0.015, audioCtx.currentTime + 0.1);
           chimeGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
-          
+
           chimeOsc.connect(chimeGain);
           chimeGain.connect(audioCtx.destination);
           chimeOsc.start();
@@ -168,15 +168,15 @@
         ambientOsc = audioCtx.createOscillator();
         ambientOsc.type = 'sine';
         ambientOsc.frequency.setValueAtTime(180, audioCtx.currentTime);
-        
+
         const lfo = audioCtx.createOscillator();
         const lfoGain = audioCtx.createGain();
         lfo.frequency.value = 6;
         lfoGain.gain.value = 15;
-        
+
         lfo.connect(lfoGain);
         lfoGain.connect(ambientOsc.frequency);
-        
+
         ambientOsc.connect(ambientGain);
         lfo.start();
         ambientOsc.start();
@@ -186,15 +186,15 @@
         ambientOsc = audioCtx.createOscillator();
         ambientOsc.type = 'sawtooth';
         ambientOsc.frequency.setValueAtTime(75, audioCtx.currentTime);
-        
+
         const lowpass = audioCtx.createBiquadFilter();
         lowpass.type = 'lowpass';
         lowpass.frequency.setValueAtTime(120, audioCtx.currentTime);
-        
+
         ambientOsc.connect(lowpass);
         lowpass.connect(ambientGain);
         ambientOsc.start();
-        
+
         chimeInterval = setInterval(() => {
           if (!audioCtx || !audioEnabled) return;
           const sonarOsc = audioCtx.createOscillator();
@@ -203,7 +203,7 @@
           sonarOsc.frequency.setValueAtTime(880, audioCtx.currentTime);
           sonarGain.gain.setValueAtTime(0.02, audioCtx.currentTime);
           sonarGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
-          
+
           sonarOsc.connect(sonarGain);
           sonarGain.connect(audioCtx.destination);
           sonarOsc.start();
@@ -221,7 +221,7 @@
       const gainNode = audioCtx.createGain();
       osc.connect(gainNode);
       gainNode.connect(audioCtx.destination);
-      
+
       if (type === 'hit') {
         osc.type = 'sine';
         osc.frequency.setValueAtTime(600, audioCtx.currentTime);
@@ -339,7 +339,7 @@
     const agentCards = document.querySelectorAll('.game-card');
     agentCards.forEach(card => {
       const agent = card.getAttribute('data-agent');
-      
+
       // Rotación 3D Dinámica (sutil y elegante)
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -349,7 +349,7 @@
         const yc = rect.height / 2;
         const rotateX = -(y - yc) / 40;
         const rotateY = (x - xc) / 40;
-        
+
         requestAnimationFrame(() => {
           card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
         });
@@ -428,12 +428,12 @@
         const card = btn.closest('.game-card');
         const agent = card.getAttribute('data-agent');
         const key = btn.getAttribute('data-ability');
-        
+
         // Desactivar otros botones de esta tarjeta
         const siblings = card.querySelectorAll('.ability-tab');
         siblings.forEach(s => s.classList.remove('active'));
         btn.classList.add('active');
-        
+
         // Actualizar textos dinámicos
         const nameEl = card.querySelector('.ability-name');
         const descEl = card.querySelector('.ability-desc');
@@ -473,7 +473,7 @@
     const canvas = document.getElementById('sensCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
-      
+
       // Elementos del DOM
       const startAimBtn = document.getElementById('startAimBtn');
       const aimStats = document.getElementById('aimStats');
@@ -636,23 +636,23 @@
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const accent = getAccent();
-        
+
         if (isPlaying) {
           // Dibujar diana (target)
           ctx.fillStyle = accent + '33'; // Brillo exterior translúcido
           ctx.strokeStyle = accent;
           ctx.lineWidth = 2;
-          
+
           ctx.beginPath();
           ctx.arc(targetX, targetY, targetRadius + 6, 0, Math.PI * 2);
           ctx.fill();
           ctx.stroke();
-          
+
           ctx.fillStyle = accent;
           ctx.beginPath();
           ctx.arc(targetX, targetY, targetRadius - 4, 0, Math.PI * 2);
           ctx.fill();
-          
+
           ctx.fillStyle = '#ffffff';
           ctx.beginPath();
           ctx.arc(targetX, targetY, 3, 0, Math.PI * 2);
@@ -694,27 +694,27 @@
             ctx.restore();
           }
         }
-        
+
         // Dibujar retícula (crosshair)
         ctx.fillStyle = '#ffffff';
         ctx.strokeStyle = accent;
         ctx.lineWidth = 1.5;
-        
+
         ctx.beginPath();
         ctx.arc(posX, posY, 3, 0, Math.PI * 2);
         ctx.fill();
-        
+
         ctx.beginPath();
         ctx.arc(posX, posY, 8, 0, Math.PI * 2);
         ctx.stroke();
-        
+
         ctx.beginPath();
         ctx.moveTo(posX - 12, posY); ctx.lineTo(posX - 5, posY);
         ctx.moveTo(posX + 5, posY);  ctx.lineTo(posX + 12, posY);
         ctx.moveTo(posX, posY - 12); ctx.lineTo(posX, posY - 5);
         ctx.moveTo(posX, posY + 5);  ctx.lineTo(posX, posY + 12);
         ctx.stroke();
-        
+
         // Textos del canvas
         if (isPlaying) {
           ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
@@ -724,7 +724,7 @@
           ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
           ctx.font = '12px monospace';
           ctx.fillText("Aim Game: Apunta y dispara", 10, 20);
-          
+
           if (totalClicks > 0) {
             ctx.fillStyle = accent;
             ctx.font = 'bold 16px Rajdhani, sans-serif';
