@@ -128,6 +128,26 @@ Los 2 críticos son urgentes:
 
 ---
 
+## APÉNDICE B — CORRECCIONES APLICADAS (01/08/2026)
+
+Todas las correcciones de privacidad/keys solicitadas se aplicaron y verificaron:
+
+| # | Corrección | Estado |
+|---|-----------|--------|
+| C1 | `.webui_secret_key` fuera del índice git (`git rm --cached`) y del repo público (raw → 404) | ✅ Verificado |
+| C1 | `.gitignore` creado en la raíz (`.webui_secret_key`, `.audit/`, `public_home.html`, `*.log`, `local_agent.py`) | ✅ Verificado (`git check-ignore` activo) |
+| C1 | `subir.bat` endurecido: aborta con `exit /b 1` si `.webui_secret_key`, `.audit` o `public_home` aparecen en staging | ✅ Verificado |
+| C1 | Valor del secreto redactado en AUDITORIA-WEB.md (0 ocurrencias del literal) | ✅ Verificado |
+| C2 | og:image / og:image:secure_url / twitter:image / JSON-LD image → `assets/imagenes/amy_art.webp` | ✅ Verificado (HTTP 200) |
+| C2 | Deploy sincronizado: refactor subido + Pages reconfigurado a GitHub Actions (workflow `.github/workflows/pages.yml` publica `landing-page/`) | ✅ Verificado (landing sirviéndose con título correcto) |
+| Nuevo | Deploy roto por el refactor (Pages servía `/`, web en `landing-page/`) — resuelto con Actions ya que Pages solo acepta `/` o `/docs` como source | ✅ Verificado |
+
+Nota importante que quedó pendiente de decisión del usuario:
+
+- ⚠️ **El valor del secreto sigue en el HISTORIAL de git** (commits `6e8dbb2` y `f201f76`). Ya no está en el working tree ni en la rama actual, pero cualquiera con acceso al repo puede verlo navegando el historial (UI de GitHub o `git log -p`). Para eliminarlo del todo haría falta purgar historial (`git filter-repo` + force push), lo cual reescribe los SHAs del repo. **RECOMENDACIÓN: rotar el secreto** (generar uno nuevo en la herramienta que lo usa — es secreto de infraestructura WebUI) y dar el valor publicado por comprometido. La purga de historial es opcional y debe decidirla el usuario.
+
+---
+
 ## APÉNDICE — artefactos de la auditoría
 
 - Informes crudos de los agentes locales: `.audit/audit-appjs.md`, `.audit/audit-stylecss.md`, `.audit/audit-indexhtml.md`, `.audit/audit-duplicacion.md`
