@@ -246,9 +246,12 @@
       document.body.classList.toggle('comp-mode');
       const isComp = document.body.classList.contains('comp-mode');
       modeBtn.textContent = isComp ? '🛡️' : '🖤';
-      if (!selectedAgentColor) {
-        setAccentColor(getDefaultAccentColor());
-      }
+      // Al cambiar de modo se resetea la seleccion de agente para que el color competitivo aplique
+      selectedAgent = null;
+      selectedAgentColor = null;
+      restoreAgentBg();
+      stopAmbient();
+      setAccentColor(getDefaultAccentColor());
     });
   }
 
@@ -777,7 +780,6 @@
 
     canvas.addEventListener('touchmove', (e) => {
       if(e.touches.length > 0) {
-        e.preventDefault();
         const rect = canvas.getBoundingClientRect();
         posX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
         posY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
@@ -785,7 +787,7 @@
           draw();
         }
       }
-    }, { passive: false });
+    }, { passive: true });
 
     draw();
   }

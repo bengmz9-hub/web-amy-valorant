@@ -148,9 +148,62 @@ Nota importante que quedó pendiente de decisión del usuario:
 
 ---
 
+## APÉNDICE C — SEGUNDA RONDA DE PRUEBAS (01/08/2026)
+
+Pruebas adicionales realizadas tras la corrección de privacidad: Lighthouse, validación W3C, headers de seguridad, enlaces externos y auditoría integral delegada al MoE local (Qwen3.6-35B-A3B, 73s).
+
+### C3. Lighthouse (Chrome headless, categorías perf/access/bp/seo)
+
+| Categoría | Score |
+|-----------|-------|
+| Performance | 63 |
+| Accesibilidad | 98 |
+| Best Practices | 100 |
+| SEO | 100 |
+
+Métricas clave:
+- FCP 3.1s · LCP 9.9s (crítico) · Speed Index 3.1s · TBT 0ms · CLS 0.137 · TTI 10.0s
+- Ahorro estimado en imágenes: 1.374 KiB
+
+### C4. Hallazgos verificados (MoE + confirmación con código/Lighthouse)
+
+1. [CRÍTICO] LCP 9.9s: hero `amy_art.webp` (600×710, ~137KB) renderizada a 300px en desktop / 220px móvil. Fix: `srcset` con versión ~400px (ahorro ~300KB) + preload ya presente pero inútil a ese tamaño.
+2. [ALTO] FCP 3.1s: 3 familias de fuentes (Cinzel, Rajdhani, Inter) render-blocking vía Google Fonts. Fix: cargar Inter crítica, resto con `media="print" onload` (o `display=swap` ya está).
+3. [ALTO] `.global-bg` con `background-attachment: fixed` + `valorant_art.webp` (~79KB) se descarga siempre (fondo CSS, sin lazy). Fix: `background-attachment: scroll` en móvil o `<img>` lazy fija.
+4. [MEDIO] CLS 0.137: causa real = `::before` del hero (832×832, animación `pulse` infinita) según Lighthouse, NO los embeds TikTok. Fix: quitar animación del pseudo-elemento o reservar layout.
+5. [MEDIO] BFCache bloqueado: causa real = iframes de TikTok con unload handler (Lighthouse lo confirma con URLs de los 3 embeds). Fix: cargar embeds solo bajo interacción o aceptar (es el coste de TikTok embeds).
+6. [MEDIO] Bug modo competitivo: si un agente está seleccionado, `modeBtn` no aplica el rojo competitivo (app.js líneas 244-253: `if (!selectedAgentColor)`). Fix: resetear `selectedAgentColor` al alternar modo.
+7. [BAJO] `touchmove` del canvas con `preventDefault` no pasivo (app.js 778-788): puede bloquear scroll en móvil si el dedo cae en el canvas. Fix: `passive: false` solo al jugar.
+8. [BAJO] Accesibilidad: headings no descendentes (h2 → h4 en footer, salta h3) — detectado por W3C y Lighthouse. Fix: h4 del footer → h3.
+
+Falsos positivos del MoE (descartados tras verificación):
+- "Audio leak" en chimeInterval: FALSO — `stopAmbient()` sí hace `clearInterval(chimeInterval)` (app.js 117-120).
+- Causa del CLS atribuida a TikTok wrappers: FALSO — la causa real es el `::before` del hero (dato Lighthouse).
+- Causa del BFCache atribuida a audio/canvas: FALSO — la causa real son los iframes de TikTok (dato Lighthouse).
+
+### C5. Validación W3C
+
+- HTML: 0 errores, 1 aviso (jerarquía de encabezados, ver C4.8).
+- Enlaces externos: todos 200 (TikTok, YouTube, Google Fonts). Los "404" de fonts.googleapis.com/media.valorant-api.com son los `preconnect` (no navegables, falsos positivos del crawler).
+
+### C6. Headers de seguridad
+
+- `Strict-Transport-Security` presente (max-age 31556952) ✓
+- Ausentes: CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy. GitHub Pages no permite fijar headers por repo (solo vía CDN delante). Riesgo bajo para landing estática sin formularios, pero si se añaden formularios o analytics, considerar Cloudflare en frente.
+
+### C7. Pruebas aún pendientes (opcionales)
+
+- Lighthouse en móvil (simulación 4G) — el score desktop no refleja el peor caso.
+- Comparativa LCP antes/después de aplicar srcset (validar el fix).
+- Revisión de contraste WCAG AA con axe-core (Lighthouse da 98, solo quedan los headings).
+- WebPageTest con captura del filmstrip si se quiere ver el LCP visualmente.
+
+---
+
 ## APÉNDICE — artefactos de la auditoría
 
-- Informes crudos de los agentes locales: `.audit/audit-appjs.md`, `.audit/audit-stylecss.md`, `.audit/audit-indexhtml.md`, `.audit/audit-duplicacion.md`
+- Informes crudos de los agentes locales: `.audit/audit-appjs.md`, `.audit/audit-stylecss.md`, `.audit/audit-indexhtml.md`, `.audit/audit-duplicacion.md`, `.audit/audit-moe-integral.md`
+- Lighthouse JSON: `/tmp/lh.json` (copiar a `.audit/` si se quiere conservar)
 - Script de auditoría: `.audit/run_audit.py` (reutilizable)
 - Copia del HTML publicado: `public_home.html` (en la raíz del proyecto, borrable)
 - Nota: `.audit/` y `public_home.html` deben añadirse a `.gitignore` (o borrarse) para no subirlos.

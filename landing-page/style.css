@@ -321,7 +321,7 @@ a, button, .filter-btn, .game-card, .mode-toggle {
   background: radial-gradient(circle, rgba(255, 113, 206, 0.1), transparent);
   filter: blur(80px);
   pointer-events: none;
-  animation: pulse 6s infinite;
+  /* animacion pulse eliminada: causaba layout shift (CLS 0.137) en Lighthouse */
 }
 @keyframes pulse {
   0%, 100% { transform: translate(-50%, -50%) scale(1); }
@@ -868,7 +868,7 @@ footer {
   text-align: left;
   margin-bottom: 2rem;
 }
-.footer-section h4 {
+.footer-section h3 {
   font-family: 'Rajdhani', sans-serif;
   font-size: 1rem;
   margin-bottom: 1rem;
