@@ -200,6 +200,43 @@ Falsos positivos del MoE (descartados tras verificación):
 
 ---
 
+## APÉNDICE D — FIXES DE RENDIMIENTO APLICADOS (01/08/2026)
+
+Aplicados y verificados en producción (commit `670986a`). Nada se rompió: W3C 0 errores/avisos, node --check OK, deploy Actions exitoso.
+
+| Fix | Detalle |
+|-----|---------|
+| srcset hero | `amy_art_400.{webp,avif}` (400×363, 10KB vs 134KB original 1315×1196). El HTML declaraba 600×710 pero la imagen real era 1315×1196 — corregido width/height reales. |
+| srcset agentes | `sage/gekko/brimstone_art_400.{webp,avif}` (12-18KB vs 31-58KB). |
+| Fuentes | Google Fonts con `preload as=style onload` + fallback `<noscript>` (no render-blocking). |
+| Headings | Footer h4 → h3 (arregla aviso W3C + accesibilidad). |
+| CLS hero | Animación `pulse` del `::before` del hero eliminada (causa del CLS 0.137). |
+| Modo competitivo | Al alternar modo se resetea `selectedAgent/selectedAgentColor` → el rojo competitivo aplica siempre. |
+| touchmove | `preventDefault` eliminado + `passive: true` (el canvas ya tiene `touch-action: none` en CSS). |
+
+### Resultados Lighthouse (desktop, mismo entorno)
+
+| Métrica | ANTES | DESPUÉS | Δ |
+|---------|-------|---------|---|
+| Performance | 63 | **73** | +10 |
+| Accesibilidad | 98 | **100** | +2 |
+| LCP | 9.9s | **4.8s** | -51% |
+| CLS | 0.137 | **0** | perfecto |
+| TTI | 10.0s | **4.9s** | -51% |
+| FCP | 3.1s | 3.3s | ~igual |
+| TBT | 0ms | 0ms | igual |
+
+BFCache sigue bloqueado (causa: iframes de TikTok con unload handler — coste inherente de los embeds, no fixable sin cambiarlos).
+
+### Lighthouse móvil (390×844, 4G simulado, CPU×4) — peor caso
+
+- Performance 65, Accesibilidad 100
+- LCP 10.0s (score 0) — dominado por la red simulada y el CSS/JS; el siguiente paso sería reducir JS (app.js 28KB + TikTok embed.js) o mover el aim trainer a carga diferida
+- CLS 0.107 — ahora viene de los embeds TikTok que cargan tarde en móvil (el hero ya no contribuye)
+- TBT 0ms, Speed Index 3.3s
+
+Nota: el móvil 4G es el peor caso artificial (CPU throttled ×4 + 1638 Kbps). El rendimiento real en un móvil moderno con WiFi es muy superior.
+
 ## APÉNDICE — artefactos de la auditoría
 
 - Informes crudos de los agentes locales: `.audit/audit-appjs.md`, `.audit/audit-stylecss.md`, `.audit/audit-indexhtml.md`, `.audit/audit-duplicacion.md`, `.audit/audit-moe-integral.md`
