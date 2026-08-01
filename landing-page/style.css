@@ -1147,12 +1147,12 @@ a:focus-visible,
   mask-composite: intersect;
 }
 
-/* oscurecido SOLO detrás del texto (izquierda); el visual derecho queda limpio */
+/* niebla global ELIMINADA — el oscurecido ahora vive solo detrás del texto (.hero-copy) */
 .bg-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, rgba(5,3,8,.6) 0%, rgba(5,3,8,.15) 50%, transparent 70%);
+  background: transparent;
 }
 
 /* film grain + partículas flotantes */
@@ -1273,6 +1273,24 @@ a:focus-visible,
 }
 .btn-ghost:hover { color: #ff9de9; }
 .btn-ghost .arrow { color: var(--accent); font-size: 1.15rem; }
+
+/* panel oscuro intenso SOLO detrás del texto — legibilidad sin niebla global */
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  padding: 3rem 3.2rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(5,3,8,.92) 0%, rgba(5,3,8,.78) 55%, rgba(5,3,8,.6) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 80px rgba(5,3,8,.55);
+}
+.hero-copy .hero-title,
+.hero-copy .hero-desc,
+.hero-copy .cta-row {
+  position: relative;
+  z-index: 1;
+}
 
 /* visual: AMY (redondeada, fade 6%) + SAGE (rectangular, fade 4%) */
 .hero-visual {
