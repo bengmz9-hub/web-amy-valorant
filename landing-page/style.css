@@ -1212,7 +1212,8 @@ a:focus-visible,
   font-size: 1.15rem;
   line-height: 1.9;
   color: #ffffff;
-  text-shadow: -1px 0 1px rgba(5,3,8,.7), 1px 0 1px rgba(5,3,8,.7), 0 -1px 1px rgba(5,3,8,.6), 0 1px 1px rgba(5,3,8,.85), 0 2px 4px rgba(5,3,8,.7), 0 0 14px rgba(5,3,8,.5), 0 0 28px rgba(255,113,206,.32), 0 0 60px rgba(255,113,206,.14);
+  mix-blend-mode: difference;
+  text-shadow: -1px 0 1px rgba(5,3,8,.7), 1px 0 1px rgba(5,3,8,.7), 0 -1px 1px rgba(5,3,8,.6), 0 1px 1px rgba(5,3,8,.85), 0 2px 4px rgba(5,3,8,.7), 0 0 14px rgba(5,3,8,.5);
   max-width: 560px;
   margin-bottom: 3.6rem;
 }
