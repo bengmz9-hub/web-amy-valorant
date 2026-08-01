@@ -179,18 +179,18 @@ const buildPalette = colors => {
 /* Config: paleta cian Sage + rosa marca AMY (regla de oro del rosa + excepcion Sage #0EC8C8) */
 const STRANDS_CONFIG = {
   colors: ['#0EC8C8', '#ff71ce', '#06B6D4', '#ffffff'],
-  count: 4,
+  count: 5,
   speed: 0.5,
   amplitude: 0.9,
   waviness: 1.1,
   thickness: 0.6,
-  glow: 2.2,
+  glow: 2.6,
   taper: 3,
   spread: 1,
   hueShift: 0,
-  intensity: 0.6,
+  intensity: 0.7,
   saturation: 1.4,
-  opacity: 0.9,
+  opacity: 1,
   scale: 1.3,
   glass: false,
   refraction: 1,
@@ -303,14 +303,20 @@ function initStrands(ctn) {
   };
 }
 
-/* Arranque: busca el contenedor .card-sage y monta el canvas DETRAS de la imagen
-   (la img ya tiene z-index 1 en CSS; el canvas se inserta antes como hermano). */
+/* Arranque: monta el canvas como capa de fondo de TODO el hero (todo el ancho),
+   DETRAS del video sageAURA (se inserta antes que .bg-video en el DOM).
+   La img de Sage queda por encima dentro de .hero-visual (z-index 2 del hero-inner). */
 document.addEventListener('DOMContentLoaded', () => {
-  const card = document.querySelector('.card-sage');
-  if (!card) return;
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
   const ctn = document.createElement('div');
   ctn.className = 'strands-container';
-  ctn.style.cssText = 'position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;border-radius:12px;';
-  card.appendChild(ctn);
+  ctn.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden;';
+  const video = hero.querySelector('.bg-video');
+  if (video && video.parentNode === hero) {
+    hero.insertBefore(ctn, video);
+  } else {
+    hero.appendChild(ctn);
+  }
   initStrands(ctn);
 });
