@@ -1,3 +1,12 @@
+/* ============================================================
+   AMY WEB — React + Tailwind v4
+   Tailwind SOLO utilities (sin preflight/reset para no romper
+   el diseño heredado 1:1 de la version estatica).
+   ============================================================ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
 /* ----------------------------- */
 /* ROOT VARIABLES (modo normal) */
 /* ----------------------------- */

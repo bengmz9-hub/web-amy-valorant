@@ -303,10 +303,10 @@ function initStrands(ctn) {
   };
 }
 
-/* Arranque: monta el canvas como capa de fondo de TODO el hero (todo el ancho),
-   DETRAS del video sageAURA (se inserta antes que .bg-video en el DOM).
-   La img de Sage queda por encima dentro de .hero-visual (z-index 2 del hero-inner). */
-document.addEventListener('DOMContentLoaded', () => {
+/* Arranque (llamado desde React tras el render): monta el canvas como capa de fondo
+   de TODO el hero (todo el ancho), DETRAS del video sageAURA (se inserta antes que
+   .bg-video en el DOM). La img de Sage queda por encima dentro de .hero-visual. */
+export function mountStrands() {
   const hero = document.querySelector('.hero');
   if (!hero) return;
   const ctn = document.createElement('div');
@@ -318,5 +318,5 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     hero.appendChild(ctn);
   }
-  initStrands(ctn);
-});
+  return initStrands(ctn);
+}

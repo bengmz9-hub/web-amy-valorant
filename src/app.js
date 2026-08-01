@@ -1,4 +1,4 @@
-(function() {
+export function initApp() {
   'use strict';
 
   // Helper seguro para localStorage (evita excepciones de seguridad en entornos sandbox/iframe)
@@ -832,4 +832,4 @@
   }
 
   restoreAccentColor();
-})();
+}
