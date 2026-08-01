@@ -148,23 +148,42 @@
 
 <main id="main" aria-label="Contenido principal">
 <header class="hero">
-  <div class="hero-container">
-    <div class="hero-text">
-      <h1>Disciplina, <br>Análisis y <span class="highlight">Ejecución.</span></h1>
-      <div class="hero-bio">
-        <p>He ido construyendo mi forma de jugar a base de constancia, aprendizaje y muchas horas, entendiendo cómo funciona cada partida. Le doy importancia a cosas como la lectura del mapa, el ritmo del juego y tomar buenas decisiones en los momentos clave.<br><br>Mi main principal es Sage, buscando siempre ayudar al equipo de la forma más útil posible y aportando estabilidad dentro de la partida. Para mí, mejorar no es solo cuestión de mecánicas, sino también de mantener la calma, adaptarme y seguir aprendiendo.</p>
+  <!-- video sageAURA de fondo: contenedor propio 72% centrado, fade uniforme en los 4 lados -->
+  <video class="bg-video" autoplay muted loop playsinline poster="assets/imagenes/amy_art.webp">
+    <source src="assets/imagenes/sageAURA.webm" type="video/webm">
+    <source src="assets/imagenes/sageAURA.mp4" type="video/mp4">
+  </video>
+  <div class="bg-overlay"></div>
+  <div class="grain"></div>
+  <div class="dust"></div><div class="dust"></div><div class="dust"></div>
+  <div class="dust"></div><div class="dust"></div><div class="dust"></div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1 class="hero-title">Amy valorant<br>player</h1>
+
+      <p class="hero-desc">
+        ¡Hola! Soy Amy y este es mi rincón de Valorant. Juego en <b class="platino">Platino 2</b> y soy
+        <span class="pink">main Sage</span>: la que cura, la que resucita y la que aguanta.
+        Aquí comparto mis clips, mis guías y mi setup, para que aprendas conmigo y
+        mejores partida a partida. Esto es para todos: si juegas, si quieres empezar,
+        o si solo vienes a ver buenas jugadas, quédate un rato.
+        Subo contenido cada semana en TikTok y YouTube, siempre con buenas vibras.
+      </p>
+
+      <div class="cta-row">
+        <a href="#shorts" class="btn-pink">Ver clips</a>
+        <a href="#gear" class="btn-ghost">Mi setup <span class="arrow">→</span></a>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="main-frame hud-corners-container">
-        <picture>
-          <source srcset="assets/imagenes/amy_art_400.avif 400w, assets/imagenes/amy_art.avif 1315w" sizes="(max-width: 768px) 220px, 300px" type="image/avif">
-          <img src="assets/imagenes/amy_art.webp" srcset="assets/imagenes/amy_art_400.webp 400w, assets/imagenes/amy_art.webp 1315w" sizes="(max-width: 768px) 220px, 300px" width="1315" height="1196" alt="Amy, jugadora de Valorant main Sage" loading="eager" fetchpriority="high" onerror="this.onerror=null; this.src='https://placehold.co/600x600/1a1d25/ffffff?text=AMY'">
-        </picture>
+
+    <div class="hero-visual">
+      <div class="card-amy">
+        <img src="assets/imagenes/amy_art.webp" alt="AMY">
       </div>
-      <a href="https://www.tiktok.com/@amyjgil" target="_blank" rel="noopener noreferrer" class="cta-community glitch-hover">
-        ¿Quieres unirte a mi comunidad? <span>Contáctame</span>
-      </a>
+      <div class="card-sage">
+        <img src="assets/imagenes/sage-wallpaper.jpg" alt="Sage">
+      </div>
     </div>
   </div>
 </header>
@@ -345,5 +364,6 @@
 </footer>
 
 <script src="app.js" defer></script>
+<script type="module" src="assets/js/strands.js"></script>
 </body>
 </html>
