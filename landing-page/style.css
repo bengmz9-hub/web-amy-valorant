@@ -103,12 +103,9 @@ a, button, .filter-btn, .game-card, .mode-toggle {
 .agent-bg-overlay.active {
   opacity: 1;
 }
-.global-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background: radial-gradient(circle at center, transparent 10%, var(--bg-dark) 100%);
-}
+/* niebla ELIMINADA TOTALMENTE (2026-08-01): .global-overlay (vignette oscura fija)
+   y .bg-overlay fueron eliminados — el hero va SIN ninguna capa oscura. Los divs
+   correspondientes en index.html quedan huerfanos e inofensivos (sin regla CSS). */
 .side-agent {
   position: fixed;
   top: 50%;
@@ -1145,14 +1142,6 @@ a:focus-visible,
     linear-gradient(to right, transparent 0, #000 22%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
-}
-
-/* niebla global ELIMINADA — el oscurecido ahora vive solo detrás del texto (.hero-copy) */
-.bg-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: transparent;
 }
 
 /* film grain + partículas flotantes */
