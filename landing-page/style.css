@@ -1221,7 +1221,7 @@ a:focus-visible,
   font-weight: 300;
   font-size: 1.15rem;
   line-height: 1.9;
-  color: #d9c3d0;
+  color: #ece6ee;
   max-width: 560px;
   margin-bottom: 3.6rem;
 }
@@ -1274,22 +1274,10 @@ a:focus-visible,
 .btn-ghost:hover { color: #ff9de9; }
 .btn-ghost .arrow { color: var(--accent); font-size: 1.15rem; }
 
-/* panel oscuro intenso SOLO detrás del texto — legibilidad sin niebla global */
+/* sin panel oscuro: el texto se lee por color claro (gris muy claro sobre el video) */
 .hero-copy {
   position: relative;
   z-index: 2;
-  padding: 3rem 3.2rem;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(5,3,8,.92) 0%, rgba(5,3,8,.78) 55%, rgba(5,3,8,.6) 100%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 0 80px rgba(5,3,8,.55);
-}
-.hero-copy .hero-title,
-.hero-copy .hero-desc,
-.hero-copy .cta-row {
-  position: relative;
-  z-index: 1;
 }
 
 /* visual: AMY (redondeada, fade 6%) + SAGE (rectangular, fade 4%) */
