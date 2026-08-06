@@ -18,3 +18,4 @@ local_agent.py
 # Editor / SO
 .DS_Store
 Thumbs.db
+.vercel
