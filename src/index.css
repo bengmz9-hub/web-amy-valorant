@@ -1104,11 +1104,11 @@ a:focus-visible,
   opacity: 0.9;
   filter: contrast(1.08) saturate(1.1) brightness(1.02);
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
-    radial-gradient(ellipse 60% 55% at 50% 38%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.6) 65%, transparent 85%);
+    linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%),
+    radial-gradient(ellipse 55% 50% at 50% 38%, rgba(0,0,0,1) 35%, rgba(0,0,0,0.2) 52%, transparent 62%);
   mask-image:
-    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
-    radial-gradient(ellipse 60% 55% at 50% 38%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.6) 65%, transparent 85%);
+    linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%),
+    radial-gradient(ellipse 55% 50% at 50% 38%, rgba(0,0,0,1) 35%, rgba(0,0,0,0.2) 52%, transparent 62%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
