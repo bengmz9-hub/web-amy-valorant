@@ -1123,23 +1123,29 @@ a:focus-visible,
   overflow: hidden;
 }
 
-.hero-fade-bottom {
+/* Capa de fundido ENTRE hero y stats — vive fuera del hero para evitar overflow:hidden */
+.hero-stats-blend {
+  position: relative;
+  width: 100%;
+  height: 0;
+  z-index: 3;
+}
+.hero-stats-blend::before {
+  content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 45%;
+  height: 300px;
   background: linear-gradient(to top,
     var(--bg-dark) 0%,
-    var(--bg-dark) 10%,
-    rgba(15, 10, 12, 0.92) 25%,
-    rgba(15, 10, 12, 0.7) 45%,
-    rgba(15, 10, 12, 0.35) 65%,
-    rgba(15, 10, 12, 0.1) 85%,
+    var(--bg-dark) 30%,
+    rgba(15, 10, 12, 0.85) 50%,
+    rgba(15, 10, 12, 0.5) 70%,
+    rgba(15, 10, 12, 0.15) 90%,
     transparent 100%
   );
   pointer-events: none;
-  z-index: 1;
 }
 
 /* video de fondo: Sage en escala amplia (0.9) con suavizado simétrico */

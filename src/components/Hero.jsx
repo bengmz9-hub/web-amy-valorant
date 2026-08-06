@@ -6,7 +6,6 @@ export default function Hero() {
         <source src="assets/imagenes/sageAURA.mp4" type="video/mp4" />
         <source src="assets/imagenes/sageAURA.webm" type="video/webm" />
       </video>
-      <div className="hero-fade-bottom"></div>
 
       <div className="grain"></div>
       <div className="dust"></div><div className="dust"></div><div className="dust"></div>
