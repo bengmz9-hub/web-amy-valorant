@@ -1078,6 +1078,10 @@ a:focus-visible,
   justify-content: center;
   overflow: hidden;
   background: var(--bg-dark);
+  /* Funde TODO el contenido del hero (vídeo, glow, grain) a transparente
+     antes del borde inferior → transición invisible con stats */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 92%);
 }
 
 
