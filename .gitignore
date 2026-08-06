@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Build
+dist/
+
+# Secretos e infra
+.webui_secret_key
+
+# Auditorías y herramientas
+.audit/
+graphify-out/
+
+# Logs y scripts temporales
+*.log
+local_agent.py
+
+# Editor / SO
+.DS_Store
+Thumbs.db
+.vercel
