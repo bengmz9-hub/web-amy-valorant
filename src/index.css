@@ -3,23 +3,38 @@
    Tailwind SOLO utilities (sin preflight/reset para no romper
    el diseño heredado 1:1 de la version estatica).
    ============================================================ */
-@layer theme, base, components, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+@theme {
+  --font-sans: var(--font-sans);
+  --font-cinzel: var(--font-cinzel);
+
+  --color-bg-main: #09080a;
+  --color-bg-card: #121015;
+  --color-border-subtle: #231d28;
+
+  --color-rose-accent: #d47a93;
+  --color-rose-glow: #1e0a14;
+
+  --color-cyan-tactical: #00f0ff;
+
+  --color-text-main: #fafafa;
+  --color-text-muted: #a1a1aa;
+}
 
 /* ----------------------------- */
 /* ROOT VARIABLES (modo normal) */
 /* ----------------------------- */
 :root {
-  --bg-dark: #0f0a0c;
-  --bg-card: rgba(26, 12, 16, 0.75);
-  --text-main: #ffe4e6;
-  --text-sub: #fbcfe8;
-  --accent: #ff71ce;
-  --accent-glow: rgba(255, 113, 206, 0.3);
-  --accent-radial: rgba(255, 113, 206, 0.05);
+  --bg-dark: #09080a;
+  --bg-card: #121015;
+  --text-main: #fafafa;
+  --text-sub: #a1a1aa;
+  --accent: #d47a93;
+  --accent-glow: rgba(212, 122, 147, 0.35);
+  --accent-radial: rgba(212, 122, 147, 0.05);
+  --cyan-tactical: #00f0ff;
+  --cyan-glow: rgba(0, 240, 255, 0.4);
   --glass: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(255, 113, 206, 0.15);
+  --glass-border: #231d28;
   --radius-lg: 24px;
   --transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   --mouse-x: 50%;
@@ -449,9 +464,11 @@ section > :last-child,
 .stat-number {
   font-family: 'Rajdhani', sans-serif;
   font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--accent);
+  font-weight: 800;
+  color: var(--cyan-tactical);
+  letter-spacing: -0.5px;
   margin-bottom: 0.3rem;
+  text-shadow: 0 0 12px var(--cyan-glow);
 }
 .stat-label {
   font-size: 0.8rem;

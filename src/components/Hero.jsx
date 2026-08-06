@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <header className="hero">
+    <section className="hero relative w-full min-h-screen [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
       {/* video sageAURA de fondo: prioriza MP4 (8MB HD) sobre WEBM (1.1MB comprimido) */}
       <video className="bg-video" autoPlay muted loop playsInline poster="assets/imagenes/amy_art.webp">
         <source src="assets/imagenes/sageAURA.mp4" type="video/mp4" />
@@ -25,7 +25,7 @@ export default function Hero() {
           </p>
 
           <div className="cta-row">
-            <a href="#shorts" className="btn-pink">Ver clips</a>
+            <button className="bg-rose-accent hover:bg-rose-accent/90 text-bg-main font-semibold px-6 py-2 rounded-lg shadow-[0_0_20px_rgba(212,122,147,0.35)] transition-all">Ver clips</button>
             <a href="#gear" className="btn-ghost">Mi setup <span className="arrow">→</span></a>
           </div>
         </div>
@@ -64,6 +64,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </header>
+    </section>
   );
 }
