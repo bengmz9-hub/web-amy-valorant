@@ -83,18 +83,8 @@ a, button, .filter-btn, .game-card, .mode-toggle {
    y .bg-overlay fueron eliminados — el hero va SIN ninguna capa oscura. Los divs
    correspondientes en index.html quedan huerfanos e inofensivos (sin regla CSS). */
 .side-agent {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 220px;
-  height: auto;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.15;
-  transition: var(--transition);
+  display: none;
 }
-.agent-left { left: -30px; filter: drop-shadow(10px 0 20px var(--accent-glow)) grayscale(20%); }
-.agent-right { right: -30px; filter: drop-shadow(-10px 0 20px var(--accent-glow)) grayscale(20%); }
 
 /* Linterna táctica */
 .tactical-flashlight {
@@ -1087,6 +1077,7 @@ a:focus-visible,
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: var(--bg-dark);
 }
 
 
@@ -1104,11 +1095,11 @@ a:focus-visible,
   opacity: 0.9;
   filter: contrast(1.08) saturate(1.1) brightness(1.02);
   -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%),
-    radial-gradient(ellipse 55% 50% at 50% 38%, rgba(0,0,0,1) 35%, rgba(0,0,0,0.2) 52%, transparent 62%);
+    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    radial-gradient(ellipse 60% 55% at 50% 38%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.6) 65%, transparent 85%);
   mask-image:
-    linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%),
-    radial-gradient(ellipse 55% 50% at 50% 38%, rgba(0,0,0,1) 35%, rgba(0,0,0,0.2) 52%, transparent 62%);
+    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    radial-gradient(ellipse 60% 55% at 50% 38%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.6) 65%, transparent 85%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
