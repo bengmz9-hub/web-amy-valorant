@@ -70,16 +70,7 @@ a, button, .filter-btn, .game-card, .mode-toggle {
 /* GLOBAL EFFECTS               */
 /* ----------------------------- */
 .cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: -1;
-  background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-radial), transparent 80%);
-  transition: background 0.4s ease;
-  will-change: background;
+  display: none;
 }
 .global-bg {
   position: fixed;
@@ -94,8 +85,8 @@ a, button, .filter-btn, .game-card, .mode-toggle {
   background-attachment: fixed;
   filter: brightness(0.22) contrast(1.15);
   transition: var(--transition);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.4) 45%, transparent 55%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.4) 45%, transparent 55%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 25%, transparent 32%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 25%, transparent 32%);
 }
 .agent-bg-overlay {
   position: fixed;
