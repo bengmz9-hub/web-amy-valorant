@@ -94,8 +94,8 @@ a, button, .filter-btn, .game-card, .mode-toggle {
   background-attachment: fixed;
   filter: brightness(0.22) contrast(1.15);
   transition: var(--transition);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, rgba(0,0,0,0.6) 65%, transparent 90%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 45%, rgba(0,0,0,0.6) 65%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.4) 45%, transparent 55%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 30%, rgba(0,0,0,0.4) 45%, transparent 55%);
 }
 .agent-bg-overlay {
   position: fixed;
@@ -1124,22 +1124,7 @@ a:focus-visible,
   overflow: hidden;
 }
 
-/* Capa de fundido ENTRE hero y stats — degradado siempre creciente hacia abajo */
-.hero-stats-blend {
-  position: relative;
-  z-index: 2;
-  margin-top: -220px;
-  height: 220px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(15, 10, 12, 0.15) 20%,
-    rgba(15, 10, 12, 0.4) 40%,
-    rgba(15, 10, 12, 0.7) 60%,
-    rgba(15, 10, 12, 0.9) 80%,
-    var(--bg-dark) 100%
-  );
-  pointer-events: none;
-}
+
 
 /* video de fondo: Sage en escala amplia (0.9) con suavizado simétrico */
 .bg-video {

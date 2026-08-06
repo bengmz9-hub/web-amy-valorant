@@ -40,7 +40,6 @@ export default function App() {
 
       <main id="main" aria-label="Contenido principal">
         <Hero />
-        <div className="hero-stats-blend"></div>
         <Stats />
         <Agents />
         <SetupGear />
