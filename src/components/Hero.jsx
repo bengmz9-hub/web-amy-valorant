@@ -1,11 +1,13 @@
 export default function Hero() {
   return (
     <header className="hero">
-      {/* video sageAURA de fondo: contenedor propio 72% centrado, fade uniforme en los 4 lados */}
+      {/* video sageAURA de fondo: prioriza MP4 (8MB HD) sobre WEBM (1.1MB comprimido) */}
       <video className="bg-video" autoPlay muted loop playsInline poster="assets/imagenes/amy_art.webp">
-        <source src="assets/imagenes/sageAURA.webm" type="video/webm" />
         <source src="assets/imagenes/sageAURA.mp4" type="video/mp4" />
+        <source src="assets/imagenes/sageAURA.webm" type="video/webm" />
       </video>
+      <div className="hero-fade-bottom"></div>
+
       <div className="grain"></div>
       <div className="dust"></div><div className="dust"></div><div className="dust"></div>
       <div className="dust"></div><div className="dust"></div><div className="dust"></div>
@@ -30,11 +32,36 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual">
-          <div className="card-amy">
-            <img src="assets/imagenes/amy_art.webp" alt="AMY" />
+          {/* Portrait AMY: Estilo Player Card Táctico */}
+          <div className="card-amy portrait-card">
+            <div className="portrait-corner top-left"></div>
+            <div className="portrait-corner bottom-right"></div>
+            <div className="portrait-badge">
+              <span className="badge-dot"></span> AMY // CREATOR
+            </div>
+            <div className="portrait-img-wrapper">
+              <img src="assets/imagenes/amy_art.webp" alt="AMY" />
+            </div>
+            <div className="portrait-footer">
+              <span className="portrait-tag">MAIN SAGE</span>
+              <span className="portrait-code">SYS-02</span>
+            </div>
           </div>
-          <div className="card-sage">
-            <img src="assets/imagenes/sage-wallpaper.jpg" alt="Sage" />
+
+          {/* Portrait SAGE: Estilo Agent Card */}
+          <div className="card-sage portrait-card">
+            <div className="portrait-corner top-left"></div>
+            <div className="portrait-corner bottom-right"></div>
+            <div className="portrait-badge sage-badge">
+              VALORANT // AGENT #07
+            </div>
+            <div className="portrait-img-wrapper">
+              <img src="assets/imagenes/sage-wallpaper.jpg" alt="Sage" />
+            </div>
+            <div className="portrait-footer">
+              <span className="portrait-tag cyan">SENTINEL</span>
+              <span className="portrait-code">RADIANITE</span>
+            </div>
           </div>
         </div>
       </div>
