@@ -58,7 +58,7 @@ export default function Hero() {
               <img src="assets/imagenes/sage-wallpaper.jpg" alt="Sage" />
             </div>
             <div className="portrait-footer">
-              <span className="portrait-tag cyan">SENTINEL</span>
+              <span className="portrait-tag">SENTINEL</span>
               <span className="portrait-code">RADIANITE</span>
             </div>
           </div>

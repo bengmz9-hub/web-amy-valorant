@@ -15,7 +15,6 @@
   /* Acentos mate (cero neón) */
   --color-rose-gold: #c07a8b;
   --color-burgundy-dim: #1c1017;
-  --color-cyan-steel: #38bdf8;
 
   /* Tipografía */
   --color-text-main: #f4f4f5;
@@ -34,8 +33,6 @@
   --accent: var(--color-rose-gold, #c07a8b);
   --accent-soft: rgba(192, 122, 139, 0.85);
   --accent-glow: rgba(192, 122, 139, 0.15);
-  --cyan-tactical: var(--color-cyan-steel, #38bdf8);
-  --cyan-glow: rgba(56, 189, 248, 0.2);
   --glass: rgba(255, 255, 255, 0.02);
   --glass-border: var(--color-border-subtle, #27272a);
   --radius-lg: 24px;
@@ -1425,10 +1422,6 @@ a:focus-visible,
   letter-spacing: 1px;
   color: var(--accent);
   text-shadow: 0 0 8px rgba(255, 113, 206, 0.6);
-}
-.portrait-tag.cyan {
-  color: #2ee6a8;
-  text-shadow: 0 0 8px rgba(46, 230, 168, 0.6);
 }
 .portrait-code {
   font-size: 0.68rem;

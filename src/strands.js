@@ -176,9 +176,9 @@ const buildPalette = colors => {
   return padded;
 };
 
-/* Config: paleta cian Sage + rosa marca AMY (regla de oro del rosa + excepcion Sage #0EC8C8) */
+/* Config: paleta rosa marca AMY (sin cian; Sage #0EC8C8 eliminado 2026-08-07) */
 const STRANDS_CONFIG = {
-  colors: ['#0EC8C8', '#ff71ce', '#06B6D4', '#ffffff'],
+  colors: ['#ff9de9', '#ff71ce', '#c07a8b', '#ffffff'],
   count: 5,
   speed: 0.5,
   amplitude: 0.9,
