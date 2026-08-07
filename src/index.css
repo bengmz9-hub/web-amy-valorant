@@ -7,12 +7,18 @@
   --font-sans: var(--font-sans);
   --font-cinzel: var(--font-cinzel);
 
-  --color-obsidiana: #08070a;
-  --color-carbon-surface: #121116;
-  --color-borgona-noche: #1c1017;
-  --color-rose-gold-mate: #c07a8b;
-  --color-cyan-acero: #38bdf8;
-  --color-blanco-marfil: #f4f4f5;
+  /* Fondo general elegante */
+  --color-bg-main: #08070a;
+  --color-bg-card: #121116;
+  --color-border-subtle: #27272a;
+
+  /* Acentos mate (cero neón) */
+  --color-rose-gold: #c07a8b;
+  --color-burgundy-dim: #1c1017;
+  --color-cyan-steel: #38bdf8;
+
+  /* Tipografía */
+  --color-text-main: #f4f4f5;
   --color-text-muted: #a1a1aa;
 }
 
@@ -20,18 +26,18 @@
 /* ROOT VARIABLES (modo normal) */
 /* ----------------------------- */
 :root {
-  --bg-dark: #08070a;
-  --bg-card: #121116;
-  --bg-card-subtle: #1c1017;
-  --text-main: #f4f4f5;
-  --text-sub: #a1a1aa;
-  --accent: #c07a8b;
+  --bg-dark: var(--color-bg-main, #08070a);
+  --bg-card: var(--color-bg-card, #121116);
+  --bg-card-subtle: var(--color-burgundy-dim, #1c1017);
+  --text-main: var(--color-text-main, #f4f4f5);
+  --text-sub: var(--color-text-muted, #a1a1aa);
+  --accent: var(--color-rose-gold, #c07a8b);
   --accent-soft: rgba(192, 122, 139, 0.85);
   --accent-glow: rgba(192, 122, 139, 0.15);
-  --cyan-tactical: #38bdf8;
+  --cyan-tactical: var(--color-cyan-steel, #38bdf8);
   --cyan-glow: rgba(56, 189, 248, 0.2);
   --glass: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(39, 39, 42, 0.8);
+  --glass-border: var(--color-border-subtle, #27272a);
   --radius-lg: 24px;
   --transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   --mouse-x: 50%;
