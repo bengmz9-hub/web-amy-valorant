@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Navbar from './components/Navbar.jsx';
+import NavbarAceternity from './components/NavbarAceternity.jsx';
 import Hero from './components/Hero.jsx';
 import Stats from './components/Stats.jsx';
 import Agents from './components/Agents.jsx';
@@ -36,7 +36,7 @@ export default function App() {
 
       <div id="scrollBar"></div>
 
-      <Navbar />
+      <NavbarAceternity />
 
       <main id="main" aria-label="Contenido principal">
         <Hero />

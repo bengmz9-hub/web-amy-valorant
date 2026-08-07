@@ -72,175 +72,6 @@ export function initApp() {
     }
   }
 
-  // Control de Audio y Paisajes Sonoros Sintetizados
-  let audioCtx = null;
-  let audioEnabled = safeStorage.getItem('amy-audio-enabled') === 'true';
-  const audioBtn = document.getElementById('audioBtn');
-
-  function initAudio() {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-  }
-
-  if (audioBtn) {
-    audioBtn.textContent = audioEnabled ? '🔊' : '🔇';
-    audioBtn.addEventListener('click', () => {
-      audioEnabled = !audioEnabled;
-      safeStorage.setItem('amy-audio-enabled', audioEnabled);
-      audioBtn.textContent = audioEnabled ? '🔊' : '🔇';
-      initAudio();
-      if (!audioEnabled) {
-        stopAmbient();
-      }
-    });
-  }
-
-  let ambientOsc = null;
-  let ambientGain = null;
-  let chimeInterval = null;
-
-  function stopAmbient() {
-    if (ambientOsc) {
-      try { ambientOsc.stop(); } catch(e) {}
-      ambientOsc = null;
-    }
-    if (ambientGain) {
-      try {
-        ambientGain.gain.setValueAtTime(ambientGain.gain.value, audioCtx ? audioCtx.currentTime : 0);
-        ambientGain.gain.linearRampToValueAtTime(0, (audioCtx ? audioCtx.currentTime : 0) + 0.3);
-      } catch(e) {}
-    }
-    if (chimeInterval) {
-      clearInterval(chimeInterval);
-      chimeInterval = null;
-    }
-  }
-
-  function playAgentAmbient(agent) {
-    initAudio();
-    if (!audioCtx || audioCtx.state === 'suspended') return;
-    if (!audioEnabled) return;
-
-    stopAmbient();
-
-    ambientGain = audioCtx.createGain();
-    ambientGain.gain.setValueAtTime(0, audioCtx.currentTime);
-    ambientGain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.25);
-    ambientGain.connect(audioCtx.destination);
-
-    if (agent === 'sage') {
-      // Sage: Campanillas cristalinas y sintetizador de fondo suave
-      ambientOsc = audioCtx.createOscillator();
-      ambientOsc.type = 'triangle';
-      ambientOsc.frequency.setValueAtTime(220, audioCtx.currentTime);
-
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = 'bandpass';
-      filter.frequency.setValueAtTime(1000, audioCtx.currentTime);
-      filter.Q.setValueAtTime(1, audioCtx.currentTime);
-
-      ambientOsc.connect(filter);
-      filter.connect(ambientGain);
-      ambientOsc.start();
-
-      chimeInterval = setInterval(() => {
-        if (!audioCtx || !audioEnabled) return;
-        const chimeOsc = audioCtx.createOscillator();
-        const chimeGain = audioCtx.createGain();
-        chimeOsc.type = 'sine';
-        chimeOsc.frequency.setValueAtTime(1000 + Math.random() * 800, audioCtx.currentTime);
-        chimeGain.gain.setValueAtTime(0, audioCtx.currentTime);
-        chimeGain.gain.linearRampToValueAtTime(0.015, audioCtx.currentTime + 0.1);
-        chimeGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
-
-        chimeOsc.connect(chimeGain);
-        chimeGain.connect(audioCtx.destination);
-        chimeOsc.start();
-        chimeOsc.stop(audioCtx.currentTime + 1.3);
-      }, 2200);
-
-    } else if (agent === 'gekko') {
-      // Gekko: Sintetizador burbujeante digital
-      ambientOsc = audioCtx.createOscillator();
-      ambientOsc.type = 'sine';
-      ambientOsc.frequency.setValueAtTime(180, audioCtx.currentTime);
-
-      const lfo = audioCtx.createOscillator();
-      const lfoGain = audioCtx.createGain();
-      lfo.frequency.value = 6;
-      lfoGain.gain.value = 15;
-
-      lfo.connect(lfoGain);
-      lfoGain.connect(ambientOsc.frequency);
-
-      ambientOsc.connect(ambientGain);
-      lfo.start();
-      ambientOsc.start();
-
-    } else if (agent === 'brimstone') {
-      // Brimstone: Zumbido mecánico de radar
-      ambientOsc = audioCtx.createOscillator();
-      ambientOsc.type = 'sawtooth';
-      ambientOsc.frequency.setValueAtTime(75, audioCtx.currentTime);
-
-      const lowpass = audioCtx.createBiquadFilter();
-      lowpass.type = 'lowpass';
-      lowpass.frequency.setValueAtTime(120, audioCtx.currentTime);
-
-      ambientOsc.connect(lowpass);
-      lowpass.connect(ambientGain);
-      ambientOsc.start();
-
-      chimeInterval = setInterval(() => {
-        if (!audioCtx || !audioEnabled) return;
-        const sonarOsc = audioCtx.createOscillator();
-        const sonarGain = audioCtx.createGain();
-        sonarOsc.type = 'sine';
-        sonarOsc.frequency.setValueAtTime(880, audioCtx.currentTime);
-        sonarGain.gain.setValueAtTime(0.02, audioCtx.currentTime);
-        sonarGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
-
-        sonarOsc.connect(sonarGain);
-        sonarGain.connect(audioCtx.destination);
-        sonarOsc.start();
-        sonarOsc.stop(audioCtx.currentTime + 1.9);
-      }, 3200);
-    }
-  }
-
-  function playSynthSound(type) {
-    initAudio();
-    if (!audioCtx || audioCtx.state === 'suspended') return;
-    if (!audioEnabled) return;
-
-    const osc = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    osc.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-
-    if (type === 'hit') {
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(600, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.12);
-      gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.12);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.12);
-    } else if (type === 'miss') {
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(160, audioCtx.currentTime);
-      osc.frequency.linearRampToValueAtTime(90, audioCtx.currentTime + 0.15);
-      gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.15);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.15);
-    }
-  }
-
   if (modeBtn) {
     modeBtn.addEventListener('click', () => {
       document.body.classList.toggle('comp-mode');
@@ -250,7 +81,6 @@ export function initApp() {
       selectedAgent = null;
       selectedAgentColor = null;
       restoreAgentBg();
-      stopAmbient();
       setAccentColor(getDefaultAccentColor());
     });
   }
@@ -338,7 +168,7 @@ export function initApp() {
     });
   });
 
-  // Selector de agente (color, fondo dinámico, rotación 3D y sonido ambiental)
+  // Selector de agente (color, fondo dinámico, rotación 3D)
   let hoverAgentColor = null;
   const agentCards = document.querySelectorAll('.game-card');
   agentCards.forEach(card => {
@@ -367,7 +197,6 @@ export function initApp() {
           agentBgOverlay.style.backgroundImage = `url('${agentBgImages[agent]}')`;
           agentBgOverlay.classList.add('active');
         }
-        playAgentAmbient(agent);
       }
     });
 
@@ -375,7 +204,6 @@ export function initApp() {
       hoverAgentColor = null;
       restoreAccentColor();
       restoreAgentBg();
-      stopAmbient();
       requestAnimationFrame(() => {
         card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
       });
@@ -391,7 +219,6 @@ export function initApp() {
           agentBgOverlay.style.backgroundImage = `url('${agentBgImages[agent]}')`;
           agentBgOverlay.classList.add('active');
         }
-        playAgentAmbient(agent);
       }
     });
   });
@@ -402,7 +229,6 @@ export function initApp() {
       selectedAgentColor = null;
       restoreAccentColor();
       restoreAgentBg();
-      stopAmbient();
     }
   });
 
