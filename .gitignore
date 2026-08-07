@@ -19,3 +19,4 @@ local_agent.py
 .DS_Store
 Thumbs.db
 .vercel
+.project-map.md

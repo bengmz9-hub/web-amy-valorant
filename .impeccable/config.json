@@ -1,0 +1,20 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "ai-color-palette",
+        "value": "#2ee6a8",
+        "createdAt": "2026-08-07T01:55:10.853Z",
+        "reason": "Verde Platino de Valorant (color del rango en el juego), marca intencional"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "#2ee6a8",
+        "createdAt": "2026-08-07T01:55:11.760Z",
+        "reason": "Glows del rango Platino de Valorant, marca intencional"
+      }
+    ]
+  }
+}
