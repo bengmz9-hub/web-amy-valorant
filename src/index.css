@@ -7,36 +7,31 @@
   --font-sans: var(--font-sans);
   --font-cinzel: var(--font-cinzel);
 
-  --color-bg-ink: #0a0408;
-  --color-bg-surface: #150a11;
-  --color-bg-surface2: #1f0f18;
-
-  --color-rose: #ff2e88;
-  --color-rose-soft: #ff7ab5;
-  --color-pink-deep: #c41e6c;
-  --color-coral: #ff5e7a;
-
-  --color-text-main: #fff6fa;
-  --color-text-muted: #c998af;
+  --color-obsidiana: #08070a;
+  --color-carbon-surface: #121116;
+  --color-borgona-noche: #1c1017;
+  --color-rose-gold-mate: #c07a8b;
+  --color-cyan-acero: #38bdf8;
+  --color-blanco-marfil: #f4f4f5;
+  --color-text-muted: #a1a1aa;
 }
 
 /* ----------------------------- */
 /* ROOT VARIABLES (modo normal) */
 /* ----------------------------- */
 :root {
-  --bg-dark: #0a0408;
-  --bg-card: #150a11;
-  --bg-card-subtle: #1f0f18;
-  --text-main: #fff6fa;
-  --text-sub: #c998af;
-  --accent: #ff2e88;
-  --accent-soft: #ff7ab5;
-  --accent-deep: #c41e6c;
-  --accent-coral: #ff5e7a;
-  --accent-glow: rgba(255, 46, 136, 0.35);
-  --accent-radial: rgba(255, 46, 136, 0.06);
+  --bg-dark: #08070a;
+  --bg-card: #121116;
+  --bg-card-subtle: #1c1017;
+  --text-main: #f4f4f5;
+  --text-sub: #a1a1aa;
+  --accent: #c07a8b;
+  --accent-soft: rgba(192, 122, 139, 0.85);
+  --accent-glow: rgba(192, 122, 139, 0.15);
+  --cyan-tactical: #38bdf8;
+  --cyan-glow: rgba(56, 189, 248, 0.2);
   --glass: rgba(255, 255, 255, 0.02);
-  --glass-border: rgba(255, 122, 181, 0.15);
+  --glass-border: rgba(39, 39, 42, 0.8);
   --radius-lg: 24px;
   --transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   --mouse-x: 50%;
