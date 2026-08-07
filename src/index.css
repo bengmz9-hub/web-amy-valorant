@@ -127,7 +127,6 @@ a, button, .filter-btn, .game-card, .mode-toggle {
   height: 3px;
   background: linear-gradient(90deg, var(--accent), #ff9de9);
   z-index: 10000;
-  transition: width 0.1s ease-out;
   pointer-events: none;
 }
 
@@ -647,7 +646,6 @@ section > :last-child,
 .usage-bar-fill {
   height: 100%;
   border-radius: 20px;
-  transition: width 0.5s ease;
 }
 
 /* ===== GEAR ===== */
@@ -1326,7 +1324,7 @@ a:focus-visible,
   backdrop-filter: blur(8px);
   padding: 3px 10px;
   border-radius: 4px;
-  border-left: 3px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1341,7 +1339,7 @@ a:focus-visible,
 }
 
 .portrait-badge.sage-badge {
-  border-left-color: #2ee6a8;
+  border-bottom-color: #2ee6a8;
   color: #e2fef7;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 12px rgba(46, 230, 168, 0.35);
 }
