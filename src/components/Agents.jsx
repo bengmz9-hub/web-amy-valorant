@@ -1,3 +1,4 @@
+import WordReveal from './WordReveal.jsx';
 const AGENTS = [
   {
     id: 'sage',
@@ -46,7 +47,7 @@ export default function Agents() {
   return (
     <section id="agents">
       <div className="section-title fade-in-section">
-        <h2>Especialidades <span className="highlight">Tácticas</span></h2>
+        <WordReveal as="h2" parts={[{ t: 'Especialidades' }, { t: 'Tácticas', hl: true }]} />
         <p>Sinergia operativa con agentes de control y soporte.</p>
       </div>
       <div className="cards-grid">

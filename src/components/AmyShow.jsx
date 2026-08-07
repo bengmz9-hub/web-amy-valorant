@@ -1,3 +1,4 @@
+import WordReveal from './WordReveal.jsx';
 const VIDEOS = [
   { id: '7581441844328942870', cite: 'https://www.tiktok.com/@amyjgil/video/7581441844328942870' },
   { id: '7611582111362895126', cite: 'https://www.tiktok.com/@amyjgil/video/7611582111362895126', extra: (
@@ -16,7 +17,7 @@ export default function AmyShow() {
   return (
     <section id="shorts" className="shorts-section fade-in-section">
       <div className="section-title">
-        <h2>The <span className="highlight">Amy Show</span></h2>
+        <WordReveal as="h2" parts={[{ t: 'The' }, { t: 'Amy Show', hl: true }]} />
         <p>Jugadas, errores y momentos divertidos.</p>
       </div>
       <div className="tiktok-grid">

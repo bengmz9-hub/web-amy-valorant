@@ -97,9 +97,7 @@ a, button, .filter-btn, .game-card, .mode-toggle {
 /* niebla ELIMINADA TOTALMENTE (2026-08-01): .global-overlay (vignette oscura fija)
    y .bg-overlay fueron eliminados — el hero va SIN ninguna capa oscura. Los divs
    correspondientes en index.html quedan huerfanos e inofensivos (sin regla CSS). */
-.side-agent {
-  display: none;
-}
+
 
 /* Linterna táctica */
 .tactical-flashlight {
@@ -2001,3 +1999,182 @@ a:focus-visible,
   .ac-link:hover { animation: none !important; }
 }
 .ac-nav :focus-visible, .ac-panel :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ===== WAYFINDER #3 v3: carrusel de agentes (estilo card-sage) ===== */
+.ac-wrap {
+  width: 100%;
+  max-width: 420px;
+}
+.ac-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem 40px 1rem;
+  scrollbar-width: none;
+  perspective: 1200px; /* coverflow 3D estilo Kai Marlow */
+}
+.ac-track::-webkit-scrollbar { display: none; }
+.ac-card {
+  flex: 0 0 auto;
+  scroll-snap-align: center; /* la activa queda centrada en el track */
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  will-change: transform;
+}
+/* Todas las tarjetas del carrusel con el mismo ratio (el de Sage, 5:9) y
+   las imágenes cubriendo el wrapper entero (object-fit: cover) */
+.ac-card .portrait-img-wrapper {
+  aspect-ratio: 5 / 9;
+}
+/* El badge nunca parte el texto (p.ej. "VALORANT" no se rompe en dos líneas) */
+.ac-card .portrait-badge {
+  white-space: nowrap;
+}
+.ac-card .portrait-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+/* Auras por agente (wayfinder #3): Sage verde platino (heredado de .card-sage),
+   Brimstone dark orange, Gekko verde mate (glow tenue).
+   Contorno 2px + glow base permanente (pedido usuario 2026-08-07). */
+.ac-card {
+  border-width: 2px;
+  box-shadow: 0 0 20px rgba(46, 230, 168, 0.18);
+}
+.ac-card--brimstone {
+  border-color: rgba(194, 65, 12, 0.5);
+  box-shadow: 0 0 22px rgba(194, 65, 12, 0.22);
+}
+.ac-card--brimstone:hover {
+  border-color: rgba(194, 65, 12, 0.75);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 38px rgba(194, 65, 12, 0.3);
+}
+.ac-card--brimstone .portrait-badge.sage-badge {
+  border-bottom-color: #c2410c;
+}
+.ac-card--gekko {
+  border-color: rgba(124, 154, 78, 0.5);
+  box-shadow: 0 0 20px rgba(124, 154, 78, 0.18);
+}
+.ac-card--gekko:hover {
+  border-color: rgba(124, 154, 78, 0.7);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 28px rgba(124, 154, 78, 0.22);
+}
+.ac-card--gekko .portrait-badge.sage-badge {
+  border-bottom-color: #7c9a4e;
+}
+.ac-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.ac-arrow {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ac-arrow:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #08070a;
+}
+.ac-dots { display: flex; gap: 0.4rem; }
+.ac-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.ac-dot--active {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ac-track { scroll-snap-type: none; }
+  .ac-track, .ac-track * { scroll-behavior: auto !important; }
+}
+
+/* ===== WAYFINDER #3 B: reveals estilo Folira (word-by-word + stagger) ===== */
+/* El gradiente background-clip:text del hero-title NO pinta dentro de los spans
+   inline-block del reveal (letras transparentes) — el título animado usa color
+   sólido accent + el glow original. */
+.wr.hero-title {
+  background: none;
+  -webkit-text-fill-color: var(--accent);
+  color: var(--accent);
+  -webkit-text-stroke: 0;
+  /* Escala para que "AMY VALORANT" quepa en una línea con el modo letras */
+  font-size: clamp(2.6rem, 5.2vw, 5rem);
+}
+.wr.hero-title .wr-seg {
+  white-space: nowrap; /* las líneas nunca se parten por letras */
+}
+/* WordReveal: cada palabra del título se revela en cascada al entrar en viewport */
+.wr .wr-seg { display: block; }
+.wr .wr-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.wr.wr-visible .wr-word {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Modo letters (Create®): cada letra se revela en cascada */
+.wr .wr-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.wr.wr-visible .wr-letter {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Frase sticky ELIMINADA por decisión del usuario 2026-08-07 (no quedaba bien en scroll) */
+/* Stagger de las bento cards de Stats (entran en cascada) */
+.stats-section .bento-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stats-section.stats-in .bento-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Carrusel de agentes debajo de las stats */
+.stats-carousel {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+/* Reduced motion: sin reveals (todo visible) */
+@media (prefers-reduced-motion: reduce) {
+  .wr .wr-word,
+  .wr .wr-letter,
+  .stats-section .bento-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,6 +1,27 @@
-// Stats — OPCIÓN C: Tarjetas glass elegante (iconos SVG + números accent).
-// Clases bento-* ya en index.css. Reversible.
+// Stats — bento grid con stagger al entrar (estilo Folira) + carrusel de agentes debajo.
+// Datos reales (no inventar): 2500+ horas, 51% WR, 284 followers, Platino 2.
+// CSS: .stats-section .bento-card (stagger) y .stats-carousel en index.css.
+import { useEffect, useRef } from 'react';
+import AgentCarousel from './AgentCarousel.jsx';
+
 export default function Stats() {
+  const sectionRef = useRef(null);
+
+  // Stagger: las tarjetas entran en cascada cuando la sección entra en el viewport
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('stats-in');
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => el.classList.toggle('stats-in', e.isIntersecting));
+    }, { threshold: 0.2 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   const stats = [
     {
       value: '2500+',
@@ -48,16 +69,20 @@ export default function Stats() {
   ];
 
   return (
-    <section className="stats-section fade-in-section">
+    <section ref={sectionRef} className="stats-section">
       <div className="bento-grid">
         {stats.map((stat, i) => (
-          <div className="bento-card" key={i}>
+          <div className="bento-card" key={i} style={{ transitionDelay: i * 90 + 'ms' }}>
             <div className="bento-card-accent" />
             <div className="bento-card-icon">{stat.icon}</div>
             <span className="bento-card-number">{stat.value}</span>
             <span className="bento-card-label">{stat.label}</span>
           </div>
         ))}
+      </div>
+
+      <div className="stats-carousel">
+        <AgentCarousel />
       </div>
     </section>
   );

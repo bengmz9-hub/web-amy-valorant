@@ -23,17 +23,6 @@ export default function App() {
       <div className="global-bg"></div>
       <div className="agent-bg-overlay"></div>
 
-      <img
-        src="https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png"
-        className="side-agent agent-left" alt="" width="220" height="440" loading="lazy"
-        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.style.display = 'none'; }}
-      />
-      <img
-        src="https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/fullportrait.png"
-        className="side-agent agent-right" alt="" width="220" height="440" loading="lazy"
-        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.style.display = 'none'; }}
-      />
-
       <div id="scrollBar"></div>
 
       <NavbarAceternity />

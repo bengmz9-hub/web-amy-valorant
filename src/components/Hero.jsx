@@ -1,3 +1,5 @@
+import WordReveal from './WordReveal.jsx';
+
 export default function Hero() {
   return (
     <section className="hero relative w-full min-h-screen [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
@@ -13,7 +15,7 @@ export default function Hero() {
 
       <div className="hero-inner">
         <div className="hero-copy">
-          <h1 className="hero-title">Amy valorant<br />player</h1>
+          <WordReveal as="h1" mode="letters" className="hero-title" parts={[{ t: 'Amy valorant' }, { t: 'player' }]} />
 
           <p className="hero-desc">
             ¡Hola! Soy Amy y este es mi rincón de Valorant. Juego en <b className="platino">Platino 2</b> y soy

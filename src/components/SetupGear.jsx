@@ -1,3 +1,4 @@
+import WordReveal from './WordReveal.jsx';
 const GEAR = [
   { cat: 'perifericos', icon: '🖱️', name: 'Ratón', value: 'Logitech G Pro X Superlight', spec: 'Peso: 63g | Sensor: Hero 25K', status: '✓ Main actual' },
   { cat: 'perifericos', icon: '🎯', name: 'Sensibilidad', value: '800 DPI | 0.51 In-game', spec: 'eDPI: 280 | Polling Rate: 1000Hz', bar: 51 },
@@ -16,7 +17,7 @@ export default function SetupGear() {
   return (
     <section id="gear" className="setup-gear fade-in-section">
       <div className="section-title">
-        <h2>Mi Setup <span className="highlight">& Gear</span></h2>
+        <WordReveal as="h2" parts={[{ t: 'Mi Setup' }, { t: '& Gear', hl: true }]} />
         <p>Herramientas de precisión para el máximo rendimiento.</p>
       </div>
       <div className="gear-filters">
