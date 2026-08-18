@@ -1,11 +1,9 @@
-// AgentCarousel — carrusel de Agent Cards estilo card-sage (wayfinder #3, v4)
-// AUTOPLAY: rota solo cada 3.5s (loop), pausa en hover/touch, respeta prefers-reduced-motion.
-// 3 tarjetas: Sage (#07, existente), Brimstone (Controlador), Gekko (Iniciador).
-// Datos de rol verificados vía valorant-api.com (es-ES). Tasas de uso reales de Agents.jsx.
-// Imágenes en public/assets/imagenes/ (sage-wallpaper.jpg, brimstone-wallpaper.jpg, gekko-wallpaper.jpg).
+// AgentCarousel — carrusel de Agent Cards con scroll-snap horizontal.
+// Autoplay cada 3.5s (loop), pausa en hover/touch, respeta prefers-reduced-motion.
+// 3 tarjetas: Sage, Brimstone, Gekko.
 import { useEffect, useRef, useState } from 'react';
 
-const AUTOPLAY_MS = 3500;
+const AUTOPLAY_MS = 2000;
 
 const agents = [
   {
@@ -43,22 +41,24 @@ export default function AgentCarousel() {
     const el = track.current;
     if (!el) return 0;
     const card = el.querySelector('.ac-card');
-    return card ? card.offsetWidth + 24 : el.clientWidth;
-  };
-
-  const go = (dir) => {
-    const el = track.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * step(), behavior: 'smooth' });
+    if (!card) return el.clientWidth;
+    // Recalcula el ancho cada vez (no cachear) para soportar responsive
+    return card.offsetWidth + 24;
   };
 
   const goTo = (i) => {
     const el = track.current;
     if (!el) return;
-    el.scrollTo({ left: i * step(), behavior: 'smooth' });
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    const target = Math.max(0, Math.min(maxScroll, i * step()));
+    el.scrollTo({ left: target, behavior: 'smooth' });
   };
 
-  // Autoplay: rota cada AUTOPLAY_MS, loop al llegar al final, pausa en hover/touch
+  const go = (dir) => {
+    goTo(idx + dir);
+  };
+
+  // Autoplay
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const t = setInterval(() => {
@@ -75,12 +75,26 @@ export default function AgentCarousel() {
     return () => clearInterval(t);
   }, []);
 
-  const onScroll = () => {
+  // Sync idx con scroll (debounced para no disparar en cada frame)
+  useEffect(() => {
     const el = track.current;
     if (!el) return;
-    const i = Math.round(el.scrollLeft / step());
-    setIdx(Math.max(0, Math.min(agents.length - 1, i)));
-  };
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const s = step();
+        if (s === 0) return;
+        const i = Math.round(el.scrollLeft / s);
+        setIdx(Math.max(0, Math.min(agents.length - 1, i)));
+      });
+    };
+    el.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      el.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
 
   return (
     <div
@@ -90,35 +104,32 @@ export default function AgentCarousel() {
       onTouchStart={() => { paused.current = true; }}
       onTouchEnd={() => { paused.current = false; }}
     >
-      <div className="ac-track" ref={track} onScroll={onScroll} aria-label="Agentes que juega Amy">
-        {agents.map((a, i) => {
-          // Coverflow 3D: la activa de frente, las vecinas rotadas en perspectiva
-          const offset = i - idx;
-          const transform =
-            'translateX(' + offset * -18 + 'px) rotateY(' + offset * -24 + 'deg) scale(' + (offset === 0 ? 1 : 0.86) + ')';
-          return (
-            <div
-              className={'card-sage portrait-card ac-card' + (a.key !== 'sage' ? ' ac-card--' + a.key : '')}
-              key={a.key}
-              style={{ transform, zIndex: offset === 0 ? 2 : 1, opacity: offset === 0 ? 1 : 0.88 }}
-            >
-              <div className="portrait-corner top-left"></div>
-              <div className="portrait-corner bottom-right"></div>
-              <div className="portrait-badge sage-badge">{a.badge}</div>
-              <div className="portrait-img-wrapper">
-                <img
-                  src={a.img}
-                  alt={a.alt}
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.style.display = 'none'; }}
-                />
-              </div>
-              <div className="portrait-footer">
-                <span className="portrait-tag">{a.tag}</span>
-                <span className="portrait-code">{a.code}</span>
-              </div>
+      <div className="ac-track" ref={track} aria-label="Agentes que juega Amy">
+        {agents.map((a, i) => (
+          <div
+            className={
+              'card-sage portrait-card ac-card' +
+              (i === idx ? ' ac-card--active' : '') +
+              (a.key !== 'sage' ? ' ac-card--' + a.key : '')
+            }
+            key={a.key}
+          >
+            <div className="portrait-corner top-left"></div>
+            <div className="portrait-corner bottom-right"></div>
+            <div className="portrait-badge sage-badge">{a.badge}</div>
+            <div className="portrait-img-wrapper">
+              <img
+                src={a.img}
+                alt={a.alt}
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.style.display = 'none'; }}
+              />
             </div>
-          );
-        })}
+            <div className="portrait-footer">
+              <span className="portrait-tag">{a.tag}</span>
+              <span className="portrait-code">{a.code}</span>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="ac-controls">

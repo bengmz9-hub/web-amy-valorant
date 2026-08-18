@@ -27,7 +27,7 @@ export default function Hero() {
           </p>
 
           <div className="cta-row">
-            <button className="bg-[#C07A8B] hover:bg-[#C07A8B]/90 text-[#08070A] font-semibold px-6 py-2.5 rounded-lg shadow-[0_0_15px_rgba(192,122,139,0.25)] transition-all transform hover:-translate-y-0.5">Ver clips</button>
+            <a href="#shorts" className="bg-[#C07A8B] hover:bg-[#C07A8B]/90 text-[#08070A] font-semibold px-6 py-2.5 rounded-lg shadow-[0_0_15px_rgba(192,122,139,0.25)] transition-all transform hover:-translate-y-0.5">Ver clips</a>
             <a href="#gear" className="btn-ghost">Mi setup <span className="arrow">→</span></a>
           </div>
         </div>

@@ -46,7 +46,7 @@ body.comp-mode {
   --accent: #ff4655;
   --accent-glow: rgba(255, 70, 85, 0.3);
   --accent-radial: rgba(255, 70, 85, 0.04);
-  --text-main: #ffffff;
+  --text-main: #ff4655;
   --text-sub: #cbd5e1; /* Mejorado contraste de accesibilidad (antes #94a3b8) */
   --glass-border: rgba(255, 255, 255, 0.08);
 }
@@ -477,19 +477,26 @@ section > :last-child,
 /* ===== TARJETAS DE AGENTES ===== */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+@media (max-width: 1024px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .cards-grid { grid-template-columns: 1fr; }
 }
 
 .game-card {
   background: #0a0f14;
-  border: 1px solid var(--glass-border);
+  border: 2px solid var(--glass-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: var(--transition);
   display: flex;
   flex-direction: column;
   will-change: transform;
+  box-shadow: 0 0 18px var(--glow-local, transparent);
 }
 
 .game-card[data-agent="sage"] {
@@ -508,11 +515,11 @@ section > :last-child,
 .game-card:hover {
   border-color: var(--border-local, var(--accent));
   transform: translateY(-6px);
-  box-shadow: 0 0 30px var(--glow-local, var(--accent-glow));
+  box-shadow: 0 12px 40px var(--glow-local, var(--accent-glow));
 }
 
 .game-card .img-container {
-  height: 240px;
+  height: 320px;
   background: #0a0f14;
   position: relative;
   overflow: hidden;
@@ -534,14 +541,14 @@ section > :last-child,
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 2rem 1rem 1rem;
+  padding: 2rem 1.25rem 1.1rem;
   background: linear-gradient(0deg, rgba(15, 25, 35, 0.95) 0%, transparent 100%);
   font-family: 'Rajdhani', sans-serif;
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 2px;
   margin: 0;
-  color: var(--text-main);
+  color: var(--border-local, var(--text-main));
 }
 
 .info {
@@ -776,25 +783,12 @@ section > :last-child,
   margin-top: 1rem;
 }
 
-/* TikTok shorts */
+/* TikTok shorts — grid 3 columnas (no carrusel) */
 .tiktok-grid {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 0.75rem;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
   width: 100%;
-}
-.tiktok-grid::-webkit-scrollbar {
-  height: 8px;
-}
-.tiktok-grid::-webkit-scrollbar-thumb {
-  background: rgba(255, 113, 206, 0.35);
-  border-radius: 999px;
-}
-.tiktok-grid::-webkit-scrollbar-track {
-  background: transparent;
 }
 .tiktok-wrapper {
   background: var(--bg-card);
@@ -802,10 +796,6 @@ section > :last-child,
   border-radius: 28px;
   border: 1px solid var(--glass-border);
   transition: var(--transition);
-  flex: 0 0 320px;
-  width: 320px;
-  max-width: 320px;
-  scroll-snap-align: start;
 }
 .tiktok-wrapper:hover {
   border-color: var(--accent);
@@ -813,9 +803,70 @@ section > :last-child,
 }
 .tiktok-wrapper blockquote.tiktok-embed {
   width: 100% !important;
-  max-width: 100% !important;
+  max-width: min(100%, 300px) !important;
   min-width: 0 !important;
+  aspect-ratio: 9 / 16 !important;
   margin: 0 auto !important;
+}
+.clip-badge {
+  display: inline-block;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: rgba(192, 122, 139, 0.08);
+}
+.clip-badge--tiktok {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.clip-badge--youtube {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.yt-embed {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  aspect-ratio: 9 / 16;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+.yt-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.clip-title {
+  margin: 0.9rem auto 0;
+  max-width: 300px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text-main, #fff);
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+@media (max-width: 1024px) {
+  .tiktok-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .tiktok-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Footer */
@@ -1465,7 +1516,7 @@ a:focus-visible,
   position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--glass-border);
-  border-top: 2px solid var(--accent);
+  border-top: 2px solid rgba(192, 122, 139, 0.55);
   border-radius: 20px;
   padding: 2rem 1.5rem;
   display: flex;
@@ -1493,7 +1544,7 @@ a:focus-visible,
 .bento-card-icon {
   width: 28px;
   height: 28px;
-  color: var(--accent);
+  color: #d4a8b4;
 }
 .bento-card-icon svg {
   width: 100%;
@@ -1503,7 +1554,7 @@ a:focus-visible,
   font-family: 'Rajdhani', sans-serif;
   font-size: 2.8rem;
   font-weight: 800;
-  color: var(--accent);
+  color: #d4a8b4;
   letter-spacing: -0.5px;
   line-height: 1;
 }
@@ -1517,7 +1568,97 @@ a:focus-visible,
 }
 
 /* ============================================================
-   BENTO GRID — OPCION A: Editorial minimalista (bentoa-*)
+   GEAR BENTO — OPCIÓN A: Asimétrico 12-col (bga-*)
+   Featured 8+4, rows auto. Jerarquía clara, sin tiles.
+   ============================================================ */
+.bga-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+.bga-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: border-color 0.3s cubic-bezier(0.16,1,0.3,1), transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.bga-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+.bga-card-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+.bga-card-value {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+.bga-card-spec {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  line-height: 1.4;
+}
+.bga-card-status {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #4ade80;
+}
+.bga-feat {
+  grid-column: span 8;
+}
+.bga-feat .bga-card-value {
+  font-size: 2.4rem;
+}
+.bga-feat .bga-card-spec {
+  font-size: 0.95rem;
+}
+.bga-half {
+  grid-column: span 4;
+}
+.bga-third {
+  grid-column: span 4;
+}
+.bga-wide {
+  grid-column: span 8;
+}
+.bga-bar {
+  margin-top: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  height: 4px;
+  overflow: hidden;
+}
+.bga-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 20px;
+}
+@media (max-width: 1024px) {
+  .bga-grid { gap: 1rem; }
+  .bga-feat, .bga-wide { grid-column: span 12; }
+  .bga-half, .bga-third { grid-column: span 6; }
+}
+@media (max-width: 640px) {
+  .bga-feat, .bga-wide, .bga-half, .bga-third { grid-column: span 12; }
+}
+/* ============================================================
+   STATS BENTO — OPCIÓN A:
    Asimetrico 12-col: featured 8, small 4x2, wide 8.
    Reversible: borrar bloque + Stats.jsx.
    ============================================================ */
@@ -1800,7 +1941,7 @@ a:focus-visible,
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: var(--text-main);
+  color: var(--accent);
   text-decoration: none;
 }
 .ac-logo__dot {
@@ -1839,13 +1980,13 @@ a:focus-visible,
 }
 .ac-link:hover {
   color: var(--text-main);
-  box-shadow: 0 0 16px 2px rgba(192, 122, 139, 0.28);
+  box-shadow: 0 0 16px 2px var(--accent-glow);
   animation: ac-pulse 1.6s ease-in-out infinite;
 }
 .ac-link:hover::after { transform: translateX(-50%) scaleX(1); }
 @keyframes ac-pulse {
-  0%, 100% { box-shadow: 0 0 16px 2px rgba(192, 122, 139, 0.28); }
-  50%      { box-shadow: 0 0 22px 4px rgba(192, 122, 139, 0.45); }
+  0%, 100% { box-shadow: 0 0 16px 2px var(--accent-glow); }
+  50%      { box-shadow: 0 0 22px 4px var(--accent); }
 }
 .ac-sep { width: 1px; height: 1.3rem; background: var(--glass-border); margin-inline: 0.35rem; }
 .ac-icon {
@@ -1869,7 +2010,7 @@ a:focus-visible,
   justify-content: center;
   width: 2.4rem;
   height: 2.4rem;
-  border: 1px solid rgba(192, 122, 139, 0.45);
+  border: 1px solid var(--accent-glow);
   border-radius: 999px;
   transition: background-color 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1888,7 +2029,7 @@ a:focus-visible,
   letter-spacing: 0.14em;
   color: var(--accent);
   text-decoration: none;
-  border: 1px solid rgba(192, 122, 139, 0.45);
+  border: 1px solid var(--accent-glow);
   border-radius: 999px;
   padding: 0.65rem 1.3rem;
   transition: color 0.25s, background-color 0.25s, border-color 0.25s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2012,14 +2153,17 @@ a:focus-visible,
   scroll-snap-type: x mandatory;
   padding: 0.5rem 40px 1rem;
   scrollbar-width: none;
-  perspective: 1200px; /* coverflow 3D estilo Kai Marlow */
 }
 .ac-track::-webkit-scrollbar { display: none; }
 .ac-card {
   flex: 0 0 auto;
-  scroll-snap-align: center; /* la activa queda centrada en el track */
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
-  will-change: transform;
+  scroll-snap-align: center;
+  transition: opacity 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  will-change: opacity;
+  opacity: 0.55;
+}
+.ac-card--active {
+  opacity: 1;
 }
 /* Todas las tarjetas del carrusel con el mismo ratio (el de Sage, 5:9) y
    las imágenes cubriendo el wrapper entero (object-fit: cover) */

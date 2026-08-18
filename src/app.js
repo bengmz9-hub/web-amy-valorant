@@ -31,6 +31,14 @@ export function initApp() {
 
   let selectedAgentColor = null;
   let selectedAgent = null;
+  if (modeBtn) {
+    modeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('comp-mode');
+      const isComp = document.body.classList.contains('comp-mode');
+      modeBtn.textContent = isComp ? '❤️' : '🖤';
+      modeBtn.setAttribute('aria-label', isComp ? 'Volver a modo normal' : 'Modo competitivo: acentos Valorant');
+    });
+  }
   const agentBgOverlay = document.querySelector('.agent-bg-overlay');
   const agentBgImages = {
     sage: 'assets/imagenes/sage_art.avif',
@@ -53,7 +61,7 @@ export function initApp() {
   }
 
   function getDefaultAccentColor() {
-    return document.body.classList.contains('comp-mode') ? '#ff4655' : '#ff71ce';
+    return document.body.classList.contains('comp-mode') ? '#ff4655' : '#ff8ac2';
   }
 
   function setAccentColor(color) {
@@ -72,18 +80,6 @@ export function initApp() {
     }
   }
 
-  if (modeBtn) {
-    modeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('comp-mode');
-      const isComp = document.body.classList.contains('comp-mode');
-      modeBtn.textContent = isComp ? '🛡️' : '🖤';
-      // Al cambiar de modo se resetea la seleccion de agente para que el color competitivo aplique
-      selectedAgent = null;
-      selectedAgentColor = null;
-      restoreAgentBg();
-      setAccentColor(getDefaultAccentColor());
-    });
-  }
 
   // Scroll progress
   const scrollBar = document.getElementById('scrollBar');
@@ -428,12 +424,10 @@ export function initApp() {
       const accentColor = getAccent();
       if (dist <= targetRadius + 8) {
         hits++;
-        playSynthSound('hit');
         createExplosion(targetX, targetY, accentColor);
         spawnFloatingText(targetX, targetY - 20, "+1", "#ffffff");
         spawnTarget();
       } else {
-        playSynthSound('miss');
         spawnFloatingText(posX, posY - 20, "MISS", "#ff4655");
       }
       updateStats();
