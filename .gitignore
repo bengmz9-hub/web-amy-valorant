@@ -4,7 +4,10 @@ node_modules/
 # Build
 dist/
 
-# Secretos e infra
+# Secretos y Entornos
+.env
+.env.*
+!.env.example
 .webui_secret_key
 
 # Auditorías y herramientas
