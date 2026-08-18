@@ -1,6 +1,5 @@
 // NavbarAceternity — píldora flotante (Aceternity-style) adaptada a tokens reales.
-// Fixes: id="modeBtn" en el botón del navbar, colores -> var(), sin id duplicado en el panel.
-// Clases ac-* en index.css. Reversible: App.jsx + borrar bloque CSS.
+// Controla el modo competitivo (🖤/❤️) en desktop y mobile de forma reactiva.
 import { useEffect, useRef, useState } from "react";
 
 const LINKS = [
@@ -11,7 +10,18 @@ const LINKS = [
 
 export default function NavbarAceternity() {
   const [open, setOpen] = useState(false);
+  const [isComp, setIsComp] = useState(false);
   const ref = useRef(null);
+
+  const toggleCompMode = () => {
+    const nextState = !isComp;
+    setIsComp(nextState);
+    if (nextState) {
+      document.body.classList.add('comp-mode');
+    } else {
+      document.body.classList.remove('comp-mode');
+    }
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -45,7 +55,7 @@ export default function NavbarAceternity() {
 
         <span className="ac-sep" aria-hidden="true" />
 
-        {/* Redes sociales — mismo estilo pill que Ver Clips */}
+        {/* Redes sociales */}
         <a
           href="https://www.tiktok.com/@amyjgil"
           target="_blank"
@@ -65,8 +75,15 @@ export default function NavbarAceternity() {
           <img src="assets/imagenes/youtube_art.svg" alt="" className="ac-social__icon" width="19" height="19" />
         </a>
 
-        {/* modeBtn: id real para que app.js lo enganche (modo competitivo) */}
-        <button className="ac-icon" id="modeBtn" aria-label="Cambiar modo competitivo">🖤</button>
+        {/* Botón modo competitivo desktop */}
+        <button
+          className="ac-icon"
+          id="modeBtn"
+          onClick={toggleCompMode}
+          aria-label={isComp ? "Volver a modo normal" : "Modo competitivo: textos en rojo"}
+        >
+          {isComp ? '❤️' : '🖤'}
+        </button>
 
         <a href="#shorts" className="ac-cta">VER CLIPS</a>
 
@@ -98,8 +115,13 @@ export default function NavbarAceternity() {
         ))}
         <div className="ac-panel__foot">
           <span className="ac-panel__hint">Platino 2 · Main Sage</span>
-          {/* sin id para no duplicar el enganche de app.js */}
-          <button className="ac-icon" aria-label="Cambiar modo competitivo">🖤</button>
+          <button
+            className="ac-icon"
+            onClick={toggleCompMode}
+            aria-label={isComp ? "Volver a modo normal" : "Modo competitivo: textos en rojo"}
+          >
+            {isComp ? '❤️' : '🖤'}
+          </button>
         </div>
       </div>
     </div>
