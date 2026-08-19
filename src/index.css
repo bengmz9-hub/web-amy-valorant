@@ -796,39 +796,62 @@ section > :last-child,
   margin-top: 1rem;
 }
 
-/* TikTok shorts — grid 3 columnas (no carrusel) */
+/* TikTok shorts & YouTube embeds — grid centrado */
 .tiktok-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  justify-items: center;
+  align-items: start;
 }
 .tiktok-wrapper {
   background: var(--bg-card);
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   border-radius: 28px;
   border: 1px solid var(--glass-border);
   transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 330px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .tiktok-wrapper:hover {
   border-color: var(--accent);
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 .tiktok-wrapper blockquote.tiktok-embed {
   width: 100% !important;
-  max-width: min(100%, 300px) !important;
+  max-width: 100% !important;
   min-width: 0 !important;
   aspect-ratio: 9 / 16 !important;
   margin: 0 auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  border: none !important;
+}
+.tiktok-wrapper iframe {
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  border-radius: 16px;
+  display: block;
 }
 .clip-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Rajdhani', sans-serif;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
+  padding: 0.2rem 0.75rem;
   border-radius: 999px;
   margin-bottom: 0.75rem;
   border: 1px solid var(--accent);
@@ -846,12 +869,12 @@ section > :last-child,
 .yt-embed {
   position: relative;
   width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
+  max-width: 290px;
   aspect-ratio: 9 / 16;
   border-radius: 16px;
   overflow: hidden;
   background: #000;
+  margin: 0 auto;
 }
 .yt-embed iframe {
   position: absolute;
@@ -861,10 +884,11 @@ section > :last-child,
   border: 0;
 }
 .clip-title {
-  margin: 0.9rem auto 0;
-  max-width: 300px;
+  margin: 0.85rem auto 0;
+  width: 100%;
+  max-width: 290px;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.35;
   color: var(--text-main, #fff);
@@ -879,6 +903,10 @@ section > :last-child,
 @media (max-width: 640px) {
   .tiktok-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .tiktok-wrapper {
+    max-width: 320px;
   }
 }
 
