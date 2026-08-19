@@ -21,25 +21,6 @@ const VIDEOS = [
 ];
 
 export default function AmyShow() {
-  useEffect(() => {
-    if (window.tiktokEmbed) {
-      window.tiktokEmbed.load();
-      return;
-    }
-
-    const existingScript = document.querySelector('script[src*="tiktok.com/embed.js"]');
-    if (existingScript) {
-      existingScript.addEventListener('load', () => window.tiktokEmbed?.load());
-      return;
-    }
-
-    const s = document.createElement('script');
-    s.src = 'https://www.tiktok.com/embed.js';
-    s.async = true;
-    s.onload = () => window.tiktokEmbed?.load();
-    document.body.appendChild(s);
-  }, []);
-
   return (
     <section id="shorts" className="shorts-section fade-in-section">
       <div className="section-title">
@@ -65,12 +46,16 @@ export default function AmyShow() {
                 />
               </div>
             ) : (
-              <blockquote className="tiktok-embed" cite={v.cite} data-video-id={v.id}>
-                <section>
-                  <a target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@amyjgil?refer=embed">@amyjgil</a>
-                  {v.extra}
-                </section>
-              </blockquote>
+              <div className="yt-embed">
+                <iframe
+                  src={'https://www.tiktok.com/embed/v2/' + v.id}
+                  title={v.title || 'Clip de TikTok de Amy'}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
             )}
             {v.title && (
               <p className="clip-title">
