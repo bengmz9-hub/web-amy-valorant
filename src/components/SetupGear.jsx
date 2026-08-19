@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import WordReveal from './WordReveal.jsx';
+import AimTrainer from './AimTrainer.jsx';
 
 const GEAR = [
   { cat: 'perifericos', icon: '🖱️', name: 'Ratón', value: 'Logitech G Pro X Superlight', spec: 'Peso: 63g | Sensor: Hero 25K', status: '✓ Main actual' },
@@ -79,20 +80,7 @@ export default function SetupGear() {
         <GearBento items={items} />
       </div>
 
-      {/* AIM TRAINER */}
-      <div className="simulator-box">
-        <h3>🎯 Desafío de Puntería</h3>
-        <p style={{ marginBottom: '0.8rem', color: 'var(--text-sub)' }}>Mueve el ratón dentro del recuadro para apuntar y haz clic para disparar.</p>
-        <div id="aimStats" className="aim-stats">
-          <div>DIANAS: <span id="aimScore">0</span></div>
-          <div>PRECISIÓN: <span id="aimAccuracy">100%</span></div>
-          <div>TIEMPO: <span id="aimTime">10s</span></div>
-        </div>
-        <canvas id="sensCanvas" className="sim-canvas" width="800" height="400" style={{ width: '100%', maxWidth: '800px', height: 'auto' }}></canvas>
-        <div className="simulator-controls">
-          <button id="startAimBtn" className="filter-btn active" style={{ fontSize: '0.85rem', padding: '0.5rem 1.5rem', borderRadius: '100px' }}>Iniciar Juego 🎯</button>
-        </div>
-      </div>
+      <AimTrainer />
     </section>
   );
 }

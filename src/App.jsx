@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import NavbarAceternity from './components/NavbarAceternity.jsx';
 import Hero from './components/Hero.jsx';
 import Stats from './components/Stats.jsx';
@@ -6,15 +5,14 @@ import Agents from './components/Agents.jsx';
 import SetupGear from './components/SetupGear.jsx';
 import AmyShow from './components/AmyShow.jsx';
 import Footer from './components/Footer.jsx';
-import { initApp } from './app.js';
+import { useScrollProgress } from './hooks/useScrollProgress.js';
+import { useMouseGlow } from './hooks/useMouseGlow.js';
+import { useIntersectionFade } from './hooks/useIntersectionFade.js';
 
 export default function App() {
-  useEffect(() => {
-    const cleanup = initApp();
-    return () => {
-      if (typeof cleanup === 'function') cleanup();
-    };
-  }, []);
+  useScrollProgress();
+  useMouseGlow();
+  useIntersectionFade();
 
   return (
     <>
