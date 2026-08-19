@@ -113,6 +113,30 @@ export default function NavbarAceternity() {
             <span className="ac-item__arrow" aria-hidden="true">›</span>
           </a>
         ))}
+        {/* Redes sociales en panel móvil */}
+        <div className="ac-panel__socials">
+          <a
+            href="https://www.tiktok.com/@amyjgil"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ac-social-btn"
+            aria-label="TikTok de AMY"
+          >
+            <img src="assets/imagenes/tiktok_art.svg" alt="" width="18" height="18" />
+            <span>TikTok</span>
+          </a>
+          <a
+            href="https://www.youtube.com/@AmyJGil"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ac-social-btn"
+            aria-label="YouTube de AMY"
+          >
+            <img src="assets/imagenes/youtube_art.svg" alt="" width="18" height="18" />
+            <span>YouTube</span>
+          </a>
+        </div>
+
         <div className="ac-panel__foot">
           <span className="ac-panel__hint">Platino 2 · Main Sage</span>
           <button

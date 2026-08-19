@@ -1258,51 +1258,106 @@ a:focus-visible,
 .hero-desc .platino { color: #2ee6a8; font-weight: 500; }
 .hero-desc .pink { color: var(--accent); font-weight: 400; }
 
-/* CTAs */
+/* CTAs — Tarjetas Tácticas de Acción */
 .cta-row {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
-  margin-top: .4rem;
+  gap: 1.25rem;
+  margin-top: 0.8rem;
 }
-.btn-pink {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--accent), #ff9de9);
-  color: #170a12;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: .92rem;
-  font-weight: 700;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.05rem 2.4rem;
-  border-radius: 8px;
-  min-height: 48px;
-  transition: transform .25s, box-shadow .25s;
-  box-shadow: 0 10px 30px rgba(255,113,206,.22);
-}
-.btn-pink:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 44px rgba(255,113,206,.38);
-}
-.btn-ghost {
+.hero-cta-card {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: .7rem;
-  min-height: 48px;
-  padding: 0 1.2rem;
-  color: #e9e5dd;
+  gap: 0.9rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 14px;
   text-decoration: none;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: .92rem;
-  font-weight: 600;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  transition: color .25s;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 52px;
+  position: relative;
+  overflow: hidden;
 }
-.btn-ghost:hover { color: #ff9de9; }
-.btn-ghost .arrow { color: var(--accent); font-size: 1.15rem; }
+.hero-cta-primary {
+  background: linear-gradient(135deg, rgba(192, 122, 139, 0.95), rgba(217, 148, 163, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #08070a;
+  box-shadow: 0 8px 24px rgba(192, 122, 139, 0.28);
+}
+.hero-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(192, 122, 139, 0.42);
+  background: linear-gradient(135deg, rgba(192, 122, 139, 1), rgba(230, 160, 175, 0.95));
+}
+.hero-cta-primary .cta-card-title {
+  color: #08070a;
+}
+.hero-cta-primary .cta-card-sub {
+  color: rgba(8, 7, 10, 0.75);
+}
+.hero-cta-primary .cta-card-arrow {
+  color: #08070a;
+}
+.hero-cta-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+}
+.hero-cta-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.cta-card-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.cta-card-content {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.cta-card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.cta-card-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-sub);
+  line-height: 1.2;
+}
+.cta-card-arrow {
+  font-size: 1.1rem;
+  color: var(--accent);
+  transition: transform 0.25s ease;
+  margin-left: 0.2rem;
+}
+.hero-cta-card:hover .cta-card-arrow {
+  transform: translateX(4px);
+}
+@media (max-width: 640px) {
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  .hero-cta-card {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.9rem 1.2rem;
+  }
+  .cta-card-arrow {
+    margin-left: auto;
+  }
+}
 
 /* sin panel oscuro: el texto se lee por color claro (gris muy claro sobre el video) */
 .hero-copy {
@@ -2144,6 +2199,44 @@ a:focus-visible,
 .ac-item:hover { background: rgba(192, 122, 139, 0.12); }
 .ac-item__num { font-size: 0.6875rem; color: var(--accent); } /* 11px, minimo funcional */
 .ac-item__arrow { margin-left: auto; color: var(--text-sub); font-size: 1rem; }
+.ac-panel__socials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.2rem;
+  border-top: 1px solid var(--glass-border);
+}
+.ac-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  text-decoration: none;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+.ac-social-btn:hover {
+  background: rgba(192, 122, 139, 0.16);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+.ac-social-btn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
 .ac-panel__foot {
   display: flex;
   justify-content: space-between;
