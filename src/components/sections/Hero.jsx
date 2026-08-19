@@ -1,4 +1,4 @@
-import WordReveal from './WordReveal.jsx';
+import WordReveal from '@/components/ui/WordReveal.jsx';
 
 export default function Hero() {
   return (

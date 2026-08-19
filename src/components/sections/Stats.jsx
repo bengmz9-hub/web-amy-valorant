@@ -2,7 +2,7 @@
 // Datos reales (no inventar): 2500+ horas, 51% WR, 368 followers, Platino 3.
 // CSS: .stats-section .bento-card (stagger) y .stats-carousel en index.css.
 import { useEffect, useRef } from 'react';
-import AgentCarousel from './AgentCarousel.jsx';
+import AgentCarousel from '@/components/sections/AgentCarousel.jsx';
 
 const STATS = [
   {

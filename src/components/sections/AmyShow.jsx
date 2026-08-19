@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import WordReveal from './WordReveal.jsx';
+import WordReveal from '@/components/ui/WordReveal.jsx';
 
 const VIDEOS = [
   { platform: 'tiktok', id: '7581441844328942870', cite: 'https://www.tiktok.com/@amyjgil/video/7581441844328942870', title: 'Clip' },
