@@ -69,7 +69,8 @@ export default function Stats() {
   ];
 
   return (
-    <section ref={sectionRef} className="stats-section">
+    <section ref={sectionRef} className="stats-section" aria-label="Estadísticas de rendimiento y agentes">
+      <h2 className="sr-only">Rendimiento táctico y agentes principales</h2>
       <div className="bento-grid">
         {stats.map((stat, i) => (
           <div className="bento-card" key={i} style={{ transitionDelay: i * 90 + 'ms' }}>

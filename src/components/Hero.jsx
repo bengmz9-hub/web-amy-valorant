@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section className="hero relative w-full min-h-screen [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
       {/* video sageAURA de fondo: WebM 1280x720 idéntico en encuadre (optimizado VP9) */}
-      <video className="bg-video" autoPlay muted loop playsInline poster="assets/imagenes/amy_art.webp">
+      <video className="bg-video" autoPlay muted loop playsInline aria-hidden="true" tabIndex="-1" poster="assets/imagenes/amy_art.webp">
         <source src="assets/imagenes/sageAURA.webm" type="video/webm" />
         <source src="assets/imagenes/sageAURA.mp4" type="video/mp4" />
       </video>
@@ -41,7 +41,7 @@ export default function Hero() {
               <span className="badge-dot"></span> AMY // CREATOR
             </div>
             <div className="portrait-img-wrapper">
-              <img src="assets/imagenes/amy_art.webp" alt="AMY" />
+              <img src="assets/imagenes/amy_art.webp" alt="Amy, jugadora de Valorant Platino 2 y creadora de contenido" width="600" height="710" fetchPriority="high" />
             </div>
             <div className="portrait-footer">
               <span className="portrait-tag">MAIN SAGE</span>
@@ -57,7 +57,7 @@ export default function Hero() {
               VALORANT // AGENT #07
             </div>
             <div className="portrait-img-wrapper">
-              <img src="assets/imagenes/sage-wallpaper.jpg" alt="Sage" />
+              <img src="assets/imagenes/sage-wallpaper.jpg" alt="Sage, agente centinela de soporte en Valorant" width="1920" height="1080" loading="lazy" decoding="async" />
             </div>
             <div className="portrait-footer">
               <span className="portrait-tag">SENTINEL</span>

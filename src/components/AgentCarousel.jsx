@@ -10,7 +10,7 @@ const agents = [
     key: 'sage',
     badge: 'VALORANT // AGENT #07',
     img: 'assets/imagenes/sage-wallpaper.jpg',
-    alt: 'Sage',
+    alt: 'Sage, agente centinela de soporte en Valorant',
     tag: 'SENTINEL',
     code: 'RADIANITE',
   },
@@ -18,7 +18,7 @@ const agents = [
     key: 'brimstone',
     badge: 'VALORANT // CONTROLLER',
     img: 'assets/imagenes/brimstone-wallpaper.jpg',
-    alt: 'Brimstone',
+    alt: 'Brimstone, agente de control en Valorant',
     tag: 'CONTROLLER',
     code: '20% USO',
   },
@@ -26,7 +26,7 @@ const agents = [
     key: 'gekko',
     badge: 'VALORANT // INITIATOR',
     img: 'assets/imagenes/gekko-wallpaper.jpg',
-    alt: 'Gekko',
+    alt: 'Gekko, agente iniciador en Valorant',
     tag: 'INITIATOR',
     code: '35% USO',
   },
@@ -121,6 +121,10 @@ export default function AgentCarousel() {
               <img
                 src={a.img}
                 alt={a.alt}
+                width="1920"
+                height="1080"
+                loading="lazy"
+                decoding="async"
                 onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.style.display = 'none'; }}
               />
             </div>

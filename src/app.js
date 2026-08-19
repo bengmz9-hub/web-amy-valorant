@@ -1,6 +1,13 @@
 export function initApp() {
   'use strict';
 
+  const disposables = [];
+  const on = (target, event, handler, opts) => {
+    if (!target) return;
+    target.addEventListener(event, handler, opts);
+    disposables.push(() => target.removeEventListener(event, handler, opts));
+  };
+
   // Helper seguro para localStorage (evita excepciones de seguridad en entornos sandbox/iframe)
   const safeStorage = {
     getItem(key) {
@@ -275,9 +282,14 @@ export function initApp() {
   });
 
   // Cursor glow y Linterna táctica (Unificado y Optimizado con rAF)
+  const existingFlashlight = document.querySelector('.tactical-flashlight');
+  if (existingFlashlight) existingFlashlight.remove();
   const flashlight = document.createElement('div');
   flashlight.className = 'tactical-flashlight';
   document.body.appendChild(flashlight);
+  disposables.push(() => {
+    if (flashlight.parentNode) flashlight.parentNode.removeChild(flashlight);
+  });
 
   let mouseMoveRequest;
   let mouseX = 0;
@@ -291,12 +303,16 @@ export function initApp() {
     mouseMoveRequest = null;
   }
 
-  document.addEventListener('mousemove', (e) => {
+  const handleMouseMove = (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
     if (!mouseMoveRequest) {
       mouseMoveRequest = requestAnimationFrame(updateMousePositions);
     }
+  };
+  on(document, 'mousemove', handleMouseMove, { passive: true });
+  disposables.push(() => {
+    if (mouseMoveRequest) cancelAnimationFrame(mouseMoveRequest);
   });
 
   // Desafío de Puntería (Aim Trainer Game)
@@ -628,28 +644,15 @@ export function initApp() {
     fadeElements.forEach(el => el.classList.add('is-visible'));
   }
 
-  // ACCESIBILIDAD Y RENDIMIENTO: Carga diferida (Lazy Load) de scripts de TikTok con IntersectionObserver
-  const shortsSection = document.getElementById('shorts');
-  if (shortsSection && 'IntersectionObserver' in window) {
-    const tiktokObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const script = document.createElement('script');
-          script.src = 'https://www.tiktok.com/embed.js';
-          script.async = true;
-          document.body.appendChild(script);
-          observer.unobserve(shortsSection);
-        }
-      });
-    }, { rootMargin: '200px 0px' });
-    tiktokObserver.observe(shortsSection);
-  } else {
-    // Fallback en caso de que no haya IntersectionObserver
-    const script = document.createElement('script');
-    script.src = 'https://www.tiktok.com/embed.js';
-    script.async = true;
-    document.body.appendChild(script);
-  }
-
   restoreAccentColor();
+
+  return () => {
+    disposables.forEach((dispose) => {
+      try {
+        dispose();
+      } catch (e) {
+        console.error('[Cleanup]', e);
+      }
+    });
+  };
 }

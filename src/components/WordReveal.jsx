@@ -23,40 +23,45 @@ export default function WordReveal({ as: Tag = 'h2', className = '', parts, mode
 
   let wi = 0;
   const unit = mode === 'letters' ? 22 : 45; // ms por letra / por palabra
+  const safeParts = Array.isArray(parts) ? parts : [];
+
   return (
-    <Tag ref={ref} className={'wr ' + className}>
-      {parts.map((p, pi) => (
-        <span className="wr-seg" key={pi}>
-          {mode === 'letters'
-            ? p.t.split('').map((ch, ci) => {
-                const delay = wi * unit;
-                wi += 1;
-                return (
-                  <span
-                    key={ci}
-                    className={'wr-letter' + (p.hl ? ' highlight' : '')}
-                    style={{ transitionDelay: delay + 'ms' }}
-                  >
-                    {ch === ' ' ? '\u00A0' : ch}
-                  </span>
-                );
-              })
-            : p.t.split(' ').map((w) => {
-                const delay = wi * unit;
-                wi += 1;
-                return (
-                  <span
-                    key={w + '-' + wi}
-                    className={'wr-word' + (p.hl ? ' highlight' : '')}
-                    style={{ transitionDelay: delay + 'ms' }}
-                  >
-                    {w}
-                    {'\u00A0'}
-                  </span>
-                );
-              })}
-        </span>
-      ))}
+    <Tag ref={ref} className={'wr ' + (className || '')}>
+      {safeParts.map((p, pi) => {
+        const text = typeof p?.t === 'string' ? p.t : '';
+        return (
+          <span className="wr-seg" key={pi}>
+            {mode === 'letters'
+              ? text.split('').map((ch, ci) => {
+                  const delay = wi * unit;
+                  wi += 1;
+                  return (
+                    <span
+                      key={ci}
+                      className={'wr-letter' + (p?.hl ? ' highlight' : '')}
+                      style={{ transitionDelay: delay + 'ms' }}
+                    >
+                      {ch === ' ' ? '\u00A0' : ch}
+                    </span>
+                  );
+                })
+              : text.split(' ').map((w, wIdx) => {
+                  const delay = wi * unit;
+                  wi += 1;
+                  return (
+                    <span
+                      key={`${w}-${wIdx}-${wi}`}
+                      className={'wr-word' + (p?.hl ? ' highlight' : '')}
+                      style={{ transitionDelay: delay + 'ms' }}
+                    >
+                      {w}
+                      {'\u00A0'}
+                    </span>
+                  );
+                })}
+          </span>
+        );
+      })}
     </Tag>
   );
 }

@@ -38,9 +38,11 @@ const AGENTS = [
   }
 ];
 
-function handleImgError(e, fallback) {
+const SVG_FALLBACK = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='800' viewBox='0 0 600 800'><rect width='100%' height='100%' fill='%230f1923'/><text x='50%' y='50%' fill='%23ff4655' font-family='monospace' font-size='24' text-anchor='middle' dy='.3em'>VALORANT TACTICAL ASSET</text></svg>";
+
+function handleImgError(e) {
   e.currentTarget.onerror = null;
-  e.currentTarget.src = fallback;
+  e.currentTarget.src = SVG_FALLBACK;
 }
 
 export default function Agents() {
@@ -63,7 +65,7 @@ export default function Agents() {
                   width={a.w} height={a.h}
                   alt={a.alt}
                   loading="lazy" decoding="async"
-                  onError={(e) => handleImgError(e, `https://placehold.co/600x800/0f1923/ffffff?text=${a.name}`)}
+                  onError={handleImgError}
                 />
               </picture>
               <h3 className="agent-name-overlay">{a.name}</h3>

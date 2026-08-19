@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react';
+import { useEffect } from 'react';
 import NavbarAceternity from './components/NavbarAceternity.jsx';
 import Hero from './components/Hero.jsx';
 import Stats from './components/Stats.jsx';
@@ -10,7 +10,10 @@ import { initApp } from './app.js';
 
 export default function App() {
   useEffect(() => {
-    initApp();
+    const cleanup = initApp();
+    return () => {
+      if (typeof cleanup === 'function') cleanup();
+    };
   }, []);
 
   return (
