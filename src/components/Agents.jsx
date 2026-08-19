@@ -73,6 +73,9 @@ function AgentCard({ agent }) {
   const currentAbility = agent.abilities[activeTab] || agent.abilities['C'];
 
   const handleMouseMove = (e) => {
+    // Solo aplicar rotación 3D en pantallas con ratón/hover real
+    if (window.matchMedia && !window.matchMedia('(hover: hover)').matches) return;
+
     const card = cardRef.current;
     if (!card) return;
     const rect = card.getBoundingClientRect();
@@ -132,10 +135,13 @@ function AgentCard({ agent }) {
       <div className="info">
         <p>{agent.desc}</p>
         <div className="abilities-container">
-          <div className="ability-tabs">
+          <div className="ability-tabs" role="tablist" aria-label={`Habilidades tácticas de ${agent.name}`}>
             {['C', 'Q', 'E', 'X'].map((key) => (
               <button
                 key={key}
+                role="tab"
+                aria-selected={activeTab === key}
+                aria-label={`Habilidad ${key}: ${agent.abilities[key]?.name}`}
                 className={`ability-tab ${activeTab === key ? 'active' : ''}`}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -146,7 +152,7 @@ function AgentCard({ agent }) {
               </button>
             ))}
           </div>
-          <div className="ability-info-box">
+          <div className="ability-info-box" role="tabpanel">
             <h4 className="ability-name">{currentAbility.name}</h4>
             <div className="ability-desc">{currentAbility.desc}</div>
           </div>

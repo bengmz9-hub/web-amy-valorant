@@ -281,19 +281,11 @@ export default function AimTrainer() {
         width="800"
         height="400"
         style={{ width: '100%', maxWidth: '800px', height: 'auto', cursor: 'crosshair', touchAction: 'none' }}
-        onMouseMove={(e) => handlePointerMove(e.clientX, e.clientY)}
-        onTouchStart={(e) => {
-          if (e.touches.length > 0) {
-            handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
-          }
+        onPointerMove={(e) => handlePointerMove(e.clientX, e.clientY)}
+        onPointerDown={(e) => {
+          handlePointerMove(e.clientX, e.clientY);
           shoot();
         }}
-        onTouchMove={(e) => {
-          if (e.touches.length > 0) {
-            handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
-          }
-        }}
-        onClick={shoot}
       />
 
       <div className="simulator-controls">

@@ -2477,7 +2477,7 @@ a:focus-visible,
   .mobile-tiktok-fab {
     display: inline-flex !important;
     position: fixed;
-    bottom: 1.25rem;
+    bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
     right: 1.25rem;
     z-index: 90;
     align-items: center;
