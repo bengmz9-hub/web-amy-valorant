@@ -23,3 +23,5 @@ local_agent.py
 Thumbs.db
 .vercel
 .project-map.md
+
+.agents/

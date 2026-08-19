@@ -3,10 +3,10 @@ import WordReveal from './WordReveal.jsx';
 export default function Hero() {
   return (
     <section className="hero relative w-full min-h-screen [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
-      {/* video sageAURA de fondo: prioriza MP4 (8MB HD) sobre WEBM (1.1MB comprimido) */}
+      {/* video sageAURA de fondo: WebM 1280x720 idéntico en encuadre (optimizado VP9) */}
       <video className="bg-video" autoPlay muted loop playsInline poster="assets/imagenes/amy_art.webp">
-        <source src="assets/imagenes/sageAURA.mp4" type="video/mp4" />
         <source src="assets/imagenes/sageAURA.webm" type="video/webm" />
+        <source src="assets/imagenes/sageAURA.mp4" type="video/mp4" />
       </video>
 
       <div className="grain"></div>
