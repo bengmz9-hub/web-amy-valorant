@@ -1,5 +1,5 @@
 // Stats — bento grid con stagger al entrar (estilo Folira) + carrusel de agentes debajo.
-// Datos reales (no inventar): 2500+ horas, 51% WR, 284 followers, Platino 2.
+// Datos reales (no inventar): 2500+ horas, 51% WR, 368 followers, Platino 3.
 // CSS: .stats-section .bento-card (stagger) y .stats-carousel en index.css.
 import { useEffect, useRef } from 'react';
 import AgentCarousel from './AgentCarousel.jsx';
@@ -27,7 +27,7 @@ const STATS = [
     ),
   },
   {
-    value: '284',
+    value: '368',
     label: 'TikTok Followers',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -38,7 +38,7 @@ const STATS = [
     ),
   },
   {
-    value: 'Platino 2',
+    value: 'Platino 3',
     label: 'Rango Actual',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

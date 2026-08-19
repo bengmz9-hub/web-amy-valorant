@@ -4,7 +4,7 @@ Contexto de diseño para detectores y agentes de IA.
 
 ## Marca
 
-- Nombre: AMY — Valorant player (Platino 2, main Sage)
+- Nombre: AMY — Valorant player (Platino 3, main Sage)
 - Superficie: brand (landing/portfolio personal, estética gaming femenina)
 - Voz: fuerte, directa, sin relleno
 

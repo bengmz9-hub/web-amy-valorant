@@ -18,7 +18,7 @@ export default function Hero() {
           <WordReveal as="h1" mode="letters" className="hero-title" parts={[{ t: 'Amy valorant' }, { t: 'player' }]} />
 
           <p className="hero-desc">
-            ¡Hola! Soy Amy y este es mi rincón de Valorant. Juego en <b className="platino">Platino 2</b> y soy
+            ¡Hola! Soy Amy y este es mi rincón de Valorant. Juego en <b className="platino">Platino 3</b> y soy
             <span className="pink"> main Sage</span>: la que cura, la que resucita y la que aguanta.
             Aquí comparto mis clips, mis guías y mi setup, para que aprendas conmigo y
             mejores partida a partida. Esto es para todos: si juegas, si quieres empezar,
@@ -56,7 +56,7 @@ export default function Hero() {
               <span className="badge-dot"></span> AMY // CREATOR
             </div>
             <div className="portrait-img-wrapper">
-              <img src="assets/imagenes/amy_art.webp" alt="Amy, jugadora de Valorant Platino 2 y creadora de contenido" width="600" height="710" fetchPriority="high" />
+              <img src="assets/imagenes/amy_art.webp" alt="Amy, jugadora de Valorant Platino 3 y creadora de contenido" width="600" height="710" fetchPriority="high" />
             </div>
             <div className="portrait-footer">
               <span className="portrait-tag">MAIN SAGE</span>

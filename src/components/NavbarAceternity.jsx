@@ -137,7 +137,7 @@ export default function NavbarAceternity() {
         </div>
 
         <div className="ac-panel__foot">
-          <span className="ac-panel__hint">Platino 2 · Main Sage</span>
+          <span className="ac-panel__hint">Platino 3 · Main Sage</span>
           <button
             className="ac-icon"
             onClick={toggleCompMode}
