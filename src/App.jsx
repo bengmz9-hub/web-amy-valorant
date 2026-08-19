@@ -7,12 +7,10 @@ import AmyShow from './components/AmyShow.jsx';
 import Footer from './components/Footer.jsx';
 import MobileTikTokFAB from './components/MobileTikTokFAB.jsx';
 import { useScrollProgress } from './hooks/useScrollProgress.js';
-import { useMouseGlow } from './hooks/useMouseGlow.js';
 import { useIntersectionFade } from './hooks/useIntersectionFade.js';
 
 export default function App() {
   useScrollProgress();
-  useMouseGlow();
   useIntersectionFade();
 
   return (

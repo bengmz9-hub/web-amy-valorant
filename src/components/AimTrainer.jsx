@@ -135,6 +135,30 @@ export default function AimTrainer() {
       }
     }
 
+    // Hitmarkers tácticos (Valorant hit-feedback)
+    if (st.hitmarkers) {
+      for (let i = st.hitmarkers.length - 1; i >= 0; i--) {
+        const hm = st.hitmarkers[i];
+        hm.alpha -= 0.08;
+        if (hm.alpha <= 0) {
+          st.hitmarkers.splice(i, 1);
+        } else {
+          ctx.save();
+          ctx.globalAlpha = hm.alpha;
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.5;
+          const hs = 6;
+          ctx.beginPath();
+          ctx.moveTo(hm.x - hs, hm.y - hs);
+          ctx.lineTo(hm.x + hs, hm.y + hs);
+          ctx.moveTo(hm.x + hs, hm.y - hs);
+          ctx.lineTo(hm.x - hs, hm.y + hs);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+    }
+
     // Retícula / Mira del usuario
     ctx.strokeStyle = accent;
     ctx.lineWidth = 1.5;
@@ -160,7 +184,7 @@ export default function AimTrainer() {
 
   const gameLoop = () => {
     const st = gameState.current;
-    if (st.isPlaying || st.particles.length > 0 || st.floatingTexts.length > 0) {
+    if (st.isPlaying || st.particles.length > 0 || st.floatingTexts.length > 0 || (st.hitmarkers && st.hitmarkers.length > 0)) {
       draw();
       st.animFrameId = requestAnimationFrame(gameLoop);
     } else {
@@ -178,29 +202,31 @@ export default function AimTrainer() {
   const startGame = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const st = gameState.current;
+    st.isPlaying = true;
+    st.timeLeft = 15;
+    st.hits = 0;
+    st.totalClicks = 0;
+    st.particles = [];
+    st.floatingTexts = [];
+    st.hitmarkers = [];
 
-    gameState.current.isPlaying = true;
-    gameState.current.hits = 0;
-    gameState.current.totalClicks = 0;
-    gameState.current.timeLeft = 10;
-
-    setIsPlaying(true);
+    setTimeLeft(15);
     setHits(0);
     setTotalClicks(0);
-    setTimeLeft(10);
+    setIsPlaying(true);
 
     spawnTarget(canvas.width, canvas.height);
-    if (gameState.current.gameInterval) clearInterval(gameState.current.gameInterval);
+    triggerAnimation();
 
-    gameState.current.gameInterval = setInterval(() => {
-      gameState.current.timeLeft -= 1;
-      setTimeLeft(gameState.current.timeLeft);
-      if (gameState.current.timeLeft <= 0) {
+    if (st.gameInterval) clearInterval(st.gameInterval);
+    st.gameInterval = setInterval(() => {
+      st.timeLeft -= 1;
+      setTimeLeft(st.timeLeft);
+      if (st.timeLeft <= 0) {
         endGame();
       }
     }, 1000);
-
-    triggerAnimation();
   };
 
   const endGame = () => {
@@ -227,6 +253,8 @@ export default function AimTrainer() {
     if (dist <= st.targetRadius + 8) {
       st.hits += 1;
       setHits(st.hits);
+      if (!st.hitmarkers) st.hitmarkers = [];
+      st.hitmarkers.push({ x: st.posX, y: st.posY, alpha: 1 });
       createExplosion(st.targetX, st.targetY, accentColor);
       spawnFloatingText(st.targetX, st.targetY - 20, '+1', '#ffffff');
       if (canvas) spawnTarget(canvas.width, canvas.height);

@@ -24,12 +24,20 @@ export default function AmyShow() {
   useEffect(() => {
     if (window.tiktokEmbed) {
       window.tiktokEmbed.load();
-    } else {
-      const s = document.createElement('script');
-      s.src = 'https://www.tiktok.com/embed.js';
-      s.async = true;
-      document.body.appendChild(s);
+      return;
     }
+
+    const existingScript = document.querySelector('script[src*="tiktok.com/embed.js"]');
+    if (existingScript) {
+      existingScript.addEventListener('load', () => window.tiktokEmbed?.load());
+      return;
+    }
+
+    const s = document.createElement('script');
+    s.src = 'https://www.tiktok.com/embed.js';
+    s.async = true;
+    s.onload = () => window.tiktokEmbed?.load();
+    document.body.appendChild(s);
   }, []);
 
   return (

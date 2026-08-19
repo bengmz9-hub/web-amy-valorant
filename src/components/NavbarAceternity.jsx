@@ -13,14 +13,13 @@ export default function NavbarAceternity() {
   const [isComp, setIsComp] = useState(false);
   const ref = useRef(null);
 
+  useEffect(() => {
+    document.body.classList.toggle('comp-mode', isComp);
+    return () => document.body.classList.remove('comp-mode');
+  }, [isComp]);
+
   const toggleCompMode = () => {
-    const nextState = !isComp;
-    setIsComp(nextState);
-    if (nextState) {
-      document.body.classList.add('comp-mode');
-    } else {
-      document.body.classList.remove('comp-mode');
-    }
+    setIsComp((prev) => !prev);
   };
 
   useEffect(() => {

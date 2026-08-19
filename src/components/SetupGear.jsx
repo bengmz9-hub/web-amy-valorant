@@ -17,7 +17,9 @@ const GEAR = [
 ];
 
 const FILTERS = [
-  { key: 'all', label: 'Todo el Equipo' }
+  { key: 'all', label: 'Todo el Equipo' },
+  { key: 'perifericos', label: 'Periféricos' },
+  { key: 'pc', label: 'Componentes PC' }
 ];
 
 /* ── Bento Asimétrico 12-col (Opción A) ──────────────────────────── */
