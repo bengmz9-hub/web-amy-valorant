@@ -2464,3 +2464,105 @@ a:focus-visible,
     transition: none;
   }
 }
+
+/* ============================================================
+   MOBILE TIKTOK FAB — Botón flotante exclusivo móvil
+   Invisible en desktop (> 640px)
+   ============================================================ */
+.mobile-tiktok-fab {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .mobile-tiktok-fab {
+    display: inline-flex !important;
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    z-index: 90;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.9rem;
+    background: rgba(14, 13, 18, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(192, 122, 139, 0.4);
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 15px rgba(192, 122, 139, 0.25);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-tiktok-fab:active {
+    transform: scale(0.95);
+    border-color: var(--accent);
+    box-shadow: 0 4px 15px rgba(192, 122, 139, 0.4);
+  }
+
+  .fab-icon-wrapper {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .fab-tiktok-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 4px rgba(254, 44, 85, 0.6)) drop-shadow(0 0 4px rgba(37, 244, 238, 0.6));
+  }
+
+  .tiktok-cyan-shift {
+    transform: translate(-0.8px, -0.6px);
+    opacity: 0.85;
+  }
+
+  .tiktok-red-shift {
+    transform: translate(0.8px, 0.6px);
+    opacity: 0.85;
+  }
+
+  .fab-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .fab-tag {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .fab-handle {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #f4f4f5;
+    line-height: 1.1;
+  }
+
+  .fab-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fe2c55;
+    box-shadow: 0 0 8px #fe2c55;
+    animation: fab-pulse 2s infinite ease-in-out;
+    margin-left: 0.2rem;
+    flex-shrink: 0;
+  }
+
+  @keyframes fab-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+}
